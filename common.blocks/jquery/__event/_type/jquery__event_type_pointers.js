@@ -70,7 +70,7 @@ if('ontouchstart' in window && !('_phantom' in window)) {
 
 var isTouch = current.type === 'touch',
     isMouse = current.type === 'mouse';
-    
+
 /**
  * Mutate an argument event to PointerEvent.
  *
@@ -187,15 +187,15 @@ function addSpecialEvent(eventType, extend) {
             }
         };
 
-    extend && $.extend(specialEvent, extend(specialEvent));
+    extend && $.extend(specialEvent, extend(specialEvent, pointerEventType));
 }
 
-function extendHandlerTouchByElement() {
+function extendHandlerTouchByElement(specialEvent, pointerEventType) {
     return {
         handlerTouch : function(e) {
-            var pointerEvent = new PointerEvent(e, 'pointerup'),
-            data = pointerEvent.e;
-            pointerEvent.dispatch(document.elementFromPoint(data.clientX, data.clientY));
+            var pointerEvent = new PointerEvent(e, pointerEventType),
+                target = document.elementFromPoint(pointerEvent.clientX, pointerEvent.clientY);
+            pointerEvent.dispatch(target);
         }
     };
 }
