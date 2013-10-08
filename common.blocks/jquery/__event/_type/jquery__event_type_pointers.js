@@ -361,8 +361,9 @@ addSpecialEvent('release', function(specialEvent) {
             clearTimeout(specialEvent.data.timer);
 
             if(specialEvent.data.pressed) {
-                var pointerevent = new PointerEvent(e, 'pointerrelease');
-                pointerevent.dispatch(pointerevent.target);
+                var pointerEvent = new PointerEvent(e, 'pointerrelease'),
+                    target = document.elementFromPoint(pointerEvent.clientX, pointerEvent.clientY);
+                pointerEvent.dispatch(target);
             }
 
             delete specialEvent.data;
