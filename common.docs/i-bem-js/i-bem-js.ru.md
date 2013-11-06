@@ -1,56 +1,40 @@
-# *i-bem.js*: Руководство пользователя #
+# *i-bem.js*: User Guide #
 
-# Общие сведения #
+# Overview #
 
-## *i-bem.js*: Javascript-фреймворк для БЭМ ##
+## *i-bem.js*: Javascript framework for BEM ##
 
-*i-bem.js* — специализированный JavaScript-фреймворк для веб-разработки
-в рамках [БЭМ-методологии](http://ru.bem.info/method/). С помощью
-*i-bem.js* можно:
+*i-bem.js* is a JavaScript framework for web-development within [BEM-methodology](http://en.bem.info/method/). Using
+*i-bem.js* one can:
 
- * разрабатывать веб-интерфейс в терминах блоков, элементов, модификаторов;
- * описывать логику работы блока в декларативном стиле — как набор состояний;
- * легко интегрировать JavaScript-код с CSS в стиле БЭМ и BEMHTML-шаблонами;
- * гибко переопределять поведение библиотечных блоков.
+ * develop web interface in terms of blocks, elements, modifiers;
+ * describe a block's behaviour in a declaration style as a set of states;
+ * integrate easily JavaScript code with CSS in BEM style and with BEMHTML-templates;
+ * flexible override behaviour of library blocks.
 
-*i-bem.js* не предназначен:
+*i-bem.js* is not suitable for:
 
- * для замены фреймворка общего назначения, подобного jQuery.
+ * replacing the general purpose framework, such as jQuery.
 
-## БЭМ-методология и JavaScript ##
+## BEM-methodology and JavaScript ##
 
-С точки зрения БЭМ-методологии веб-интерфейс строится из независимых
-**блоков** (внутри которых могут быть выделены **элементы**). И блоки,
-и элементы могут иметь состояния, описываемые **модификаторами**.
+As far as BEM-methodology is concerned, web interface is built  of independent **blocks** (in which **elements** are allocated). Both blocks and elements may have states, described by **modifiers**.
 
-Работа веб-интерфейса обеспечивается несколькими **технологиями**
-(HTML, CSS, JS...), и описание блока складывается из реализаций в этих
-технологиях. Обычно реализация разбита на несколько файлов, например:
+Web interface work is provided by multiple  **technologies**
+(HTML, CSS, JS...), a description of a block consists of the implementations of these technologies. Usually implementation consists of a few files, for example:
 
- * `my-block.css` — описывает внешний вид блока;
- * `my-block.bemhtml` — шаблоны для генерации HTML-представления блока;
- * `my-block.js` — описывает **динамическое поведение** блока в браузере.
+ * `my-block.css` — describes block's appearance;
+ * `my-block.bemhtml` — templates for generating block's HTML-view;
+ * `my-block.js` — describes block's **dynamic behavior** in browser.
 
-Фреймворк *i-bem.js* позволяет разложить клиентский JavaScript на компоненты в терминах БЭМ:
+*i-bem.js* framework allows to decompose client JavaScript into components in BEM-terms:
 
- + **Блок** — JS-компонент, описывающий логику работы однотипных
- элементов интерфейса. Например, все кнопки могут быть реализованы в
- виде блока `button`. Тогда, в соответствии с БЭМ-методологией,
- `button.css` определяет внешний вид всех кнопок, а `button.js` —
- логику их работы.
- + На каждой странице может размещаться более одного **экземпляра**
- блока (например, кнопки). Каждому экземпляру блока соответствует
- JS-объект, динамически создаваемый в памяти браузера и хранящий
- состояние данного экземпляра. JS-объект хранит ссылку на DOM-узел,
- к которому привязан данный экземпляр блока.
- + **Элементы** — DOM-узлы, вложенные в DOM-узел блока и имеющие атрибут
-   `class`, указывающий на их роль в БЭМ-предметной области (имя блока
-   и элемента). Элементы блока доступны через [JS-API](#elem-api)
-   экземпляра блока.
- + **Модификаторы** — Хранят информацию о состоянии блока и его
-   элементов. Состояние модификаторов записывается в атрибуте `class`
-   на DOM-узлах блока и элементов. Управление модификаторами
-   производится через [JS-API](#mods-api) экземпляра блока.
+ + **Block** is a JS component that describes the way the same interface elements work.
+ For example, all buttons may be implemented as a `button` block. Then, according to the BEM-methodology, `button.css` determines the appearance of the buttons, `button.js` — determines the way they work.
+ + Each page can contain more than one **instance** of a block (for example, a button). Each instance of the block corresponds to the JS object that is created dynamically in the browser's memory and stores the state of the instance. JS-object stores a link to the DOM-node that is bound to the instance of the block. 
+ + **Elements** are DOM-nodes nested on DOM-node block with `class` attribute, indicating their role in BEM- subject domain (the names of blocks and elements). Elements of a block are available through the [JS-API](#elem-api) instance of the block.
+ + **Modifiers** store information on a block state and its elements. Modifier state is written in `class` attribute on a block's DOM-nodes and elements. 
+   Modifiers are operated via [JS-API](#mods-api) instance of the block.
 
 
 
