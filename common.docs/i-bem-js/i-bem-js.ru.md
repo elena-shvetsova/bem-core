@@ -10,7 +10,7 @@
  * develop web interface in terms of blocks, elements, modifiers;
  * describe a block's behaviour in a declarative style as a set of states;
  * integrate easily JavaScript code with CSS in BEM style and with BEMHTML-templates;
- * flexible override behaviour of library blocks.
+ * flexibly override behaviour of library blocks.
 
 *i-bem.js* is not suitable for:
 
@@ -34,7 +34,7 @@ Web interface work is provided by multiple  **technologies**
  + Each page can contain more than one **instance** of a block (for example, a button). Each instance of the block corresponds to the JS object that is created dynamically in the browser's memory and stores the state of the instance. JS-object stores a link to the DOM-node that is bound to the instance of the block. 
  + **Elements** are DOM-nodes nested on DOM-node block with `class` attribute, indicating their role in BEM- subject domain (the names of blocks and elements). Elements of a block are available through the [JS-API](#elem-api) instance of the block.
  + **Modifiers** store information on a block state and its elements. Modifier state is written in `class` attribute on a block's DOM-nodes and elements. 
-   Modifiers are operated via [JS-API](#mods-api) instance of the block.
+   Modifiers are operated via [JS-API](#mods-api) of the instance of the block.
 
 
 
