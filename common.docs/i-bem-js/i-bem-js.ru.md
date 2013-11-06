@@ -8,7 +8,7 @@
 *i-bem.js* one can:
 
  * develop web interface in terms of blocks, elements, modifiers;
- * describe a block's behaviour in a declaration style as a set of states;
+ * describe a block's behaviour in a declarative style as a set of states;
  * integrate easily JavaScript code with CSS in BEM style and with BEMHTML-templates;
  * flexible override behaviour of library blocks.
 
