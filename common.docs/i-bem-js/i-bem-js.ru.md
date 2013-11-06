@@ -32,7 +32,7 @@ Web interface work is provided by multiple  **technologies**
  + **Block** is a JS component that describes the way the same interface elements work.
  For example, all buttons may be implemented as a `button` block. Then, according to the BEM-methodology, `button.css` determines the appearance of the buttons, `button.js` — determines the way they work.
  + Each page can contain more than one **instance** of a block (for example, a button). Each instance of the block corresponds to the JS object that is created dynamically in the browser's memory and stores the state of the instance. JS-object stores a link to the DOM-node that is bound to the instance of the block. 
- + **Elements** are DOM-nodes nested on DOM-node block with `class` attribute, indicating their role in BEM- subject domain (the names of blocks and elements). Elements of a block are available through the [JS-API](#elem-api) instance of the block.
+ + **Elements** are DOM-nodes nested on DOM-node block with `class` attribute, indicating their role in BEM- subject domain (the names of blocks and elements). Elements of a block are available through the [JS-API](#elem-api) of the instance of the block.
  + **Modifiers** store information on a block state and its elements. Modifier state is written in `class` attribute on a block's DOM-nodes and elements. 
    Modifiers are operated via [JS-API](#mods-api) of the instance of the block.
 
