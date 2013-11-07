@@ -40,34 +40,22 @@ Web interface work is provided by multiple  **technologies**
 
 ## Как использовать i-bem.js ##
 
-Фреймворк *i-bem.js* входит в состав библиотеки [bem-core](http://github.com/bem/bem-core/).
+*i-bem.js* framework is included in [bem-core](http://github.com/bem/bem-core/).
 
-Cущественные компоненты реализации:
+Implementation consists of two modules:
 
-* Модуль [`i-bem`][].<br/>
-  Базовая реализация JS-блока i-bem, от которой наследуются все блоки в
-  *i-bem.js*. Блок i-bem написан с расчетом на использование в любом
-  JS-окружении, как на клиенте, так и на сервере (например, в
-  Node.js).
-* Модуль [`i-bem__dom`][].<br/> Базовая
-реализация блока, привязанного к DOM-узлу. Реализует специфическую для
-браузеров функциональность по работе с DOM. Зависит от `jQuery`.
+* [`i-bem`][] module.<br/> 
+  Basic implementation of i-bem JS-block, which all the blocks in *i-bem.js* inherit from. i-bem block is written to be used in any JS-environment, both on client and server sides (for example, in Node.js).
+* [`i-bem__dom`][] module.<br/> Basic implementation of a block linked to DOM-node. Basic implementation of a block linked to DOM-node. Is intended for using on the client side, based on browsers' work with DOM. Depends on jQuery. 
 
-Зависимости:
+Dependencies:
 
- * jQuery (для `i-bem__dom`). При использовании bem-core отдельная установка jQuery не требуется.
- * Модульная система [ymaps/modules][ymaps]. При использовании
-   [bem-tools][] с технологией `.browser.js` (и производных от нее)
-   эта зависимость удовлетворяется автоматически.
+ * jQuery (only for `i-bem__dom` module). When using bem-core, a separate installation of jQuery is not required.
+ * [ymaps/modules][ymaps] modular system. When using [bem-tools][] along with `.browser.js` technology (and derrivatives based on it), this dependancy is resolved automatically.
 
-Можно использовать *i-bem.js* как часть полного стека
-БЭМ-инструментов. В этом случае свой проект удобно создавать на основе
-шаблонного репозитория
-[project-stub](http://github.com/bem/project-stub/), в котором
-настроена автоматическая установка зависимостей.
+One can use *i-bem.js* as a part of full stack of BEM-tools. In this case it is convinient to create a project based on [project-stub](http://github.com/bem/project-stub/) template repository, which automatically installs the dependent libraries.
 
-Если не планируется использование других технологий БЭМ-платформы, можно
-подключить библиотеку bem-core в существующий проект любым доступным способом.
+If one doesn't plan on using other technologies of BEM-platform, one can copy the bem-core library code to the current project.
 
 
 ## Сборка ##
