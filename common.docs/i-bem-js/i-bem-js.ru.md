@@ -60,11 +60,9 @@ If one doesn't plan on using other technologies of BEM-platform, one can copy th
 
 ## Build ##
 
-According to BEM methodology web development is modular: each block is programmed separately. The final sourcecode of web pages pages is formed from the separate blocks code by use of **сборки** proceedures.
+According to BEM methodology web development is modular: each block is programmed separately. The final sourcecode of web pages is formed from the separate blocks code by use of **build** proceedures.
 
 
-В файловой системе блок удобно представлять в виде каталога, а реализацию блока
-в каждой из технологий — в виде отдельного файла: 
 In a file system it is convenient to represent a block as a catalog, and the implementation of a block in each of the technologies as a separate file:
     desktop.blocks/
         my-block/
@@ -92,7 +90,7 @@ The code of the used blocks on each web page can be built in single files:
 There are two instruments for building code of the resultant pages from separate blocks description: 
 
 * [bem-tools](http://github.com/bem/bem-tools/);
-* [enb](https://github.com/enb-make/enb) along [enb-modules](https://github.com/enb-make/enb-modules).
+* [enb](https://github.com/enb-make/enb) along with [enb-modules](https://github.com/enb-make/enb-modules).
 
 
 ## Почему i-bem.js так называется ##
