@@ -58,15 +58,14 @@ One can use *i-bem.js* as a part of full stack of BEM-tools. In this case it is 
 If one doesn't plan on using other technologies of BEM-platform, one can copy the bem-core library code to the current project.
 
 
-## Сборка ##
+## Build ##
 
-Разработка в рамках БЭМ-методологии ведется модульно: каждый блок
-программируется отдельно, код блоков встраивается в финальный исходный
-код веб-страниц с помощью процедур **сборки**.
+According to BEM methodology web development is modular: each block is programmed separately. The final sourcecode of web pages pages is formed from the separate blocks code by use of **сборки** proceedures.
+
 
 В файловой системе блок удобно представлять в виде каталога, а реализацию блока
-в каждой из технологий — в виде отдельного файла:
-
+в каждой из технологий — в виде отдельного файла: 
+In a file system it is convenient to represent a block as a catalog, and the implementation of a block in each of the technologies as a separate file:
     desktop.blocks/
         my-block/
             my-block.css
@@ -81,7 +80,7 @@ If one doesn't plan on using other technologies of BEM-platform, one can copy th
             other-block.bemhtml
             ...
 
-Для каждой веб-страницы код использованных на ней блоков может быть собран в единые файлы:
+The code of the used blocks on each web page can be built in single files: 
 
     desktop.bundles/
         index/
@@ -90,11 +89,10 @@ If one doesn't plan on using other technologies of BEM-platform, one can copy th
             index.js
             ...
 
-Для автоматизации сборки кода результирующих веб-страниц из отдельных
-описаний блоков можно использовать любой из существующих инструментов:
+There are two instruments for building code of the resultant pages from separate blocks description: 
 
 * [bem-tools](http://github.com/bem/bem-tools/);
-* [enb](https://github.com/enb-make/enb) совместно с [enb-modules](https://github.com/enb-make/enb-modules).
+* [enb](https://github.com/enb-make/enb) along [enb-modules](https://github.com/enb-make/enb-modules).
 
 
 ## Почему i-bem.js так называется ##
