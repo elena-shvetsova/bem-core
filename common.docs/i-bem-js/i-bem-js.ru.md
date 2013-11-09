@@ -38,7 +38,7 @@ Web interface work is provided by multiple  **technologies**
 
 
 
-## Как использовать i-bem.js ##
+## How to use i-bem.js ##
 
 *i-bem.js* framework is included in [bem-core](http://github.com/bem/bem-core/).
 
