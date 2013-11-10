@@ -93,15 +93,12 @@ There are two instruments for building code of the resultant pages from separate
 * [enb](https://github.com/enb-make/enb) along with [enb-modules](https://github.com/enb-make/enb-modules).
 
 
-## Почему i-bem.js так называется ##
+## Why i-bem.js is called that way ##
 
-В соответствии с БЭМ-методологией, базовая JS-библиотека БЭМ-платформы изначально разрабатывалась
-как особый служебный блок. Такой подход позволяет работать с базовыми библиотеками так же, как
-и с обычными блоками. В частности, структурировать код в терминах элементов и модификаторов и
-гибко настраивать поведение библиотеки на разных уровнях переопределения.
+According to BEM-methodology, basic JS-library of BEM platform was originally developed as a special helper block. 
+This approach allows us to work with base libraries in the same way as with common blocks. Particularly, structure the code in terms of elements and modifiers, and flexibly set up the library behavior at different levels.
 
-Служебным блокам в БЭМ было принято давать имена с префиксом `i-`. Таким образом, имя `*i-bem.js*`
-читается как «реализация блока `i-bem` в технологии `js`».
+It was common for BEM to give names with `i-` prefixes to helper blocks. So, the name `*i-bem.js*` read as "implementation of the `i-bem` block in `js` technology".
 
 
 # Привязка блоков к HTML #
