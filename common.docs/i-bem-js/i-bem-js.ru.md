@@ -96,9 +96,9 @@ There are two instruments for building code of the resultant pages from separate
 ## Why i-bem.js is called that way ##
 
 According to BEM-methodology, basic JS-library of BEM platform was originally developed as a special helper block. 
-This approach allows us to work with base libraries in the same way as with common blocks. Particularly, structure the code in terms of elements and modifiers, and flexibly set up the library behavior at different levels.
+This approach allows us to work with base libraries in the same way as with common blocks. Particularly, it allows to structure the code in terms of elements and modifiers, and flexibly set up the library behavior at different levels.
 
-It was common for BEM to give names with `i-` prefixes to helper blocks. So, the name `*i-bem.js*` read as "implementation of the `i-bem` block in `js` technology".
+It was common for BEM to give names to helper blocks with `i-` prefixes . So, the name `*i-bem.js*` read as "implementation of the `i-bem` block in `js` technology".
 
 
 # Привязка блоков к HTML #
