@@ -16,8 +16,34 @@
 
  * replacing the general purpose framework, such as jQuery.
 
-## BEM-methodology and JavaScript ##
 
+**Краткий обзор содержания документа**:
+
+* [Общие сведения](#intro) о фреймворке: связь с понятиями БЭМ
+  предметной области, краткое описание модульной структуры фреймворка,
+  шаблонного проекта, инструментов для сборки кода, написанного с
+  использованием *i-bem.js*.
+
+* [Привязка JS-блоков к HTML](#html) — синтаксис указания JS-блоков на
+  HTML-странице, типы соотношения HTML-элементов и JS-блоков.
+
+* [Декларация блока](#decl) — синтаксис описания JS-блоков.
+
+* [Работа с DOM-деревом](#dom) — API для работы с DOM-узлами блоков:
+  элементы, динамическое изменение DOM-дерева (AJAX).
+
+* [События](#events) — событийная модель *i-bem.js*: DOM-события,
+  BEM-события, делегирование событий.
+
+* [Состояния блока](#states) — модификаторы, триггеры на смену
+  состояний (установку модификаторов), инициализация экземпляров
+  блоков.
+
+* [Взаимодействие блоков](#ibc) — API для обращения из блока к другим блокам.
+
+* [Что дальше?](#docs) — ссылки на документацию и дополнительные материалы.
+* 
+## BEM-methodology and JavaScript ##
 As far as BEM-methodology is concerned, web interface is built  of independent **blocks** (in which **elements** are allocated). Both blocks and elements may have states, described by **modifiers**.
 
 Web interface work is provided by multiple  **technologies**
