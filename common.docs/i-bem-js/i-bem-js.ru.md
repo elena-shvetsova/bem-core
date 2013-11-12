@@ -137,24 +137,12 @@ In the HTML tree there are nodes, bound with JS blocks — interactive interface
 When loading а page, the browser runs [blocks initialization](#init). During the initialization process blocks instances are generated – JS objects for all the blocks, mentioned in HTML elements on the page. 
 JS object, bound to the HTML element handles its [DOM events](#dom-events) and stores the state of the given instance of a block.
 
+*i-bem.js* allows to implement a JS component, not bound to HTML — [block without DOM representation ](#i-blocks). Such block gives API, similar to common JS blocks. 
 
-* Таким образом, в HTML-дереве каждому экземпляру блока соответствует HTML-элемент.
- * Если блок имеет JavaScript-реализацию, к каждому упоминанию блока
-   на странице (HTML-элементу) должен быть привязан JS-объект —
-   экземпляр блока. Это делается за счет добавления [block parameters](#html-syntax) в
-   атрибуты `class` и `data-bem` HTML-элемента.
- * JS-объект, привязанный к HTML-элементу, обрабатывает происходящие на
-   нем [DOM-события](#dom-events) и хранит состояние данного экземпляра блока.
- * *i-bem.js* также дает возможность реализовать JS-компонент, не
-   привязанный к HTML, — [блок без DOM-представления](#i-blocks),
-   имеющий API, аналогичное обычным блокам.
+This approach of binding JavaScript components to HTML has the following advantages:
 
-Описанный подход привязки JavaScript-компонент к HTML имеет следующие преимущества:
-
- * естественная деградация интерфейса на клиентах с отключенным JavaScript;
- * _прогрессивный рендеринг_ — возможность начать отрисовку элементов
-   интерфейса до окончания загрузки всех данных страницы (например,
-   изображений).
+ * graceful interface degradation on the client-side with JavaScript disabled; 
+ * _progressive rendering_ — the opportunity to start drawing interface elements before the download of all data pages is over ( eg images ).
 
 <a name="html-syntax"></a>
 
