@@ -17,31 +17,26 @@
  * replacing the general purpose framework, such as jQuery.
 
 
-**Краткий обзор содержания документа**:
+** Brief content of the document**:
 
-* [Общие сведения](#intro) о фреймворке: связь с понятиями БЭМ
-  предметной области, краткое описание модульной структуры фреймворка,
-  шаблонного проекта, инструментов для сборки кода, написанного с
-  использованием *i-bem.js*.
+* [Framework overview](#intro): relation to the BEM data domain terms, a brief description of the modular structure of the framework, project stub, tools for buiding the code, that was written using *i-bem.js*. 
 
-* [Привязка JS-блоков к HTML](#html) — синтаксис указания JS-блоков на
-  HTML-странице, типы соотношения HTML-элементов и JS-блоков.
+* [Binding JS blocks to HTML](#html) — JS blocks on
+  HTML page binding syntax, how HTML elements и JS blocks relate.
 
-* [Декларация блока](#decl) — синтаксис описания JS-блоков.
+* [Block declarations](#decl) — JS blocks description syntax.
 
-* [Работа с DOM-деревом](#dom) — API для работы с DOM-узлами блоков:
-  элементы, динамическое изменение DOM-дерева (AJAX).
+* [Working with DOM tree](#dom) — API for working with DOM nodes of blocks:
+  elements, DOM tree modification (AJAX).
 
-* [События](#events) — событийная модель *i-bem.js*: DOM-события,
-  BEM-события, делегирование событий.
+* [Events](#events) — event model *i-bem.js*: DOM events,
+  BEM events, event delegation .
 
-* [Состояния блока](#states) — модификаторы, триггеры на смену
-  состояний (установку модификаторов), инициализация экземпляров
-  блоков.
+* [Block states](#states) — modifiers, triggers of state changes (modifiers setting), initialization of block instances.
 
-* [Взаимодействие блоков](#ibc) — API для обращения из блока к другим блокам.
+* [Blocks interaction ](#ibc) — API for block to block communication.
 
-* [Что дальше?](#docs) — ссылки на документацию и дополнительные материалы.
+* [What's next?](#docs) — links to documentation and additional materials.
 * 
 ## BEM-methodology and JavaScript ##
 As far as BEM-methodology is concerned, web interface is built  of independent **blocks** (in which **elements** are allocated). Both blocks and elements may have states, described by **modifiers**.
