@@ -58,7 +58,7 @@ Web interface work is provided by multiple  **technologies**
  + **Block** is a JS component that describes the way the same interface elements work.
  For example, all buttons may be implemented as a `button` block. Then, according to the BEM-methodology, `button.css` determines the appearance of the buttons, `button.js` — determines the way they work.
  + Each page can contain more than one **instance** of a block (for example, a button). Each instance of the block corresponds to the JS object that is created dynamically in the browser's memory and stores the state of the instance. JS-object stores a link to the DOM-node that is bound to the instance of the block. 
- + **Elements** are DOM-nodes nested on DOM-node block with `class` attribute, indicating their role in BEM- subject domain (the names of blocks and elements). Elements of a block are available through the [JS-API](#elem-api) of the instance of the block.
+ + **Elements** are DOM-nodes nested on DOM-node block with `class` attribute, indicating their role in BEM-subject domain (the names of blocks and elements). Elements of a block are available through the [JS-API](#elem-api) of the instance of the block.
  + **Modifiers** store information on a block state and its elements. Modifier state is written in `class` attribute on a block's DOM-nodes and elements. 
    Modifiers are operated via [JS-API](#mods-api) of the instance of the block.
 
@@ -127,18 +127,21 @@ This approach allows us to work with base libraries in the same way as with comm
 It was common for BEM to give names to helper blocks with `i-` prefixes . So, the name `*i-bem.js*` read as "implementation of the `i-bem` block in `js` technology".
 
 
-# Привязка блоков к HTML #
+# Binding JS blocks to HTML #
 
-JavaScript-компоненты в *i-bem.js* служат для «оживления» HTML-элементов
-страницы. Типовая задача JS-блока — привязать обработку определенных событий к
-указанному HTML-фрагменту.
+JavaScript components in *i-bem.js*  are used for making HTML-elements of a page dynamic. A typical task for JS block is to bind certain events handling to the specific HTML fragment.
 
- * Первичным является HTML-дерево документа, в котором размечены блоки,
-   элементы и модификаторы (в атрибутах `class` HTML-элементов).
- * Таким образом, в HTML-дереве каждому экземпляру блока соответствует HTML-элемент.
+In developing a web interface with *i-bem.js* framework there is a primary structure — the HTML document tree. 
+В HTML-дереве размечаются точки, к которым привязаны интерактивные элементы интерфейса — JS-блоки. Точка привязки JS-блока — HTML-элемент, в атрибуте `class` которого указано имя блока, а в атрибуте `data-bem` — [block parameters](#html-syntax). 
+In the HTML tree there are nodes, bound with JS blocks — interactive interface elements . The point of a JS block binding is a HTML element.  The name of the block is indicated in its `class` attribute , [block parameters](#html-syntax) are indicated in `data-bem` attribute.
+When loading а page, the browser runs [blocks initialization](#init). During the initialization process blocks instances are generated – JS objects for all the blocks, mentioned in HTML elements on the page. 
+JS object, bound to the HTML element handles its [DOM events](#dom-events) of a certain JS object, bound to HTML element handles its DOM events and stores the state of the given instance of a block.
+
+
+* Таким образом, в HTML-дереве каждому экземпляру блока соответствует HTML-элемент.
  * Если блок имеет JavaScript-реализацию, к каждому упоминанию блока
    на странице (HTML-элементу) должен быть привязан JS-объект —
-   экземпляр блока. Это делается за счет добавления [описания блока](#html-syntax) в
+   экземпляр блока. Это делается за счет добавления [block parameters](#html-syntax) в
    атрибуты `class` и `data-bem` HTML-элемента.
  * JS-объект, привязанный к HTML-элементу, обрабатывает происходящие на
    нем [DOM-события](#dom-events) и хранит состояние данного экземпляра блока.
