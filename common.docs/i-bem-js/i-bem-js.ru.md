@@ -135,7 +135,7 @@ In developing a web interface with *i-bem.js* framework there is a primary struc
 In the HTML tree there are nodes, bound with JS blocks — interactive interface elements . The point of a JS block binding is a HTML element.  The name of the block is indicated in its `class` attribute , [block parameters](#html-syntax) are indicated in `data-bem` attribute.
 
 When loading а page, the browser runs [blocks initialization](#init). During the initialization process blocks instances are generated – JS objects for all the blocks, mentioned in HTML elements on the page. 
-JS object, bound to the HTML element handles its [DOM events](#dom-events) of a certain JS object, bound to HTML element handles its DOM events and stores the state of the given instance of a block.
+JS object, bound to the HTML element handles its [DOM events](#dom-events) and stores the state of the given instance of a block.
 
 
 * Таким образом, в HTML-дереве каждому экземпляру блока соответствует HTML-элемент.
