@@ -141,43 +141,40 @@ This approach of binding JavaScript components to HTML has the following advanta
 
 <a name="html-syntax"></a>
 
-## Синтаксис привязки блоков ##
+## Blocks binding syntax ##
 
-Чтобы привязать блок к HTML-элементу (например, `<div>...</div>`), необходимо:
+To bind a block to HTML-элементу (for example, `<div>...</div>`), one should:
 
- * **Отметить блок в HTML-дереве**.<br/>
- Включить имя блока в список классов HTML-элемента (атрибут `class`).
+ * **Mark a block in HTML tree**.<br/>
+ Include the block name in the list of classes of HTML-element (`class` attribute).
 
 ```HTML
 <div class="my-block">...</div>
 ```
 
- * **Инициализировать экземпляр блока**.<br/>
- Включить класс `i-bem` в список классов HTML-элемента. Наличие этого класса позволит фреймворку инициализировать блок.
+ * **Initialize the block instance**.<br/>
+ Include the `i-bem` class in the list of classes of HTML-element. The presence of this class allows the framework to initialize the block.
 
 ```HTML
 <div class="my-block i-bem">...</div>
 ```
 
- * **Передать параметры экземпляру блока**.<br/> Поместить параметры
- блока в атрибут `data-bem`. Параметры блока записываются в формате
- JSON в виде хэша структуры __имя блока—хэш параметров__. Параметры
- передаются экземпляру блока в момент инициализации
- ([подробнее...](#data-bem)).
+ * **Pass parameters to the block instance**.<br/> Write parameters of a block in `data-bem` attribute. Write the block parameters
+ in JSON format as a structure hash __block name—parameters hash__. Parameters are transferred пустой списокto the block instance at the point of initialization.
+ ([read more...](#data-bem)).
 
 ```HTML
 <div class="my-block i-bem" data-bem='{ "my-block": { "name": "ya" } }'>...</div>
 ```
 
-Одному HTML-элементу не обязательно должен соответствовать один
-экземпляр блока. Возможны следующие типы связи между блоками и
-HTML-элементами:
+One HTML element does not necessarily correspond to one block instance. The are following types of binding of blocks and HTML elements:
 
-### Один HTML-элемент — один JS-блок ###
+### One HTML element — one JS block ###
 
-Самый простой и распространенный способ привязки блоков к HTML.
 
-Пример: HTML-элемент `div`, на котором размещен блок `my-block`, параметры блока — пустой список `{}`.
+It is easiest and most common way to bind blocks to HTML.
+
+For example: `div` HTML element on which `my-block` is placed, block parameters — empty list `{}`.
 
 ```HTML
 <div class="my-block i-bem" data-bem='{ "my-block": {} }'>
@@ -188,12 +185,11 @@ HTML-элементами:
 
 <a name="mixes"></a>
 
-### Один HTML-элемент — несколько JS-блоков ###
+### One HTML element — a few JS blocks ###
 
-Техника размещения нескольких блоков на одном HTML-элементе в БЭМ-методологии называется **микс**.
+A technique in BEM methodology for placing a few blocks on one HTML element is called **mix**.
 
-Пример: HTML-элемент `div`, на котором размещены блок `user` с
-параметром `name`: `pushkin` и блок `avatar` с параметром `img`: `http://...`.
+For example: `div` HTML element, where the `user` block with the `name` parameter: `pushkin` and `avatar` block with the `img`: `http://...` parameter.
 
 ```HTML
 <div class="user avatar i-bem"
