@@ -185,9 +185,9 @@ For example: `div` HTML element on which `my-block` is placed, block parameters 
 
 <a name="mixes"></a>
 
-### One HTML element — a few JS blocks ###
+### One HTML element — several JS blocks ###
 
-A technique in BEM methodology for placing a few blocks on one HTML element is called **mix**.
+A technique in BEM methodology for placing multiple blocks on one HTML element is called **mix**.
 
 For example: `div` HTML element, where the `user` block with the `name` parameter: `pushkin` and `avatar` block with the `img`: `http://...` parameter.
 
@@ -203,22 +203,17 @@ For example: `div` HTML element, where the `user` block with the `name` paramete
 
 <a name="distrib-block"></a>
 
-### Один JS-блок на нескольких HTML-элементах ###
+### One JS block on a few HTML elements ###
 
-Такой дизайн позволяет прозрачно реализовывать блоки, состоящие из
-нескольких компонент, сосотяние которых должно быть
-согласовано. Например, виджет «вкладки», где клик по заголовку вкладки
-(один HTML-элемент), меняет содержимое вкладки (другой
-HTML-элемент). Другой пример — маркер, обозначающий точку на карте
-(первый элемент) и связанное с ним описание точки в списке рядом с
-картой (второй элемент).
+This design allows you to transparently implement blocks consisting of several components , which state must be agreed. 
+For example, the " tab " widget, whereon clicking on the header of the tab (one HTML- element) changes the contents of the tab (the other HTML- element).
+Another example - a marker indicating a point on the map (the first element) and the bound description of the point in the list next to the map (the second element).
 
 Чтобы привязать экземпляр блока к нескольким HTML-элементам, нужно в параметрах
-блока на всех связанных с ним HTML-элементах указать одинаковое значение `id`. В
-качестве значения `id` может выступать произвольная строка.
+блока на всех связанных с ним HTML-элементах указать одинаковое значение. To bind the instance of a block to multiple HTML elements, one needs to write the same `id` value in block parameters for all of the bound HTML elements.
+The `id` value can be a random string.
 
-Пример: Экземпляр блока `notebook` привязан к HTML-элементам `div` и `span`, в
-параметрах блока указан общий `id` — `maintab`.
+For example: The instance of a block `notebook` bound to HTML elements  `div` and `span`, in the block parameters written common `id` — `maintab`.
 
 ```HTML
 <div class="notebook i-bem" data-bem='{ "notebook": { "id": "maintab" }}'>
@@ -228,13 +223,10 @@ HTML-элемент). Другой пример — маркер, обознач
 </span>
 ```
 
-В результате при инциализации блоков создается один JS-объект, поле
- [`{jQuery} domElem`](#domElem) которого содержит ссылки на оба DOM-узла.
+As a result, when initializing the blocks a single JS-object is created, 
+ which [`{jQuery} domElem`](#domElem) field contains links to both DOM-nodes.
 
-Идентификатор `id` используется *только в момент инициализации*
-экземпляра блока. Значение `id` должно быть уникальным в пределах
-экземпляров одного блока в рамках одной
-[волны инициализации](#init-wave).
+`id` Modifier is only used *during initialization* of a block instance. `id` value must be unique within one block instances inside of one [initialization wave](#init-wave).
 
 
 <a name="i-blocks"></a>
