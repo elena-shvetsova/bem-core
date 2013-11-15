@@ -203,14 +203,13 @@ For example: `div` HTML element, where the `user` block with the `name` paramete
 
 <a name="distrib-block"></a>
 
-### One JS block on a few HTML elements ###
+### One JS block on several HTML elements ###
 
 This design allows you to transparently implement blocks consisting of several components , which state must be agreed. 
 For example, the " tab " widget, whereon clicking on the header of the tab (one HTML- element) changes the contents of the tab (the other HTML- element).
 Another example - a marker indicating a point on the map (the first element) and the bound description of the point in the list next to the map (the second element).
 
-Чтобы привязать экземпляр блока к нескольким HTML-элементам, нужно в параметрах
-блока на всех связанных с ним HTML-элементах указать одинаковое значение. To bind the instance of a block to multiple HTML elements, one needs to write the same `id` value in block parameters for all of the bound HTML elements.
+In order to bind the instance of a block to multiple HTML elements, one needs to write the same `id` value in block parameters for all of the bound HTML elements.
 The `id` value can be a random string.
 
 For example: The instance of a block `notebook` bound to HTML elements  `div` and `span`, in the block parameters written common `id` — `maintab`.
@@ -231,23 +230,19 @@ As a result, when initializing the blocks a single JS-object is created,
 
 <a name="i-blocks"></a>
 
-### Блоки без DOM-представления ###
+### Blocks without DOM representation ###
 
-Инфраструктурный код, решающий общие задачи интерфейса: связь с
-бэкэндом, общие вычисления и т.п. — при работе с *i-bem.js* можно
-оформлять в виде блока, как и весь прочий JS-код. Чтобы не привязывать
-такие блоки к HTML-дереву икусственно, *i-bem.js* предоставляет
-возможность создавать блоки без DOM-представления.
+Infrastructure code that solves common interface tasks: communication with the backend, general computing, etc. When working with *i-bem.js* code can take the form of block, like all the rest of JS-code.
+In order not to bind these blocks to HTML-tree artificially, *i-bem.js*  provides the opportunity to create blocks without DOM-representation.
 
-Блоки без DOM-представления:
+Blocks without DOM-representation:
 
- * В HTML-коде страницы не указываются.
- * Декларируются как [доопределение модуля `i-bem`](#bem-decl), а не
-   `i-bem__dom`, как блоки с DOM-представлением.
- * Должны быть [инициализированы явно](#init-bem).
+ * They are not written in HTML code of a page.
+ * Declared as [доопределение module extension`i-bem`](#bem-decl), not the `i-bem__dom`, as in the case of blocks with DOM-representation.
+ * They shoul be [initialized явно](#init-bem).
 
 
-## Синтаксис передачи параметров ##
+## Синтаксис передачи параметров Parameters transferring Syntax##
 
 Параметры блока — произвольный JavaScript-объект, который будет передан блоку в момент инициализации.
 Параметры позволяют модифицировать поведение экземпляра блока, привязанного к данному HTML-элементу.
