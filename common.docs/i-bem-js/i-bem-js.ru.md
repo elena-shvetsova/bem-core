@@ -245,7 +245,7 @@ Blocks without DOM-representation:
 ## Parameters transfer Syntax##
 
 Block parameter — is an arbitrary JavaScript object, that is transferred to the block at the point of initialization.
-Параметры позволяют модифицировать поведение экземпляра блока, привязанного к данному HTML-элементу. allow to modify the behavior of the block instance bound to the given HTML element.
+Parameters allow to modify the behavior of the block instance bound to the given HTML element.
 
 The value of `data-bem` attribute contain the parameters of *all the JS blocks on this node*.
 Parameters are transferred as a hash in JSON format:
