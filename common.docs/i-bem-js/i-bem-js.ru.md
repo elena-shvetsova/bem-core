@@ -233,38 +233,32 @@ As a result, when initializing the blocks a single JS-object is created,
 ### Blocks without DOM representation ###
 
 Infrastructure code that solves common interface tasks: communication with the backend, general computing, etc. When working with *i-bem.js* code can take the form of block, like all the rest of JS-code.
-In order not to bind these blocks to HTML-tree artificially, *i-bem.js*  provides the opportunity to create blocks without DOM-representation.
+In order not to bind these blocks to HTML-tree manually, *i-bem.js*  provides the opportunity to create blocks without DOM-representation.
 
 Blocks without DOM-representation:
 
  * They are not written in HTML code of a page.
- * Declared as [доопределение module extension`i-bem`](#bem-decl), not the `i-bem__dom`, as in the case of blocks with DOM-representation.
- * They shoul be [initialized явно](#init-bem).
+ * Declared as [module extension`i-bem`](#bem-decl), not the `i-bem__dom`, as in the case of blocks with DOM-representation.
+ * They shoul be [initialized explicitly](#init-bem).
 
 
-## Синтаксис передачи параметров Parameters transferring Syntax##
+## Parameters transfer Syntax##
 
-Параметры блока — произвольный JavaScript-объект, который будет передан блоку в момент инициализации.
-Параметры позволяют модифицировать поведение экземпляра блока, привязанного к данному HTML-элементу.
+Block parameter — is an arbitrary JavaScript object, that is transferred to the block at the point of initialization.
+Параметры позволяют модифицировать поведение экземпляра блока, привязанного к данному HTML-элементу. allow to modify the behavior of the block instance bound to the given HTML element.
 
-<a name="data-bem"></a>
+The value of `data-bem` attribute contain the parameters of *all the JS blocks on this node*.
+Parameters are transferred as a hash in JSON format:
 
-В значении атрибута `data-bem` указываются параметры *всех JS-блоков, размещенных на данном узле*.
-Параметры передаются в формате JSON в виде хэша:
+ + key — `{String}` block name;
+ + value — `{Object}` the parameters of the given block. If this block instance has no parameters, declare empty hash `{}`.
 
- + ключ — `{String}` имя блока;
- + значение — `{Object}` параметры данного блока. Если данному экземпляру блока не требуются
-   параметры, указывается пустой хэш `{}`.
+This parameters format proceeds from the following:
 
-Такой формат параметров продиктован следующими соображениями:
+ * Indication of the block name in  parameters  allows to avoid having to parse value of the `class` attribute, which simplifies and accelerates blocks initialization.
+ *This same solution allows to place multiple blocks in one HTML-element without the need to multiply the block attributes.
 
- * Указание имени блока в параметрах позволяет избежать необходимости
-   парсить значение атрибута `class`, что упрощает и ускоряет
-   инициализацию блоков.
- * Это же решение позволяет размещать несколько блоков на одном
-   HTML-элементе без необходимости множить атрибуты элемента.
-
-Значение атрибута `data-bem` должно содержать валидный JSON.
+Value of `data-bem` attribute  should contain valid JSON.
 
 # Декларация блока #
 
