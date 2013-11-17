@@ -260,49 +260,46 @@ This parameters format proceeds from the following:
 
 Value of `data-bem` attribute  should contain valid JSON.
 
-# Декларация блока #
+# Block declaration #
 
-JS-реализация блока описывает функциональность определенного класса элементов веб-интерфейса. В конкретных
-интерфейсах каждый блок может быть представлен несколькими экземплярами. Каждый экземпляр блока реализует
-функциональность всего класса и имеет собственное состояние, независимое от остальных.
+JS implementation of a block describes the functionality of a certain class of web interface elements. In a specific interface, each block can have several instances. 
+Each instance of a block implements functionality of the whole class and has its own state, independent of the others.
 
-В терминах парадигмы объектно-ориентированного программирования:
+In terms of object oriented programming paradigm:
 
- * блок — класс;
- * экземпляр блока — экземпляр класса.
+ * block — класс;
+ * block instance — class instance.
 
-В соответствии с ООП, вся функциональность блока реализуется модульно в _методах_ класса (= блока).
-Методы блока подразделяются на:
+In terms of OOP, the entire functionality of the block is implemented in modules in class (= block)_methods_.
+Block methods are subdivided into: 
 
- * методы экземпляра блока;
- * статические методы.
+ * block instance methods;
+ * static methods.
 
-Код блока в *i-bem.js* принято называть **декларацией**, чтобы подчеркнуть принятый в БЭМ декларативный
-стиль программирования. В соответствии с декларативным стилем поведение блока программируется как
-утверждения вида _набор условий — реакция блока_.
+Block code in *i-bem.js* is commonly known as **declaration**, to point out used in BEM terminology declarative programming style. 
+In accordance with the declarative style the block behavior is programmed as the following statements _set of conditions — block reaction_.   
 
 
-## Синтаксис декларации ##
+## Declaration syntax ##
 
-Чтобы декларировать новый JS-блок **с DOM-представлением**
-(привязанный к HTML-элементу), необходимо доопределить [ymaps][]-модуль `i-bem__dom`.
+In order to declare a new JS block **with DOM representation**
+(bound to HTML element), one has got to extend [ymaps][] `i-bem__dom` module.
 
-Блоки декларируются с помощью метода `decl`, принимающим три
-параметра:
+To declare blocks use `decl`method, that has three parameters:
 
-1. Имя блока `{String}` или [описание блока](#decl-selector) `{Object}`.
-2. Методы экземпляра блока — `{Object}`.
-3. Статические методы — `{Object}`.
+1. Block name `{String}` or [block description ](#decl-selector) `{Object}`.
+2. Block instanc methods — `{Object}`.
+3. Static methods — `{Object}`.
 
 ```js
 modules.define('i-bem__dom', function(provide, DOM) {
 
-DOM.decl(/* имя или описание блока */,
+DOM.decl(/* block name or block description */,
     {
-        /* методы экземпляра */
+        /* instance methods */
     },
     {
-        /* статические методы */
+        /* static methods */
     }
 );
 
