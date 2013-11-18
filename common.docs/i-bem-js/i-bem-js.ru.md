@@ -242,7 +242,7 @@ Blocks without DOM-representation:
  * They shoul be [initialized explicitly](#init-bem).
 
 
-## Parameters transfer Syntax##
+## Parameters transfer syntax##
 
 Block parameter — is an arbitrary JavaScript object, that is transferred to the block at the point of initialization.
 Parameters allow to modify the behavior of the block instance bound to the given HTML element.
@@ -283,12 +283,12 @@ In accordance with the declarative style the block behavior is programmed as the
 ## Declaration syntax ##
 
 In order to declare a new JS block **with DOM representation**
-(bound to HTML element), one has got to extend [ymaps][] `i-bem__dom` module.
+(bound to HTML element), one has got to extend `i-bem__dom` [ymaps][] module.
 
 To declare blocks use `decl`method, that has three parameters:
 
 1. Block name `{String}` or [block description ](#decl-selector) `{Object}`.
-2. Block instanc methods — `{Object}`.
+2. Block instance methods — `{Object}`.
 3. Static methods — `{Object}`.
 
 ```js
@@ -310,28 +310,25 @@ provide(DOM);
 
 -------------------------------------------------------------------------------
 
-**NB** С точки зрения модульной системы [ymaps][], декларации разных
-  блоков представляеют собой переопределение одного и того же модуля
-  `i-bem__dom`. Однако с точки зрения *i-bem.js* таким образом создаются
-  *разные объекты* для построения экземпляров блоков.
+**NB** In terms of [ymaps][] modular system, declarations of multiple blocks represents  overriding of the same module
+  `i-bem__dom`. And yet in terms of *i-bem.js* this is the way *разные объекты different objects* for building block instances are created.
 
 -------------------------------------------------------------------------------
 
 <a name="bem-decl"></a>
 
-Блоки, не имеющие DOM-представления, декларируются как доопределение [ymaps][]-модуля `i-bem`.
-Для декларации используется метод `decl`, принимающий те же параметры,
-что и метод `decl` модуля `i-bem__dom`:
+Blocks, that do not have DOM representation are declared as extension of `i-bem` [ymaps][]-module .
+For declaring use `decl` method, receiving the same parameters, as`decl` method of `i-bem__dom` module:
 
 ```js
 modules.define('i-bem', function(provide, BEM) {
 
-BEM.decl(/* имя или описание блока */,
+BEM.decl(/* block name or block description */,
     {
-        /* методы экземпляра */
+        /* instance methods */
     },
     {
-        /* статические методы */
+        /* static methods */
     }
 );
 
@@ -343,11 +340,8 @@ provide(BEM);
 
 -------------------------------------------------------------------------------
 
-**NB**: Оформлять инфраструктурный код в виде блока без
-  DOM-представления удобно, если в нем планируется использовать API
-  БЭМ-блоков (состояния, выражаемые модификаторами, BEM-события и
-  т. п.). Если использовать БЭМ-предметную область не планируется,
-  инфраструктурный код можно оформлять в виде [ymaps][]-модуля. Например:
+**NB**: It is convinient to design infrastructure code as a block without DOM representation, if it is planned to use API of
+BEM blocks (states, expressed by modifiers, BEM events etc.). Without using BEM terms/BEM stack infrastructure code can be designed as  [ymaps][] module. For example:
 
 ```js
 modules.define('router', function(provide) {
