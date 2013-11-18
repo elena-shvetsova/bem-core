@@ -358,49 +358,45 @@ provide({
 <a name="decl-selector"></a>
 
 
-## Описание блока в декларации ##
+## Block description in a declaration ##
 
-Первый параметр метода `decl` представляет собой описание блока, в
-котором будут применяться объявленные в декларации методы. Описание
-обязательно содержит имя блока и может дополнительно содержать:
+Первый параметр метода  представляет собой описание блока, в
+котором будут применяться объявленные в декларации методы. The first parameter of the `decl` method is a block description, which will be announced in the declaration implemented methods.
+Описание обязательно содержит имя блока и может дополнительно содержать: Description must contain the block name and may additionally contain:
 
 * ограничение сферы действия декларации определенной модификацией
-  блока;
+  блока; limiting the scope of the declaration certain modification of the block;
 * список родительских блоков, методы которых должен наследовать данный
-  блок.
+  блок. list of parent blocks, methods which should inherit the block.
 
-Описание может быть задано в одной из двух форм:
+Описание может быть задано в одной из двух форм: Description may be given in one of two forms:
 
-1. Имя блока — строка.<br/>
-   Объявленные методы будут применяться во всех экземплярах блока независимо от их состояний (модификаторов).
-Пример: декларация методов для блока `button`.
+1. Block name - string.<br/>
+   Объявленные методы будут применяться во всех экземплярах блока независимо от их состояний (модификаторов). Declared methods will be applied in all instances of the block , regardless of their states ( modifiers ) 
+Пример: декларация методов для блока `button`. Example: Declaration of methods for the block
 
     ```js
 DOM.decl('button',
-    { /* методы экземпляра */ },
-    { /* статические методы */ }
+    { /* instance methods */ },
+    { /* static methods  */ }
 );
     ```
 
-2. Описание блока — хэш.<br/> Например, так может выглядеть декларация
-   методов для блока `button` с модификатором `type` в значении
-   `link` (описывает поведение псевдокнопок):
+2. Block description  - hash.<br/> This is an example of a methods declaration for the `button` block with the `type` modifier with value
+   `link` (describes behavior of pseudo buttons):
 
     ```js
 DOM.decl({ block: 'button', modName: 'type', modVal: 'link' },
-    { /* методы экземпляра */ },
-    { /* статические методы */ }
+    { /* instance methods */ },
+    { /* static methods */ }
 );
     ```
 
 -------------------------------------------------------------------------------
 
-**NB** Если в декларации для блока с указанием конкретных
-  модификаторов описаны статические методы, они будут применяться ко всем
-  экземплярам данного блока *вне зависимости от значений
-  модификаторов*. Модификаторы являются свойствами экземпляров блоков,
-  а статические методы принадлежат классу блока и поэтому не могут
-  учитывать ограничения по модификатору.
+**NB** If static methods are described in a declaration for the block with specific modifiers, they will be available in all instances of this block *regardless of the modifiers values*.    
+  Модификаторы являются свойствами экземпляров блоков, а статические методы принадлежат классу блока и поэтому не могут
+  учитывать ограничения по модификатору. Modifiers are the properties of block instances, and static methods belong to the class of the block can not consider the limitations of the modifier.
 
 -------------------------------------------------------------------------------
 
