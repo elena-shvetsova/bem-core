@@ -401,43 +401,36 @@ DOM.decl({ block: 'button', modName: 'type', modVal: 'link' },
 -------------------------------------------------------------------------------
 
 
-## Контекст ##
+## Сontext ##
 
-**Методы экземпляра блока** исполняются в контексте JS-объекта
-экземпляра блока. Соответственно, ключевое слово `this` в методах
-экземпляра блока ссылается на JS-объект **экземпляра блока**.
+**Block instance methods** are executed in the JS object context of the block instance.  Accordingly, the key word `this` in instance methods of the block refers to JS object of a **block instance**. 
 
-**Статические методы** исполняются в контексте JS-объекта,
-  соответствующего классу блока. Соответственно, ключевое слово `this`
-  в статических методах блока ссылается на **класс блока**, а не на
-  экземпляр.
+**Static methods** are executed in the context of JS-object, that corresponds to the class of the block.
+  Accordingly, `this` keyword  in static methods of the block refers to the **block class**, not to an instance.
 
-Контекст содержит зарезервированные поля:
+Контекст содержит зарезервированные поля: Context contains the reserved fields:
 
- + `this.__self`: Ссылается на статические методы класса, к которому
-   принадлжит экземпляр. Определен в методах экземпляра блока. Для
-   статических методов не имеет смысла и не определен.
+ + `this.__self`: Refers to the static methods of the class, which the instance belongs to. It is defined in the instance methods of a block. Для
+   статических методов не имеет смысла и не определен. It does not make sense for static methods and is not defined.
 
-    Пример: Вызов статического метода `staticMethod` в методе
-    `onEvent` экземпляра блока `my-block`.
+    For example: Static method calling `staticMethod` in `onEvent` method of `my-block` block instance. 
 
 ```js
 DOM.decl('my-block', {
     onEvent: function() {
-        this.__self.staticMethod(); // вызов статического метода
+        this.__self.staticMethod(); // calling of static method
         this.doMore();
     },
     {
-        staticMethod: function() { /* ... */ }; // определение статического метода
+        staticMethod: function() { /* ... */ }; // static method defining 
     }
 });
 ```
 
- + `this.__base`: Ссылается на реализацию метода в базовом классе, от которого наследуется данный.
-    Позволяет выполнить super call. Определен в методах экземпляра
-    блока и в статических методах блока.
+ + `this.__base`: Refers to the implementation of the method in the base class, which it is inherets from. 
+    Allows a super call. It is defined in the block instance methods and in static methods of the block.
 
-    Пример: вызов (и модификация) метода `_onClick` родительского класса (базовой реализации метода в классе `button`).
+    For example: call (and modification) of `_onClick` method of parent class (the base implementation of the method in the `button` class).
 
 ```js
 DOM.decl({ block: 'my-button', baseBlock: 'button' }, {
@@ -450,10 +443,7 @@ DOM.decl({ block: 'my-button', baseBlock: 'button' }, {
 
 -------------------------------------------------------------------------------
 
-**NB** При разработке блоков с использованием *i-bem.js* внутренним
-  методам блока, не предназначенным для использования извне, принято
-  давать имена, начинающиеся с символа подчеркивания. Например,
-  `_onClick`.
+**NB** In blocks development using  *i-bem.js* внутреннимметодам блока private methods of a block, not intended for external use, commonly given names starting with an underscore. For example, `_onClick`.
 
 -------------------------------------------------------------------------------
 
