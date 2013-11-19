@@ -448,59 +448,51 @@ DOM.decl({ block: 'my-button', baseBlock: 'button' }, {
 -------------------------------------------------------------------------------
 
 
-# Работа с DOM-деревом #
+# Работа с DOM-деревом Working with DOM tree#
 
 <a name="domElem"></a>
 
-## DOM-узел экземпляра блока ##
+## DOM node of a block instance ##
 
-Все экземпляры блоков, привязанные к DOM-дереву, содержат в поле
-`{jQuery} this.domElem` jQuery-объект, ссылающийся на один или
-несколько DOM-узлов, с которыми связан данный экземпляр блока.
+All the block instances, bound to the DOM, contain jQuery object
+in the `{jQuery} this.domElem` field, that refers to one or more DOM nodes, bound to this instance of the block.
 
 <a name="elem-api"></a>
 
-## Элементы ##
+## Elements ##
 
-БЭМ-элементы блоков представлены в *i-bem.js* как DOM-узлы, вложенные
-в DOM-узел экземпляра блока. Для обращения к DOM-узлам элементов и
-работы с их модификаторами, следует использовать API, предоставляемое
-экземпляром блока.
+BEM elements of blocks  are represented in the *i-bem.js* as DOM nodes, nested into the DOM node of the block instance.
+To access DOM nodes of elements and work with their modifiers, one should use API, of the block instance.
 
-Экземпляр блока предоставляет два метода для обращения к элементам данного
-    экземпляра:
+The block instance provides two methods to access the elements of a given instance:
 
-* Кеширующий доступ: `elem(elems, [modName], [modVal])`. Элемент,
-  полученный таким образом, нет необходимости сохранять в переменную.
+* Кеширующий доступ: Access with cache`elem(elems, [modName], [modVal])`. There is no need to store as a variable the element obtained this way.
 
 ```js
 DOM.decl('b-link', {
     setInnerText: function() {
-        this.elem('inner').text('Текст ссылки');
+        this.elem('inner').text('Link text');
         /* ... */
-        this.elem('inner').text('Другой текст');
+        this.elem('inner').text('Another text');
     }
 );
 ```
 
-* Некеширующий доступ: `findElem(elems, [modName], [modVal])`.
+* Некеширующий доступ: Access without cache `findElem(elems, [modName], [modVal])`.
 
 ```js
 DOM.decl('b-link', {
     setInnerText: function() {
         var inner = this.findElem('inner');
-        inner.text('Текст ссылки');
+        inner.text('Link text');
         /* ... */
-        inner.text('Другой текст');
+        inner.text('Another text');
     }
 });
 ```
 
-При [динамическом добавлении и удалении элементов блока](#dynamic) может
-возникнуть необходимость сброса кеша элементов. Для этого предназначен
-метод `dropElemCache('elements')`. В качестве параметра указывается
-разделенный пробелами список имен элементов, кеш для которых нужно
-сбросить:
+In the process of [dynamic adding and removing block elements](#dynamic) it can  be necessary to reset cache of elements. This is what the `dropElemCache('elements')` method is used for. 
+The space-separated list of names as a parameter for the elements, cache reset is needed for:  
 
 ```js
 DOM.decl('attach', {
@@ -513,8 +505,7 @@ DOM.decl('attach', {
 ```
 
 
-Полное описание API для работы с элементами содержится в
-исходном коде модуля [`i-bem__dom`][].
+Complete API description for working with elements is contained in the source code of [`i-bem__dom`][] module.
 
 <a name="dynamic"></a>
 
