@@ -612,12 +612,8 @@ adding event listener for added items or remove event listeners from deleted ite
 
 * [**BEM events delegation**](#bem-events-delegated) should be used to handle events in *block instances*, contained in the specific DOM node.
 
-    Контейнером, которому делегируется обработка BEM-событий, может
-    служить **произвольный DOM-узел**. По умолчанию в качестве
-    контейнера выступает весь документ (`window.document`). Часто блок
-    обрабатывает BEM-события вложенных блоков, тогда в качестве
-    контейнера следует указать DOM-узел блока-обработчика
-    [`this.domElem`](#domElem).
+    **arbitrary DOM node** can perform as a container, that BEM events handling is delegated to. The entire (`window.document`) document performs as a container by default. 
+    Often a block handles BEM events of the nested blocks, then DOM node of the handler block [`this.domElem`](#domElem) would be a container.
 
 
 The complete list of helpers for adding event listeners to delegated events can be found in the source code of the [`i-bem__dom`][] module.
