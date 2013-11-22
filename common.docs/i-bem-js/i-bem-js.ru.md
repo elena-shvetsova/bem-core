@@ -509,7 +509,7 @@ Complete API description for working with elements is contained in the source co
 
 <a name="dynamic"></a>
 
-## Динамическое обновление блоков и элементов в DOM-дереве blocks and elements in the DOM- tree ##
+## Dynamic updating of blocks and elements in the DOM- tree ##
 
 In modern interfaces one often needs to create new pieces of DOM tree and replace the old ones in the process of work (AJAX). 
 В  предусмотрены следующие функции для добавления и замены
@@ -620,8 +620,7 @@ adding event listener for added items or remove event listeners from deleted ite
     [`this.domElem`](#domElem).
 
 
-Полный список хелперов для подписки на делегированные события
-можно найти в исходном коде модуля [`i-bem__dom`][].
+The complete list of helpers for adding event listeners to delegated events can be found in the source code of the [`i-bem__dom`][] module.
 
 
 ## DOM-события ##
