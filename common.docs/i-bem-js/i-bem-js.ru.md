@@ -619,16 +619,13 @@ adding event listener for added items or remove event listeners from deleted ite
 The complete list of helpers for adding event listeners to delegated events can be found in the source code of the [`i-bem__dom`][] module.
 
 
-## DOM-события ##
+## DOM events ##
 
-Для подписки на DOM-события на узлах, связанных с блоком или
-элементом, используются метод экземпляра блока `bindTo([elem], event,
+To add event listeners to DOM nodes Для подписки на DOM-события на узлах, bound to a block or an element, use instance block method `bindTo([elem], event,
 handler)`.
 
-**Пример**: В момент [инициализации экземпляра блока](#init)
-`my-block` выполняется подписка на событие `click`, при наступлении
-которого блок выставляет себе [модификатор](#modifier) `size` в
-значение `big`.
+**For example**: At the point of [block instance initialization](#init)
+`my-block` event listener to `click` event is added, when the event is triggered, the block выставляет себе gets [modifier](#modifier) `size` with the value `big`.
 
 ```js
 DOM.decl('my-block', {
@@ -636,7 +633,7 @@ DOM.decl('my-block', {
         'js' : {
             'inited': function() {
                 this.bindTo('click', function(e) {
-                    var domElem = $(e.currentTarget); // DOM-элемент, на котором слушается событие
+                    var domElem = $(e.currentTarget); // DOM element, на котором the event is listened слушается событие
                                                       // в данном случае то же, что this.domElem
                     this.setMod('size', 'big');
                 });
@@ -646,9 +643,8 @@ DOM.decl('my-block', {
 });
 ```
 
-**Пример**: При [инициализации экземпляра блока](#init) `my-form` выполняется
-  подписка на событие `click` элемента `submit`, при наступлении
-  которого будет вызван метод экземпляра блока `_onSubmit`.
+**For example**: At the point of [block instance initialization](#init) `my-form`
+  the event listener `click` event of `submit` element is added, when it is triggered, method of a block instance `_onSubmit` will be called.
 
 ```js
 DOM.decl('my-block', {
@@ -656,8 +652,8 @@ DOM.decl('my-block', {
         'js' : {
             'inited': function() {
                 this.bindTo('submit', 'click', function(e) {
-                    var domElem = $(e.currentTarget); // DOM-элемент, на котором слушается событие
-                                                      // в данном случае то же, что this.elem('submit')
+                    var domElem = $(e.currentTarget); // DOM element with an event listener
+                                                      //   in this case, it is the same as this.elem('submit')
                     this._onSubmit();
                 });
             }
@@ -670,15 +666,14 @@ DOM.decl('my-block', {
 
 -------------------------------------------------------------------------------
 
-**NB** Функция-обработчик выполняется в контексте того экземпляра
-  блока, в котором возникло событие.
+**NB** Функция-обработчик Handler function is executed in the context of the block instance in which the event emitted.
+   
 
 -------------------------------------------------------------------------------
 
-**Удаление подписки** на DOM-события выполняется автоматически при
-уничтожении экземпляра блока. Если необходимо удалить подписку вручную
-в процессе работы блока, следует использовать метод
-`unbindFrom([elem], event, handler)`.
+**Removal of event listener** to DOM events will be run automatically when the block instance is removed. If it is necessary to unsubscribe manually
+в процессе работы блока while the block is being used, one should use `unbindFrom([elem], event, handler)` method. 
+
 
 <a name="dom-events-delegated"></a>
 
