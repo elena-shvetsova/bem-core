@@ -633,8 +633,8 @@ DOM.decl('my-block', {
         'js' : {
             'inited': function() {
                 this.bindTo('click', function(e) {
-                    var domElem = $(e.currentTarget); // DOM element, на котором the event is listened слушается событие
-                                                      // в данном случае то же, что this.domElem
+                    var domElem = $(e.currentTarget); // DOM element, на котором the event слушается событие
+                                                      // in this case, it is the same as this.domElem
                     this.setMod('size', 'big');
                 });
             }
@@ -666,7 +666,7 @@ DOM.decl('my-block', {
 
 -------------------------------------------------------------------------------
 
-**NB** Функция-обработчик Handler function is executed in the context of the block instance in which the event emitted.
+**NB** Handler function is executed in the context of the block instance in which the event emitted.
    
 
 -------------------------------------------------------------------------------
@@ -677,65 +677,53 @@ DOM.decl('my-block', {
 
 <a name="dom-events-delegated"></a>
 
-### Делегирование DOM-событий ###
+### DOM events delegation ###
 
-Делегирование обработки DOM-событий выполняется с помощью метода
-`liveBindTo([elem], event, handler)`. В декларации блока точкой,
-зарезервированной для подписки на делегированные DOM-события, служит
-свойство `live` в разделе статических методов блока.
+Delegating of DOM events handling is performed by the `liveBindTo([elem], event, handler)` method. In a block declaration the point,
+reserved for adding delegated DOM events listeners для подписки на делегированные DOM-события, serves `live` property in the  static block methods segment.
 
-**Пример**: Все экземпляры блока `menu` подписываются на
-  делегированное DOM-событие `click` своих элементов `item`. Метод
-  `_onItemClick` экземпляра блока `menu` будет выполняться при клике
-  на любой пункт (элемент `item`) в этом меню, вне зависимости от того,
-  существовал ли этот пункт в момент инициализации экземпляра блока.
-
+**For example**: All instances of  the `menu` block add to подписываются на
+  delegated DOM event listener `click` своих элементов of its elements `item`. Method
+  `_onItemClick` of the `menu` block instance will be run  when clicking on any item (element `item`) in this menu,
+  regardless of whether this item existed at the point of the block instance initialization.
+   
 ```js
 DOM.decl('menu', {
     _onItemClick : function(e) {
-        var clickedItem = $(e.currentTarget); // элемент 'item' блока 'menu', на котором слушается DOM-событие 'click'
+        var clickedItem = $(e.currentTarget); // 'item' element of the 'menu' block, на котором слушается 'click' DOM event
     }
 }, {
     live : function() {
         this.liveBindTo('item', 'click', function() {
             this._onItemClick();
         });
-        return false; // если инициализация блока не может быть отложена
+        return false; // if the block initialization can not be deferred
     }
 });
 ```
 
-По умолчанию при наличии в декларации блока свойства `live`
-инициализация экземпляров блока будет *отложена* до момента, когда
-экземпляр блока потребуется в работе
-([ленивая инициализация](#init-live)). Таким моментом может быть
-DOM-событие на экземпляре блока, на которое выполнена делегированная
-подписка, или обращение к экземпляру блока [из другого блока](#ibc).
-Если инициализация блока не может быть отложена (требуется
-[автоматическая инициализация](#init-auto)), следует вернуть `false` в
-результате выполнения функции в значении свойства `live`.
+With `live`property in a block declaration block instances by default inititalization will be *отложена/deferred* till the moment, when
+the block instance will be needed ([lazy initialization](#init-live)). 
+A DOM event on the block instance, to which a delegated event listener is added, can be such a moment
+, or referring to the block instance [из другого блока/from another block](#ibc).
+If the block initialization can not be deferred ([automatic initialization](#init-auto) is required), следует вернуть `false` в
+результате выполнения функции в значении `live` property.  
 
 -------------------------------------------------------------------------------
 
-**NB** Функция-обработчик выполняется в контексте ближайшего блока
-  данного типа на пути распространения DOM-события (снизу вверх по
-  DOM-дереву).
+**NB**  Handler function is executed in the context of the nearest block of this type in the path of DOM event (from the bottom up the DOM tree).
 
 -------------------------------------------------------------------------------
 
-**Удаление подписки** на делегированные DOM-события никогда не
-  выполняется автоматически. Если подписку необходимо удалить, следует
-  воспользоваться методом `liveUnbindFrom([elem], event, [handler])`.
+**Removal of the delegated event listener** never is performed automatically. To remove the delegated event listener use `liveUnbindFrom([elem], event, [handler])` method. 
 
 
-### Объект DOM-события ###
+### DOM event object ###
 
-В качестве параметра функции-обработчику передается jQuery-объект,
-описывающий DOM-событие — [`{jQuery.Event}`](http://api.jquery.com/category/events/event-object/).
+jQuery object is transferred as a parameter , describing DOM event — [`{jQuery.Event}`](http://api.jquery.com/category/events/event-object/) to the handler function.
 
-Если DOM-событие было сгенерировано вручную, все параметры, переданные
-функции `trigger` при создании события, будут переданы
-функции-обработчику в том же порядке после объекта события.
+If a DOM event was generated manually, all the parameters, transferred
+to the `trigger` function at the point of event creation при создании события, will be transferred to the handler function in the same order after the event object после объекта события.
 
 
 
@@ -743,12 +731,9 @@ DOM-событие на экземпляре блока, на которое в�
 
 ## BEM-события ##
 
-В отличие от DOM-событий, BEM-события генерируются не на
-DOM-элементах, а на **экземплярах блоков**. Элементы блоков не могут
-генерировать BEM-события.
+Unlike DOM events, BEM-события are generated not inDOM elements, but in **block instances**. Block elements can not generate BEM events.
 
-Чтобы сгенерировать BEM-событие, используется метод экземпляра блока
-`emit(event)`.
+Чтобы сгенерировать BEM event, `emit(event)` method of block instance is used.
 
 **Пример**: Когда пользователь кликает по DOM-элементу кнопки `submit`
 (происходит DOM-событие `click`), выполняется метод `_onClick()`
