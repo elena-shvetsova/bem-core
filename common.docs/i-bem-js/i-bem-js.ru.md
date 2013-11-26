@@ -340,7 +340,7 @@ provide(BEM);
 
 -------------------------------------------------------------------------------
 
-**NB**: It is convinient to design infrastructure code as a block without DOM representation, if it is planned to use API of
+**NB**: It is convenient to design infrastructure code as a block without DOM representation, if it is planned to use API of
 BEM blocks (states, expressed by modifiers, BEM events etc.). Without using BEM terms/BEM stack infrastructure code can be designed as  [ymaps][] module. For example:
 
 ```js
@@ -731,42 +731,39 @@ to the `trigger` function at the point of event creation при создании
 
 ## BEM-события ##
 
-Unlike DOM events, BEM-события are generated not inDOM elements, but in **block instances**. Block elements can not generate BEM events.
+Unlike DOM events, BEM events are generated not in DOM elements, but in **block instances**. Block elements can not generate BEM events.
 
-Чтобы сгенерировать BEM event, `emit(event)` method of block instance is used.
+To generate BEM event, `emit(event)` block instance method  is used.
 
-**Пример**: Когда пользователь кликает по DOM-элементу кнопки `submit`
-(происходит DOM-событие `click`), выполняется метод `_onClick()`
-экземпляра блока `submit`, в котором генерируется **BEM-событие**
-`click` в том случае, если у блока в этот момент не выставлен
-модификатор `disabled`:
+**For example**: When a user clicks on DOM element of the `submit`button
+(DOM event `click` is emitted),`_onClick()` method of `submit`block instance is ecexecuted, in which **BEM event** `click` is generated
+in the case, if the block doesn't have the `disabled` modifier не выставлен
+модификатор at the moment:
 
 ```js
 DOM.decl('submit', {
     onSetMod: {
         'js': {
             'inited': function() {
-                this.bindTo('click', this._onClick); // подписка на DOM-событие "click"
+                this.bindTo('click', this._onClick); // adding DOM event listener "click"
             }
         }
     },
 
     _onClick: function() {
         if(!this.hasMod('disabled')) {
-            this.emit('click'); // создание BEM-события "click"
+            this.emit('click'); // creating BEM event "click" 
         }
     }
 });
 ```
 
-Для подписки на BEM-события экземпляров блоков используются методы
-экземпляра блока `on(event, [data], handler, [handlerCtx])`.
+For aading BEM events listeners the block instance methods `on(event, [data], handler, [handlerCtx])` are used.
 
-**Пример**: В момент инициализации HTML-формы (экземпляра блока `my-form`)
-выполняется поиск вложенной в форму кнопки `submit` и подписка на
-BEM-событие `click` этой кнопки. В результате при нажатии на кнопку
-(экземпляр блока `submit`) будет выполнен метод `_onSubmit` формы
-(экземпляр блока `my-form`).
+**For example**: At the point of initialization HTML form (of `my-form` block instance)
+выполняется поиск the `submit` nested into the form button is found and `click` BEM event listener of the button is added.  
+As a result, when the button is clicked on (instance of `submit` block) `_onSubmit` method  формы??
+of (экземпляр блока `my-form`) form will be executed.
 
 ```js
 DOM.decl('my-form', {
@@ -774,9 +771,9 @@ DOM.decl('my-form', {
         'js': {
             'inited': function() {
                 this.findBlockInside('submit').on(
-                    'click', // имя BEM-события
-                    this._onSubmit, // метод экземпляра блока my-form
-                    this); // контекст для выполнения _onSubmit — блок my-form
+                    'click', // BEM event name
+                    this._onSubmit, // block instance method my-form
+                    this); // context for running _onSubmit — my-form block
             }
         }
     },
