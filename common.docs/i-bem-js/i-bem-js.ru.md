@@ -807,40 +807,33 @@ BEM-события is performed with a static method *класса блока/ b
 
 Parameters:
 
-* `{jQuery} [ctx]` — DOM-узел, в пределах которого отслеживаются
-BEM-события (контейнер). Если не указан, в качестве контейнера
-используется весь документ.
-* `{String} event` — Имя BEM-события.
-* `{Object} [data]` — Произвольные данные, передаваемые
-  функции-обработчику.
-* `{Function} handler` — Функция-обработчик события.
-* `{Object} [handlerCtx]` — Контекст функции-обработчика
-  события. Обычно в качестве контекста должен выступать тот экземпляр
-  блока, который подписывается на BEM-событие, а не тот, в котором BEM-событие
-  произошло.
+* `{jQuery} [ctx]` — DOM node, that contain BEM-events /в пределах которого отслеживаются
+(container). If it is not specified, the entire document is used as a container.
+* `{String} event` — BEM event name.
+* `{Object} [data]` — Arbitrary data transferrred to the function handler.
+* `{Function} handler` — Function event handler/ Функция-обработчик события.
+* `{Object} [handlerCtx]` — Function of event handler context.
+  Usually it is the block instance, that added a BEM event listener, not the one, that emittted the event. Обычно в качестве контекста должен выступать тот экземпляр блока, который подписывается на BEM-событие, а не тот, в котором BEM-событие произошло.
 
 
-**Пример**: При инициализации экземпляров блока `menu` выполняется
-  подписка на BEM-событие `click` всех ссылок (экземпляров блока
-  `link`) в пределах DOM-узла, к которому привязано меню
-  (`this.domElem`). В качестве контекста функции-обработчика
-  передается экземпляр блока, в котором событие будет обрабатываться
-  (`this`). При [уничтожении экземпляров блока](#destruct) `menu`
+**For example**: At the point of initialization of the `menu` block instances, the `click` BEM event listener is added to all the links (of the `link` block instances) within the DOM node, that menu (`this.domElem`) is bound to. 
+При инициализации экземпляров блока `menu` выполняется подписка на BEM-событие `click` всех ссылок (экземпляров блока `link`) в пределах DOM-узла, к которому привязано меню
+  (`this.domElem`). The block instance, that will handle the event (`this`) is transferred as a context of a handler function. В качестве контекста функции-обработчика передается экземпляр блока, в котором событие будет обрабатываться (`this`). When [removing the block instances/уничтожении экземпляров блока](#destruct) `menu`
 
 ```js
 DOM.decl('menu', {
     onSetMod : {
         'js' : {
             'inited' : function() {
-                DOM.blocks['link'].on( // подписка на BEM-событие
-                    this.domElem, // контейнер — DOM-узел экземпляра блока menu
-                    'click', // BEM-событие
-                    this._onLinkClick, // обработчик
-                    this); // контекст обработчика — экземпляр блока menu
+                DOM.blocks['link'].on( // adding BEM event listener
+                    this.domElem, // container — DOM node of the menu block instance
+                    'click', // BEM event
+                    this._onLinkClick, // handler
+                    this); // контекст обработчика context of a handler — instance of the menu block
             },
 
             '' : function() {
-                DOM.blocks['link'].un( // удаление подписки на BEM-событие
+                DOM.blocks['link'].un( // removing BEM event listener
                     this.domElem,
                     'click',
                     this._onLinkClick,
@@ -850,27 +843,23 @@ DOM.decl('menu', {
     },
 
     _onLinkClick : function(e) {
-        var clickedLink = e.target; // экземпляр блока 'link', на котором произошло BEM-событие 'click'
+        var clickedLink = e.target; // 'link' block instance, that emitted 'click' BEM event
     }
 });
 ```
 
 -------------------------------------------------------------------------------
 
-**NB** Если не указывать параметр `[handlerCtx]` метода `on`,
-  контекстом для функции-обработчика будет тот блок, в котором
-  *возникло* BEM-событие.
+**NB**  If the `[handlerCtx]`parameter of `on` method is not specified,
+  then the context for handler function is the block, that *emitted* BEM event.
 
 -------------------------------------------------------------------------------
 
-**Удаление подписки** на делегированные BEM-события никогда не
-  происходит автоматически. Всегда следует явно удалять подписку при
-  помощи статического метода блока `un([ctx], event, [handler],
-  [handlerCtx])`.
+**Удаление подписки/Event listeners removal** from BEM events can never be performed automatically. One should always remove event listener manually using the `un([ctx], event, [handler],
+  [handlerCtx])` static block method. 
 
 
-Полное описание API для работы с BEM-событиями содержится в исходном
-коде модулей [`i-bem`][] и [`i-bem__dom`][].
+Complete API description for working with BEM events is contained in source code of [`i-bem`][] and [`i-bem__dom`][] modules.
 
 
 <a name="api"></a>
