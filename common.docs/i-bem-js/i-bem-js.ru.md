@@ -864,21 +864,17 @@ Complete API description for working with BEM events is contained in source code
 
 <a name="api"></a>
 
-## Объект BEM-события ##
+## BEM event  object ##
 
-В качестве параметра функции-обработчику передается объект,
-описывающий BEM-событие. Объект BEM-события `events.Event` определен
-в [ymaps][]-модуле
+An object, describing BEM event is transferred to a handler function as a parameter. BEM event object `events.Event` определен/ defined in the [ymaps][] module in
 [`events`](https://github.com/bem/bem-core/blob/v1/common.blocks/events/events.vanilla.js)
-библиотеки bem-core. Содержит поля:
+of the bem-core library. Contains the following fields:
 
-* `target` — Экземпляр блока, в котором произошло BEM-событие.
-* `data` — Произвольные дополнительные данные. Передается в качестве
-  параметра `data` в момент подписки на BEM-событие или при создании
-  BEM-события блоком.
-* `result` — Последнее значение, возвращенное обработчиком данного
-  события. Аналогично [jQuery.Event.result](http://api.jquery.com/event.result/).
-* `type` — Тип события. Аналогично
+* `target` — The block instance, emitted the BEM event.
+* `data` — Arbitrary additional data. Is transferred as a parameter of/ в качестве
+  параметра `data` at the point of adding a BEM event listener or creating или при создании BEM event by a block.
+* `result` — Last value, возвращенное обработчиком/ returned by handler of the given event. Similar to [jQuery.Event.result](http://api.jquery.com/event.result/).
+* `type` — Event type. Similar to
 [jQuery.Event.type](http://api.jquery.com/event.type/).
 
 
