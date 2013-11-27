@@ -729,7 +729,7 @@ to the `trigger` function at the point of event creation при создании
 
 <a name="bem-events"></a>
 
-## BEM-события ##
+## BEM events ##
 
 Unlike DOM events, BEM events are generated not in DOM elements, but in **block instances**. Block elements can not generate BEM events.
 
@@ -763,7 +763,7 @@ For aading BEM events listeners the block instance methods `on(event, [data], ha
 **For example**: At the point of initialization HTML form (of `my-form` block instance)
 выполняется поиск the `submit` nested into the form button is found and `click` BEM event listener of the button is added.  
 As a result, when the button is clicked on (instance of `submit` block) `_onSubmit` method  формы??
-of (экземпляр блока `my-form`) form will be executed.
+of (`my-form` block instance) form will be executed.
 
 ```js
 DOM.decl('my-form', {
@@ -784,31 +784,28 @@ DOM.decl('my-form', {
 
 -------------------------------------------------------------------------------
 
-**NB** Если не указывать последний параметр метода `on` —
-  `[handlerCtx]`, контекстом для выполнения функции-обработчика будет
-  тот блок, в котором возникло BEM-событие. (В примере выше — это блок
-  `submit`.)
+**NB** If the last parameter of`on` —
+  `[handlerCtx]` method is not provided, the context for handler function execution контекстом для выполнения функции-обработчика will be the block, in which
+  the BEM event has been emitted. (In the example above — it is the `submit` block.)
 
 -------------------------------------------------------------------------------
 
 
-**Удаление подписки** на BEM-события выполняется автоматически при
-уничтожении экземпляра блока. Если требуется удалить подписку вручную
-в процессе работы блока, следует использовать метод экземпляра блока
-`un(event, [handler], [handlerCtx])`.
+**Removing the event listener/ Удаление подписки** to BEM events is performed automatically when the block instance is removed. To remove it manually while the block is at work, 
+use the `un(event, [handler], [handlerCtx])` block instance method/ метод экземпляра блока.
 
 
 <a name="bem-events-delegated"></a>
 
-### Делегирование BEM-событий ###
+### BEM event delegation ###
 
-Делегирование BEM-событий означает, что блок подписывается на
-определенное BEM-событие **всех экземпляров** блока с заданным именем
-**в пределах заданного контекста**. Подписка на делегированные
-BEM-события выполняется с помощью статического метода *класса блока*
+BEM events delegation means, that a block adds a event listener to the specific BEM event блок подписывается на
+определенное BEM-событие of **all the block instances** with the name specified/ с заданным именем
+**в пределах заданного контекста/ within the specified context**. Adding the delegated BEM event listener/ Подписка на делегированные
+BEM-события is performed with a static method *класса блока/ block class*
 `on([ctx], event, [data], handler, [handlerCtx])`.
 
-Параметры:
+Parameters:
 
 * `{jQuery} [ctx]` — DOM-узел, в пределах которого отслеживаются
 BEM-события (контейнер). Если не указан, в качестве контейнера
