@@ -921,22 +921,19 @@ While adding, removing, and changing values of modifiers triggers are implemente
 
 <a name="mods-api"></a>
 
-### Управление модификаторами ###
+### Управление модификаторами/ Operating modifiers ###
 
-Экземпляр блока предоставляет методы для установки, проверки значений
-и удаления модификаторов данного экземпляра.
-
--------------------------------------------------------------------------------
-
-**NB**: Модификаторы нельзя устанавливать, напрямую меняя CSS-классы на
-соответствующем DOM-узле. Для изменения значений модификаторов следует
-использовать описанное ниже API, предоставляемое *i-bem.js*.
+A block instance provides methods for installation, value checking
+and removing modifiers of the given instance.
 
 -------------------------------------------------------------------------------
 
-**Пример**: Экземпляр блока `square` может по клику на DOM-элементе
-блока переключаться между значениями `green` и `red` модификатора
-`color`, если не выставлен модификатор `disabled`:
+**NB**: Modifiers can not be installed by directly changing CSS classes in the corresponding DOM node.
+For changing modifiers values one should use API, предоставляемое/ provided by *i-bem.js* (see below).
+
+-------------------------------------------------------------------------------
+
+**For example**: The `square` block instance can change `green` and `red` values of the `color` modifier by clicking on DOM element of the block, if the `disabled` modifier is not set:
 
 ```js
 DOM.decl('square', {
@@ -948,13 +945,9 @@ DOM.decl('square', {
 });
 ```
 
-Эти же методы используются для управления модификаторами элементов
-блока. Для этого в качестве первого (необязательного) параметра
-указывается ссылка на объект элемента (а не имя элемента).
+These same methods are used to operate modifiers of block elements. For that the link to the element object (not the element name) is designated as the first parameter (which is optional).
 
-**Пример**: Блок `searchbox` по клику может выставлять своему элементу
-`input` простой модификатор `clean` (подразумеваемое значение —
-`true`):
+**For example**: By clicking on the `searchbox` block can set a simple modifier `clean` to its `input` element (the implied value — `true`):
 
 ```js
 DOM.decl('searchbox', {
@@ -966,19 +959,14 @@ DOM.decl('searchbox', {
 
 -------------------------------------------------------------------------------
 
-**NB** При управлении модификаторами элементов в качестве первого
-  параметра необходимо указывать ссылку на **DOM-узел элемента**, а не
-  имя элемента. В противном случае возникла бы неоднозначность:
-  имеется в виду установка блоку *модификатора* `input` в значение
-  `clean` или установка элементу `input` *простого модификатора* `clean`.
+**NB** In operating modifiers of elementsv provide a link to the **DOM node of element** as the first parameter, not the element name. Otherwise it would cause ambiguity:  that is setting the `input` *modifier* in the value `clean` or setting the  *simple modifier* `clean`to the `input` element.
 
 -------------------------------------------------------------------------------
 
-Полное описание API для управления модификаторами приведено в
-исходном коде модулей [`i-bem`][] и [`i-bem__dom`][].
+Complete API description for operating modifiers please find in the source code of [`i-bem`][] and [`i-bem__dom`][] modules.
 
 
-## Триггеры на установку модификаторов ##
+## Триггеры на установку модификаторов / Triggers on modifiers setting ##
 
 Выполнение триггеров на установку модификаторов разбито на две фазы:
 
