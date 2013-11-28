@@ -880,56 +880,43 @@ of the bem-core library. Contains the following fields:
 
 <a name="ibc"></a>
 
-# Состояния блока #
+# Block states #
 
-Проектируя динамический блок в стиле БЭМ, нужно представить всю логику
-изменений, происходящих в нем, как набор **состояний** блока. Тогда
-поведение блока определяется **триггерами** — callback-функциями, которые
-выполняются при переходе блока из одного состояния в другое.
+Проектируя When creating a dynamic block in BEM style, it is great to visualize всю логику/all the changes that take place in it, as a set of block **states**. Then block behaviour is defined by **triggers** — the callback functions, which run/которые выполняются when a block changes one state to another/ при переходе блока из одного состояния в другое.
 
-Такой подход позволяет писать код блока в декларативном стиле как
-набор утверждений вида:
+This approach allows to wtite code of a block in a declarative style as a set of assertions /как набор утверждений вида:
 
-* Описание состояния — действия, выполняемые при переходе в данное состояние.
+* State descriptions — actions taken to set the certain state. 
 
 <a name="modifiers"></a>
 
-## Модификаторы ##
+## Modifiers ##
 
-Согласно БЭМ-методологии, состояние блока и его элементов описывается
-**модификаторами**.
+In BEM methodology, the state of block and its elements are described with **modifiers**.
 
-* Модификатор — это **имя** и **значение**. Например, `size`: `m`.
+* Modifier — is **name** and **value**. For example, `size`: `m`.
 
-* **Простой модификатор**. Частный случай, когда модификатор либо
-  присутствует у блока, либо отсутствует. Например, `disabled`. В
-  *i-bem.js* представлены как модификаторы с булевым
-  значением. Например: `disabled`: `true`. При выставлении
-  модификатора с неуказанным значением *i-bem.js* автоматически
-  присваивает ему значение `true`.
+* **Простой модификатор/ Simple modifier**. Частный случай/ specific instance, when a block either has a modifier or doesn't have one/ когда модификатор либо присутствует у блока, либо отсутствует. 
+  For example, `disabled`. ??? In *i-bem.js* are implemented as modifiers with zero value. For example: `disabled`: `true`. При выставлении модификатора/ When setting a modifier with unspecified value *i-bem.js* will assign `true` value  automatically.
 
-* Каждому блоку можно установить один или несколько модификаторов.
+* Each block can have one or several modifiers.
 
-* Блок может не иметь модификаторов.
+* A block can go without any modifiers/ Блок может не иметь модификаторов.
 
-В *i-bem.js* модификаторы устанавливаются при
-  [инициализации экземпляра блока](#init) (если модификаторы и их
-  значения указаны в атрибуте `class` соответствующего HTML-элемента).
+In *i-bem.js* modifiers устанавливаются/ are set at the point of [block instance initialization/инициализации экземпляра блока](#init) (if modifiers and their values are specified in the `class` attribute of the certain HTML element).
 
 -------------------------------------------------------------------------------
 
-**NB** При инициализации блока с модификаторами триггеры на установку
-  данных модификаторов *не выполняются*, так как экземпляр блока в
-  этом случае получает начальное состояние, а не меняет его.
+**NB** During initialization block with modifiers triggers for setting given modifiers are not /триггеры на установку данных модификаторов *не выполняются*, as the block instance in this case receives the initial state, but does not change it.
 
 -------------------------------------------------------------------------------
 
-Модификаторы могут добавляться, удаляться и менять значения:
+Modifiers can be added, removed, can change values/ Модификаторы могут добавляться, удаляться и менять значения:
 
-* В ходе выполнения кода блока (например, в качестве реакции на [DOM-события](#dom-events)).
-* По запросу из другого блока. Подробнее см. раздел [Взаимодействие блоков](#ibc).
+* В ходе выполнения кода блока/ In the process of implementing block code (for instance, in response to /в качестве реакции на [DOM events](#dom-events)).
+* Upon request from another block/ По запросу из другого блока. For further info please see [Blocks interaction](#ibc).
 
-При добавлении, удалении и изменении значений модификаторов выполняются триггеры.
+While adding, removing, and changing values of modifiers triggers are implemented.
 
 
 <a name="mods-api"></a>
