@@ -968,37 +968,30 @@ Complete API description for operating modifiers please find in the source code 
 
 ## Триггеры на установку модификаторов / Triggers on modifiers setting ##
 
-Выполнение триггеров на установку модификаторов разбито на две фазы:
+Выполнение триггеров на установку модификаторов/triggers on modifiers setting is divided into two stages:
 
-1. **До установки модификатора**. Эта фаза зарезервирована для
-   возможности **отменить** установку модификатора. Если хотя бы один
-   из триггеров, выполняемых в этой фазе, вернет `false`, установки
-   модификатора не произойдет.
-2. **После установки модификатора**. Триггеры, выполняемые в этой
-   фазе, уже не могут отменить установку модификаторов.
+1. **До установки модификатора/ before setting the modifier**. At this stage it is still possible to **отменить/ call off** the modifier setting. Если хотя бы один if any one or more of the triggers, implemented in this stage, 
+    вернет / recalls `false`, the modifier will not be set.
+2. **after setting the modifier**. Triggers, implemented at this stage, can't recall the modifier setting. 
 
+Триггеры могут быть привязаны к следующим типам изменений значений модификаторов/ Triggers can be bound to the following value change of modifiers:
 
-Триггеры могут быть привязаны к следующим типам изменений значений модификаторов:
-
-1. установка *любого* модификатора в *любое* значение;
-2. установка *конкретного* модификатора `modName` в *любое* значение (в том числе
-   установка простого модификатора в значение `true`);
-3. установка *конкретного* модификатора `modName` в *конкретное* значение `modVal`;
-4. установка модификатора в значение `''` (пустая строка), что
-   эквивалентно удалению модификатора или установке простого
-   модификатора в значение `false`).
+1. setting *any* modifier to *any* value;
+2. setting the *specific* modifier `modName` to *any* value (which includes
+   setting simple modifier to the value `true`);
+3. setting the *specific* modifier `modName` to the в *specific* value `modVal`;
+4. setting the modifier to value `''` (empty string), that is equivalent to
+    deleting the  modifier or setting simple modifier to the value `false`).
 
 
-При установке модификатора `modName` в значение `modVal` триггеры
-каждой фазы (если они определены) вызываются в том порядке, в котором они
-перечислены в приведенном выше списке событий (от общего к частному).
+When setting the modifier `modName` to the value `modVal` triggers in each stage (if defined) are called in the order in which they are listed in the above list of events (from general to specific).
 
 Таким образом, при определении триггера пользователь указывает:
 
 * фазу выполнения (до или после установки модификатора);
 * тип события (имя и устанавливаемое значение модификатора).
 
-### Декларация триггеров ###
+### Декларация триггеров/ Trigger declaration ###
 
 Триггеры, выполняемые при установке модификаторов, описываются в
 декларации блока. Для этого в хэше методов экземпляра блока
