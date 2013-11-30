@@ -986,39 +986,37 @@ Complete API description for operating modifiers please find in the source code 
 
 When setting the modifier `modName` to the value `modVal` triggers in each stage (if defined) are called in the order in which they are listed in the above list of events (from general to specific).
 
-Таким образом, при определении триггера пользователь указывает:
+Therefore, in defining /при определении trigger a user points /указывает:
 
-* фазу выполнения (до или после установки модификатора);
-* тип события (имя и устанавливаемое значение модификатора).
+* stage of implementation/ фазу выполнения (before or after modifier setting);
+* type of event (name and chosen value of modifier и устанавливаемое значение модификатора).
 
 ### Декларация триггеров/ Trigger declaration ###
 
-Триггеры, выполняемые при установке модификаторов, описываются в
-декларации блока. Для этого в хэше методов экземпляра блока
-зарезервированы свойства:
+Triggers, executed /выполняемые at the modifiers setting, are described in a block declaration. For this purpose  there are the properties reserved in hash of block instance methods:
 
-* `beforeSetMod` — триггеры, вызываемые до установки
-  **модификаторов блока**.
-* `beforeElemSetMod` — триггеры, вызываемые до установки
-  **модификаторов элементов**.
-* `onSetMod` — триггеры, вызываемые после установки
-  **модификаторов блока**.
-* `onElemSetMod` — триггеры, вызываемые после установки
-  **модификаторов элементов** блока.
+* `beforeSetMod` — triggers, called before
+  **block modifiers** setting.
+* `beforeElemSetMod` — triggers, called before setting
+  **element modifiers**.
+* `onSetMod` — triggers, called after setting
+  **block modifiers**.
+* `onElemSetMod` — triggers, called after setting
+  **modifiers of block elements**.
 
 ```js
 modules.define('i-bem__dom', function(provide, DOM) {
 
-DOM.decl(/* селектор блока */,
+DOM.decl(/* block selector */,
     {
-        /* методы экземпляра */
-        beforeSetMod: { /* триггеры до установки модификаторов блока*/}
-        beforeElemSetMod: { /* триггеры до установки модификаторов элементов*/}
-        onSetMod: { /* триггеры после установки модификаторов блока */ }
-        onElemSetMod: { /* триггеры после установки модификаторов элементов */ }
+        /* instance methods */
+        beforeSetMod: { /* triggers before block modifiers setting */}
+        beforeElemSetMod: { /* triggers before element modifiers setting */}
+        onSetMod: { /* triggers after block modifiers setting */ }
+        onElemSetMod: { /* triggers after element modifiers setting */ }
     },
     {
-        /* статические методы */
+        /* static methods */
     }
 );
 
@@ -1027,63 +1025,60 @@ provide(DOM);
 });
 ```
 
-Значение свойств `beforeSetMod` и `onSetMod` — хэш, связывающий
-изменения модификаторов с триггерами. В качестве параметров триггерам
-передаются:
+Property values `beforeSetMod` and `onSetMod` — hash, binding modifiers changes to triggers / хэш, связывающий
+изменения модификаторов с триггерами. The following are passed to triggers as parameters:  В качестве параметров триггерам передаются:
 
-* имя модификатора;
-* выставляемое значение модификатора;
-* предшествующее (для `beforeElemSetMod`) или текущее (для `onElemSetMod`) значение модификатора.
+* modifier name;
+* выставляемое / set modifier value;
+* preceding (for `beforeElemSetMod`) or current (for `onElemSetMod`) modifier value.
 
 ```js
 {
-    'mod1': function(modName, modVal, prevModVal) { /* ... */ }, // установка mod1 в любое значение
+    'mod1': function(modName, modVal, prevModVal) { /* ... */ }, // setting mod1 to any value
     'mod2': {
-        'val1': function(modName, modVal, prevModVal) { /* ... */ }, // триггер на установку mod2 в значение val1
-        'val2': function(modName, modVal, prevModVal) { /* ... */ }, // триггер на установку mod2 в значение val2
+        'val1': function(modName, modVal, prevModVal) { /* ... */ }, // trigger на установку/ on setting mod2 in value val1
+        'val2': function(modName, modVal, prevModVal) { /* ... */ }, // trigger on setting mod2 в значение val2
         '': function(modName, modVal, prevModVal) { /* ... */ } // триггер на удаление модификатора mod2
     'mod3': {
-        'true': function(modName, modVal, prevModVal) { /* ... */ }, // триггер на установку простого модификатора mod3
-        '': function(modName, modVal, prevModVal) { /* ... */ }, // триггер на удаление простого модификатора mod3
+        'true': function(modName, modVal, prevModVal) { /* ... */ }, // trigger on setting simple modifier mod3
+        '': function(modName, modVal, prevModVal) { /* ... */ }, // trigger on deleting simple modifier mod3
     },
-    '*': function(modName, modVal, prevModVal) { /* ... */ } // триггер на установку любого модификатора в любое значение
+    '*': function(modName, modVal, prevModVal) { /* ... */ } // trigger on setting any simple modifier to any value
 }
 ```
 
-Для триггера на установку любого модификатора блока в любое значение
-существует сокращенная форма записи:
+There is a shorthand notation for a trigger on setting any block modifier to any value / Для триггера на установку любого модификатора блока в любое значение существует :
 
 ```js
 beforeSetMod: function(modName, modVal, prevModVal) { /* ... */ }
 onSetMod: function(modName, modVal, prevModVal) { /* ... */ }
 ```
 
-Для свойств `beforeElemSetMod` и `onElemSetMod` в хэш значений
-добавляется дополнительный уровень вложенности, задающий **элемент**,
-на установку модификаторов которого устанавливаются триггеры. В
-качестве параметров триггеру передаются:
+For properties `beforeElemSetMod` and `onElemSetMod` in value hash / в хэш значений
+additional level of nesting is added, задающий/ assigning **element**,
+on modifiers setting of which the triggers are set. 
+В качестве параметров триггеру передаются / The following are passed to triggers as parameters:
 
-* имя элемента;
-* имя модификатора;
-* выставляемое значение модификатора;
-* предшествующее (для `beforeElemSetMod`) или текущее (для `onElemSetMod`) значение модификатора.
+* element name;
+* modifier name;
+* выставляемое/ set modifier value;
+* preceding (for `beforeElemSetMod`) or current (for `onElemSetMod`) modifier value.
 
 
 ```js
 {
     'elem1': {
-        'mod1': function(elem, modName, modVal, prevModVal) { /* ... */ }, // триггер на установку mod1 элемента elem 1 в любое значение
+        'mod1': function(elem, modName, modVal, prevModVal) { /* ... */ }, // trigger on setting mod1 of element elem 1 to any value 
         'mod2': {
-            'val1': function(elem, modName, modVal, prevModVal) { /* ... */ }, // триггер на установку mod2 элемента elem1 в значение val1
-            'val2': function(elem, modName, modVal, prevModVal) { /* ... */ } // триггер на установку mod2 элемента elem1 в значение val2
+            'val1': function(elem, modName, modVal, prevModVal) { /* ... */ }, // trigger on setting mod2 of element elem1 to value val1
+            'val2': function(elem, modName, modVal, prevModVal) { /* ... */ } // trigger on setting mod2 of element elem1 to value val2
             }
         },
-    'elem2': function(elem, modName, modVal, prevModVal) { /* ... */ } // триггер на установку любого модификатора элемента elem2 в любое значение
+    'elem2': function(elem, modName, modVal, prevModVal) { /* ... */ } // trigger on setting  on setting any modifier of element elem2 to any value
 }
 ```
 
-Сокращенная запись для триггера на установку любого модификатора элемента
-`elem1` в любое значение:
+A shorthand notation for a trigger on setting any element modifier `elem1` to any value:
 
 ```js
 beforeElemSetMod: { 'elem1': function(elem, modName, modVal, prevModVal) { /* ... */ } }
