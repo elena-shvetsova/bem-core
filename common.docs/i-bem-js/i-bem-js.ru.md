@@ -1085,43 +1085,36 @@ beforeElemSetMod: { 'elem1': function(elem, modName, modVal, prevModVal) { /* ..
 onElemSetMod: { 'elem1': function(elem, modName, modVal, prevModVal) { /* ... */ } }
 ```
 
-### Примеры триггеров ###
+### Triggers examples ###
 
-Типовая задача триггеров, вызываемых после установки модификатора или
-изменения его значения (свойство `onSetMod`) — выполнить операции над
-DOM-узлом блока, необходимые при переходе в новое состояние.
+A common tasks for triggers, called after setting the modifiers or
+changing its value (property `onSetMod`) — make the necessary for the state transition changes with the DOM node of a block.
 
-**Пример**: Экземпляр блока `input` при установке простого
-  модификатора `focused` (в значение `true`) очищает поле ввода —
-  заменяет пустой строкой текст DOM-узла блока.
+**For example**: The `input` block instance at the setting `focused` simple modifier (in value `true`) clears input /очищает поле ввода — replace text of the DOM node block with an empty string / пустой строкой текст DOM-узла блока.
 
 ```js
 DOM.decl('input', {
     onSetMod : {
         'focused' : {
             'true' : function() {
-                this.domElem.val(''); // очистить поле ввода
+                this.domElem.val(''); // clear input/очистить поле ввода
             }
         }
     }
 });
 ```
 
-Триггеры, выполняемые перед установкой модификатора (свойство
-`beforeSetMod`), необходимы для проверки текущего состояния экземпляра
-блока и возможности отменить переход в другое состояние.
+Triggers, executed before modifier setting (property
+`beforeSetMod`), are necessary for checking current state of a block instance and a possibility to recall transition to another state /и возможности отменить переход в другое состояние.
 
-**Пример**: Экземпляр блока `input` перед установкой простого
-  модификатора `focused` проверяет, не выставлен ли у него модификатор
-  `disabled`. Если `disabled` выставлен, проверка вернет `false` и
-  установки модификатора `focused` не произойдет.
+**For example**: Block instance `input` before setting simple modifier `focused` checks, whether it has a modifier`disabled`. If it does have `disabled`, `false` will be recalled after checking and the modifier `focused` will not be set.
 
 ```js
 DOM.decl('input', {
     beforeSetMod : {
         'focused' : {
             'true' : function() {
-                return !this.hasMod('disabled'); // вернет false, если disabled
+                return !this.hasMod('disabled'); // вернет false/ will recall, if disabled
             }
         }
     }
