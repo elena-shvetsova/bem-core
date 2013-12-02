@@ -1124,57 +1124,48 @@ DOM.decl('input', {
 
 <a name="init"></a>
 
-## Инициализация ##
+## Initialization ##
 
-Инициализация блока — это создание в памяти браузера JS-объекта,
-соответствующего экземпляру блока. Инициализация экземпляров блоков выполняется
-методом `init()` модуля `i-bem__dom` на заданном фрагменте DOM-дерева.
+Block initialization — creating a JS object in browser memory,
+that corresponds to the block instance. Initialization of the block instances is called by the `init()` method and the `i-bem__dom` module in the specific fragment of the DOM tree /на заданном фрагменте DOM-дерева.
 
-Каждому экземпляру блока можно приписать три состояния:
+Each block instance can be ascribed to three states:
 
-* экземпляр блока не инициализирован (JS-объект не создан);
-* экземпляр блока инициализирован (JS-объект создан в памяти браузера);
-* экземпляр блока уничтожен (удалены все ссылки на JS-объект экземпляра
-  блока и он может быть удален сборщиком мусора).
+* block instance not initialized (JS object is not created);
+* block instance initialized (JS object is created in browser memory);
+* block instance deleted /уничтожен (all the links to the JS object of the block instance удалены/ are removed and it can be by the garbage collector).
 
-В *i-bem.js* эти состояния экземпляра блока описываются с помощью служебного
-модификатора `js`.
+In *i-bem.js* the states of the block instance are described by the `js` service /служебного
+modifier.
 
-* До инициализации экземпляр блока не имеет модификатора `js`.
+* A block instance does not have the `js` modifier before initialization.
 
 ```HTML
 <div class="my-block i-bem" data-bem="..." >...</div>
 ```
 
-* В момент инициализации экземпляру блока устанавливается модификатор
-  `js` в значении `inited`.
+* A block instance gets the `js` modifier set in the `inited` value at the moment of initialization.
 
 ```HTML
 <div class="my-block i-bem my-block_js_inited" data-bem="...">...</div>
 ```
 
-* Если в процессе работы удаляется фрагмент DOM-дерева (при помощи
-  метода `destruct` модуля `i-bem__dom`) , то вместе с
-  ним удаляются экземпляры блоков, все HTML-элементы которых находятся
-  в этом фрагменте. Перед удалением экземпляра блока модификатор `js`
-  удаляется.
+* If a fragment the DOM tree is deleted in the process (using the `destruct` method of the `i-bem__dom` module), then block instances are deleted along with it, the HTML elements of which are contained in this fragment. The `js` modifier gets deleted before deleting the block instance.
 
 -------------------------------------------------------------------------------
 
-**NB** Если экземпляр блока был
-  [привязан к нескольким HTML-элементам](#distrib-block), блок будет существовать,
-  пока в HTML-дереве сохраняется хотя бы один элемент, с которым он
-  связан.
+**NB** If a block instance was
+  [bound to several HTML elements](#distrib-block), the block would be available,
+  while there is at least one element in the HTML tree bound to it.
 
 -------------------------------------------------------------------------------
 
 
-Если на HTML-элементе размещено несколько экземпляров других блоков, то
-инициализация одного из них (появление модификатора `my-block_js_inited`)
-не влияет на инициализацию остальных.
+If there are instances of different blocks in the HTML element /экземпляров других блоков на HTML-элементе, initialization of one of them (появление/ with the `my-block_js_inited` modifief)
+has no influence on the initialization of the others.
 
-**Пример**: На HTML-элементе инициализирован только экземпляр блока `my-block`,
-экземпляр блока `lazy-block` не инициализирован:
+**For example**: In HTML element only the block instance `my-block` (к чему относится?) is initialized,
+the block instance`lazy-block` is not initialized:
 
 ```HTML
 <div class="my-block my-block_js_inited lazy-block i-bem"
@@ -1185,8 +1176,7 @@ DOM.decl('input', {
 
 -------------------------------------------------------------------------------
 
-**NB** Наличие модификатора `js` позволяет писать разные CSS-стили для
-  блока в зависимости от того, инициализирован он или нет.
+**NB** The presence of the `js` modifier allows to write various /разные CSS styles for a block, depending on whether if it is initialized or not.
 
 -------------------------------------------------------------------------------
 
