@@ -1133,7 +1133,7 @@ Each block instance can be ascribed to three states:
 
 * block instance not initialized (JS object is not created);
 * block instance initialized (JS object is created in browser memory);
-* block instance deleted /уничтожен (all the links to the JS object of the block instance удалены/ are removed and it can be by the garbage collector).
+* block instance deleted /уничтожен (all the links to the JS object of the block instance удалены/ are removed and it can be removed by the garbage collector).
 
 In *i-bem.js* the states of the block instance are described by the `js` service /служебного
 modifier.
@@ -1164,7 +1164,7 @@ modifier.
 If there are instances of different blocks in the HTML element /экземпляров других блоков на HTML-элементе, initialization of one of them (появление/ with the `my-block_js_inited` modifief)
 has no influence on the initialization of the others.
 
-**For example**: In HTML element only the block instance `my-block` (к чему относится?) is initialized,
+**For example**: In HTML element only the block instance `my-block` ?? is initialized,
 the block instance`lazy-block` is not initialized:
 
 ```HTML
@@ -1181,19 +1181,19 @@ the block instance`lazy-block` is not initialized:
 -------------------------------------------------------------------------------
 
 
-### Конструктор экземпляра блока ###
+### Сonstructor of block instance  ###
 
 На изменение значений модификатора `js` можно назначать триггеры так
-же, как и для любых других модификаторов блока.
+же, как и для любых других модификаторов блока. The change in values can be assigned to the modifier `js` triggers as well as any other modifier block.
 
 Триггер на установку модификатора `js` в значение `inited` выполняется
 при создании блока. Этот триггер можно считать **конструктором
-экземпляра блока**:
+экземпляра блока**: Trigger for setting the `js` modifier to the `inited` value is executed when the block is created. This trigger can be regarded as the constructor of the block instance:
 
 ```js
 onSetMod: {
     'js': {
-        'inited': function() { /* ... */ } // конструктор экземпляра блока
+        'inited': function() { /* ... */ } // constructor of block instance
     }
 }
 ```
@@ -1201,20 +1201,20 @@ onSetMod: {
 
 <a name="destruct"></a>
 
-### Деструктор экземпляра блока ###
+### A descructor of the block instance ###
 
 Моментом удаления блока является момент уничтожения всех ссылок на
 JS-объект блока, после чего он может быть удален из памяти браузера
-сборщиком мусора.
+The block is removed at the moment, when all the links to the JS object of the block are deleted, whereupon it can be removed by the garbage collector from the browser memory.
 
 Триггер на удаление модификатора `js` (установку в пустое значение
 `''`) выполняется перед удалением блока. Такой триггер можно считать
-**деструктором экземпляра блока**.
+**деструктором экземпляра блока**. Trigger for deleting the `js` modifier (setting to the empty value `''`) is executed before the removal of the block. This trigger can be considered as **destructor of the block instance**.
 
 ```js
 onSetMod: {
     'js': {
-        '': function() { /* ... */ } // деструктор экземпляра блока
+        '': function() { /* ... */ } // destructor of block instance
     }
 }
 ```
@@ -1222,31 +1222,24 @@ onSetMod: {
 
 <a name="init-wave"></a>
 
-### Волны инициализации ###
+### Волны инициализации/ Waves of initialization ###
 
-Инициализация экземпляров блоков, присутствующих на странице, не
-обязательно происходит одновременно. Блоки могут добавляться в ходе
-работы (например, за счет динамической генерации HTML на основе
-данных, пришедших с сервера) или инициализироваться только по запросу.
+Initialization of block instances on the page, does not necessarily occur simultaneously. Blocks can be added in the process of work (for example, through dynamic generation of HTML based on data coming from the server) or initialized only upon request. Initialization of the next group of blocks is called a wave initialization.
 Инициализация очередной группы блоков называется **волной
-инициализации**.
+инициализации**. Initialization of the subsequent group of blocks is called a wave initialization.
 
-Новая волна инициализации создается в следующих случаях:
+Новая волна инициализации создается в следующих случаях: A new wave initialization created in the following cases:
 
-* [Автоматическая инициализация всех блоков в документе по событию `domReady`](#init-auto);
-* [Инициализация блока по событию на DOM-узле](#init-live) (ленивая инициализация);
-* [Явный вызов инициализации блоков на указанном фрагменте DOM-дерева](#init-ajax).
+* [Автоматическая инициализация всех блоков в документе по событию `domReady`](#init-auto); Automatic initialization of all blocks in the document ?? `domReady`
+* [Инициализация блока по событию на DOM-узле](#init-live) (ленивая инициализация); Initialization of a block? the event in DOM node (lazy initialization)
+* [Явный вызов инициализации блоков на указанном фрагменте DOM-дерева](#init-ajax). Manual call of the block initializing in the specific fragment of the DOM tree.
 
 
 <a name="init-auto"></a>
 
-### Автоматическая инициализация ###
+### Automatic initialization ###
 
-Фреймворк *i-bem.js* позволяет автоматически инициализировать все блоки,
-имеющие DOM-представление (привязанные к DOM-элементам на странице) в
-момент наступления DOM-события `domReady`. Для этого необходимо
-задекларировать на странице блок `i-bem` с модификатором `init` в
-значении `auto`. Пример файла `.deps.js`:
+*i-bem.js* framework allows to automatically initialize all the blocks with DOM representation (bound to DOM elements on the page) at the point of emittance of the `domReady` DOM event. To do so one needs to declare on the page the `i-bem` block with the `init` modifier in the `auto` value. Here is an example of the `.deps.js` file:
 
 ```js
 ({
@@ -1263,7 +1256,7 @@ onSetMod: {
 При автоматической инициализации в памяти браузера будут созданы
 JS-объекты для всех DOM-узлов, в атрибуте `class` которых указан
 `i-bem`. Инициализация выполняется функцией `init` модуля
-[`i-bem__dom`][].
+[`i-bem__dom`][]. 
 
 <a name="init-live"></a>
 
