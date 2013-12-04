@@ -1299,23 +1299,20 @@ provide(DOM);
 });
 ```
 
-* `Function`.<br/> Функция, указанная в качестве значения `live`:
+* `Function`.<br/> Функция, указанная в качестве значения/ ???  `live`: 
 
     * Выполняется один раз — при попытке инициализации **первого
-    экземпляра** блока заданного класса.
-    * Если функция возвращает значение `false`, экземпляры блоков
-      будут инициализироваться [автоматически](#init-auto).
+    экземпляра** блока заданного класса. * It is performed once — at the moment of initializing / при попытке инициализации ** the first block instance** of a certain class.
+    * If function returns / возвращает значение `false` value, the block instances will be initialized [automatically](#init-auto).
 
 С помощью этой функции можно организовать инициализацию экземпляров
 блока по наступлению DOM-событий на DOM-узле блока и вложенных элементах
 или BEM-событий на вложенных блоках. Для этого в коде
 функции следует выполнить подписку на
-[делегированные события](#delegated-events).
+[делегированные события](#delegated-events). With this function one can arrange initialization of block instances on the emittance of DOM events in DOM node of the block and on nested elements or BEM events in nested blocks. For that add event listener on [delegated events](#delegated-events) in the function code.
 
 
-**Пример**: Экземпляры блока `my-block` будут инициализироваться по
-  DOM-событию `click` на DOM-узле блока. По каждому DOM-событию
-  `click` будет вызываться метод экземпляра блока `_onClick`:
+**For example**: Экземпляры блока/ Instances of the `my-block` block will be initialized on/ `click` DOM events in the block DOM node. По каждому DOM-событию `click` будет вызываться метод экземпляра блока `_onClick`: `_onClick` block instance method  will be called on each `click` DOM event:
 
 ```js
 modules.define('i-bem__dom', function(provide, DOM) {
@@ -1324,16 +1321,16 @@ DOM.decl('my-block',
     {
         onSetMod: {
             'js': {
-                'inited': function() { /* ... */ } // выполняется при первом DOM-событии 'click'
+                'inited': function() { /* ... */ } // выполняется/ performed at the first DOM event 'click'
             }
         },
 
-        _onClick: function() { /* ... */ } // выполняется при каждом DOM-событии 'click'
+        _onClick: function() { /* ... */ } // performed at each 'click' DOM event 
     },
     {
         live: function() {
             this.liveBindTo('click', function() {
-                this._onClick(); // в момент клика будет создан экземпляр блока и вызван его метод _onClick
+                this._onClick(); // в момент клика будет создан экземпляр блока и вызван его метод/ at the click the block instance is created and its _onClick method is called
             });
         }
     }
@@ -1347,7 +1344,7 @@ provide(DOM);
 Если необходимо воспользоваться делегированными событиями в блоке, но
 инициализацию блока нельзя отложить (экземпляры блока должны быть
 инициализированы немедленно после загрузки страницы), следует вернуть
-значение `false`:
+значение `false`: If it is necessary to use delegated events in a block, but block initialization can not be postponed (block instances must be initialized immediately after the page is loaded), the `false` value should be returned:
 
 
 ```js
@@ -1357,17 +1354,17 @@ DOM.decl('my-block',
     {
         onSetMod: {
             'js': {
-                'inited': function() { /* ... */ } // будет выполнена по наступлении domReady
+                'inited': function() { /* ... */ } // будет выполнена по наступлении / will be performed before domReady is emitted
             }
         },
 
         _onClick: function() { /* ... */ } // будет выполняться каждый
-                                           // раз при наступлении DOM-события 'click'
+                                           // раз при наступлении DOM-события 'click'/ will be performed every time the DOM event is triggered 
     },
     {
         live: function() {
             this.liveBindTo('click', function() { this._onClick() });
-            return false; // экземпляры блоков будут инициализированы автоматически
+            return false; // block instances will be initialized automatically
         }
     }
 );
@@ -1377,17 +1374,12 @@ provide(DOM);
 });
 ```
 
-Полный список хелперов для подписки на делегированные события
-приведен исходном коде модуля [`i-bem__dom`][].
+The full list of helpers for adding event listeners to the delegated events
+can be found in the source code of the [`i-bem__dom`][] module.
 
 -------------------------------------------------------------------------------
 
-**NB** Свойство `live` задает ленивую инициализацию для *всех
-  экземпляров* соответствующего блока, так как технически относится к
-  статическим методам класса блока. Поэтому даже если свойство `live`
-  задекларировано для блока с определенным значением модификатора, оно
-  будет применено ко всем блокам данного класса вне зависимости от
-  модификаторов.
+**NB** The `live` property sets lazy initialization for *all the block instances* of the corresponding block, as it технически относится к статическим методам класса/ technically belongs to static methods of the block class. So, even if the `live` property is declared for a block modifier with a certain modifier value, it will be applied to all the blocks of the given class regardless of the modifiers.
 
 -------------------------------------------------------------------------------
 
