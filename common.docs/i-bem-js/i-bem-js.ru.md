@@ -1239,7 +1239,7 @@ Initialization of block instances on the page, does not necessarily occur simult
 
 ### Automatic initialization ###
 
-*i-bem.js* framework allows to automatically initialize all the blocks with DOM representation (bound to DOM elements on the page) at the point of emittance of the `domReady` DOM event. To do so one needs to declare on the page the `i-bem` block with the `init` modifier in the `auto` value. Here is an example of the `.deps.js` file:
+*i-bem.js* framework allows to automatically initialize all the blocks with DOM representation (bound to DOM elements on the page) at the point of emittance of the `domReady` DOM event. To do so one declare on the page the `i-bem` block with the `init` modifier in the `auto` value. Here is an example of the `.deps.js` file:
 
 ```js
 ({
@@ -1256,30 +1256,28 @@ Initialization of block instances on the page, does not necessarily occur simult
 При автоматической инициализации в памяти браузера будут созданы
 JS-объекты для всех DOM-узлов, в атрибуте `class` которых указан
 `i-bem`. Инициализация выполняется функцией `init` модуля
-[`i-bem__dom`][]. 
+[`i-bem__dom`][]. In the case of automatic initialization there will be created JS objects for all the DOM nodes, еру `class` attributes of which contain `i-bem`.
 
 <a name="init-live"></a>
 
-### Инициализация по событию (ленивая инициализация) ###
+### Initialization on event/ Инициализация по событию (lazy initialization) ###
 
 Автоматическая инициализация всех блоков в момент загрузки страницы
 может быть нежелательной, так как при большом количестве экземпляров
 блоков на странице увеличивается время загрузки и объем затраченной
-памяти браузера.
+памяти браузера. Automatic initialization of all the blocks when the page is loading may be undesired, since a large number of block instances on the page increase the load time and browser memory footprint.
 
-В этом случае имеет смысл инициализировать JS-объекты только в тот
-момент, когда их функциональность потребуется пользователю, например,
-по клику на блоке. Такая инициализация называется **ленивой** или
-**live-инициализацией**.
+So, in this case it makes sense to initialize JS objects only at he moment, when their functionality is required by user, for example, by clicking on the block. This kind of initialization is called **lazy initialization** or
+**live initialization**.
 
 Для описания условий ленивой инициализации зарезервировано свойство
 `live` в разделе статических методов декларации блока. Свойство `live`
-может принимать два типа значений:
+может принимать два типа значений: To describe the conditions for lazy initialization the `live` property is reserved in the static methods of block declaration section. `live` property can take two types of values:
 
 * `Boolean`.<br/> Если `live` установлено в значение `true`, экземпляры
   блоков данного класса будут инициализированы только при попытке
   получить соответствующий экземпляр. Подробнее
-  см. раздел [Взаимодействие блоков](#ibc).
+  см. раздел [Взаимодействие блоков](#ibc). If `live` is set to the `true`, the block instances of this class will be initialized only when trying to get the appropriate instance. For details, see [Interaction blocks](#ibc).
 
 ```js
 modules.define('i-bem__dom', function(provide, DOM) {
@@ -1288,12 +1286,12 @@ DOM.decl('my-block',
     {
         onSetMod: {
             'js': {
-                'inited': function() { /* ... */ } // этот код будет выполняться
-                                                   // при первом обращении к экземпляру блока
+                'inited': function() { /* ... */ } // this code will be run
+                                                   // at the first call /при первом обращении to the block instance
             }
         }
     },
-    { live: 'true' } // статические методы и свойства
+    { live: 'true' } // static methods and properties
 );
 
 provide(DOM);
