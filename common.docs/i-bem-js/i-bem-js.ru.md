@@ -1386,29 +1386,24 @@ can be found in the source code of the [`i-bem__dom`][] module.
 
 <a name="init-ajax"></a>
 
-### Инициализация и удаление блоков на фрагменте DOM-дерева ###
+### Инициализация и удаление блоков на фрагменте DOM-дерева / Initialization and removing blocks in a fragment of DOM tree ###
 
-Процедура инициализации или уничтожения JS-объектов может быть вызвана
-явно для указанного фрагмента DOM-дерева. Часто такая необходимость
-возникает при разработке AJAX-интерфейсов, когда нужно [динамически
-встроить в страницу новые экземпляры блоков](#dynamic) либо обновить существующие.
+Procedure of initialization or removal of JS-объектов/ может быть вызвана
+явно для указанного фрагмента DOM-дерева can be called manually for the specific fragment of DOM tree. Often this is required in the AJAX interfaces development, when one needs to [dynamically build in new block instances into a page ](#dynamic) or update the current ones. 
 
-В *i-bem.js* следующие функции выполняют динамическую инициализацию блоков:
+The following functions perform dynamic initialization of blocks in *i-bem.js*:
 
-* Инициализация/уничтожение блоков на указанном фрагменте DOM-дерева
-  (`init`, `destruct`);
-* Добавление/замена фрагмента DOM-дерева с одновременной
-  инициализацией блоков на обновленном фрагменте (`update`, `replace`,
-  `append`, `prepend`, `before`, `after`).
+* Initialization/removing blocks on the specific fragment of DOM tree (`init`, `destruct`);
+* Adding/replacing a fragment of DOM tree with simultaneous blocks initialization in the renewed fragment (`update`, `replace`, `append`, `prepend`, `before`, `after`).
 
 
 <a name="init-bem"></a>
 
-### Инициализация и удаление блоков без DOM-представления ###
+### Initialization and removing blocks without DOM representation ###
 
 Чтобы создать JS-объект для блока, не имеющего DOM-представления (не
 привязанного к HTML-элементу), необходимо вызвать метод `create`,
-который вернет экземпляр блока указанного класса.
+который вернет экземпляр блока указанного класса. To create a JS object for the block without DOM representation (not bound to the HTML element), call the `create` method, which will return the block instance of the specific class.
 
 **Пример**: В момент инициализации экземпляра блока с DOM-представлением
   `container` создается экземпляр блока без DOM-представления `router`. Экземпляр блока
