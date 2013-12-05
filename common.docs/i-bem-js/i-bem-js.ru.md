@@ -1449,14 +1449,10 @@ provide(DOM, router);
 });
 ```
 
-**Удаление** экземпляров блоков без DOM-представления не может быть
-выполнено автоматически и является ответственностью
-разработчика. Блоки без DOM-представления представляют собой обычные
-JS-объекты и удаляются в момент удаления всех ссылок на объект блока.
+**Removing** the block instances without DOM-representation can not be done automatically and so it is the responsibility of the developer. Deleting instances blocks without DOM-representation can not be done automatically. Blocks without DOM representation are common JS objects and get removed at the moment of removal all links to the block object.
 
 
-**Пример**: При удалении экземпляра блока `container` удаляется созданный им в
-процессе работы экземпляр блока без DOM-представления `router`.
+**For example**: When deleting the `container` block instance, the `router` block instance without DOM representation, that was created earlier, is deleted.
 
 ```js
 modules.define('i-bem__dom', 'i-bem', function(provide, BEM, DOM) {
@@ -1465,7 +1461,7 @@ DOM.decl('container', {
     onSetMod : {
         'js' : {
             '' : function() {
-                delete this._router; // удаление экземпляра блока router
+                delete this._router; // removing the router block instance
             }
         }
     }
@@ -1482,23 +1478,25 @@ In BEM methodology предполагает / it is asssumed, that blocks should
 блоков от других. However, experience has proven that complete blocks independence 
 is unattainable.
 
-Взаимодействие блоков может быть реализовано двумя способами:
+Blocks interaction may be implemented in two ways:
 
-* С помощью подписки на [BEM-события](#bem-events) других экземпляров
-  блоков или подписки на [делегированные BEM-события](#bem-events-delegated).
-* С помощью непосредственного вызова методов других экземпляров
-  блоков или статических методов класса другого блока.
-
--------------------------------------------------------------------------------
-
-**NB** Не используйте [DOM-события](#dom-events) для
-  организации взаимодействия между блоками. DOM-события предназначены
-  только для реализации внутренних процедур блока.
+* By adding event listeners to [BEM events](#bem-events) of other block instances
+  or adding event listeners to [delegated BEM events](#bem-events-delegated).
+* Via непосредственного/ direct calling other block instances methods or static class methods of another block. 
 
 -------------------------------------------------------------------------------
 
-Для реализации взаимодействия блоков *i-bem.js* предоставляет API для
-доступа к JS-объектам экземпляров блоков и к JS-объектам классов блоков.
+**NB** Do not use [DOM events](#dom-events) for for interaction between the blocks.
+  DOM-events are meant for dealing with block internal procedures implementation.
+
+-------------------------------------------------------------------------------
+
+*i-bem.js* provides API to implement block interaction:
+
+* [Searching block instances in the DOM tree](#);
+* [Access to block instances without DOM-representation](#);
+* [Access to block classes.](#).
+
 
 ## Поиск экземпляров блоков в DOM-дереве ##
 
