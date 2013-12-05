@@ -1405,10 +1405,10 @@ The following functions perform dynamic initialization of blocks in *i-bem.js*:
 привязанного к HTML-элементу), необходимо вызвать метод `create`,
 который вернет экземпляр блока указанного класса. To create a JS object for the block without DOM representation (not bound to the HTML element), call the `create` method, which will return the block instance of the specific class.
 
-**Пример**: В момент инициализации экземпляра блока с DOM-представлением
-  `container` создается экземпляр блока без DOM-представления `router`. Экземпляр блока
-  `container` затем будет обращаться к созданному им экземпляру блока
-  `router` при вызове метода `onRequest`:
+**For example**: At the moment of initialization of block instance with DOM representation
+  `container` the `router` block instance without DOM-representation is created. Экземпляр блока
+  The `container` block instance will then request/ the created block instance
+  `router` at the calling of the method `onRequest`:
 
 ```js
 modules.define('i-bem__dom', 'i-bem', function(provide, BEM, DOM) {
@@ -1417,13 +1417,13 @@ DOM.decl('container', {
     onSetMod: {
         'js': {
             'inited': function() {
-                this._router = BEM.create('router'); // создание экземпляра блока router
+                this._router = BEM.create('router'); // создание экземпляра блока router/ creating the router block instance
             }
         }
     },
 
     onRequest: function() {
-        this._router.route(/* ... */) // вызов метода экземпляра блока router
+        this._router.route(/* ... */) // вызов метода экземпляра блока router/ call of the router block instance method
     }
 });
 
@@ -1432,17 +1432,15 @@ provide(DOM);
 });
 ```
 
-**Пример**: Блок без DOM-представления реализован в виде простого
-  [ymaps-модуля][ymaps], без использования модуля `i-bem`. Такой блок
-  используется как обычный ymaps-модуль (нет необходимости создавать
-  экземпляр блока):
+**Пример**: The block without DOM representation is implemented as a simple 
+  [ymaps module][ymaps], without using the `i-bem` module. The block of this kind is used as a common ymaps module (one doesn't need to create a block instance):
 
 ```js
 modules.define('i-bem__dom', 'router', function(provide, DOM, router) {
 
 DOM.decl('container', {
     onRequest: function() {
-        router.route(/* ... */); // вызов метода блока router
+        router.route(/* ... */); //  the router block method calling
     }
 });
 
@@ -1478,12 +1476,11 @@ provide(DOM);
 });
 ```
 
-# Взаимодействие блоков #
+# Blocks interaction #
 
-БЭМ-методология предполагает, что блоки должны разрабатываться таким
-образом, чтобы по возможности исключить зависимость состояний одних
-блоков от других. Однако на практике идеал полной независимости блоков
-недостижим.
+In BEM methodology предполагает / it is asssumed, that blocks should be developed independent, to exclude the dependency of block states / по возможности исключить зависимость состояний одних
+блоков от других. However, experience has proven that complete blocks independence 
+is unattainable.
 
 Взаимодействие блоков может быть реализовано двумя способами:
 
