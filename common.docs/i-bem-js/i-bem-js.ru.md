@@ -1589,40 +1589,39 @@ DOM.decl('switcher', {
 
 <a name="docs"></a>
 
-# Что дальше? #
+# Что дальше?/ What's next? #
 
-Общую информацию о БЭМ-методологии, инструментарии, новостях в мире
-БЭМ можно найти на сайте [bem.info](http://ru.bem.info/).
+General info on BEM methodology, tools, news in the world of BEM can be found at [bem.info](http://bem.info/).
 
 Полную информацию обо всех методах API *i-bem.js* можно найти в
 исходном коде, который сопровождается структурированными комментариями
-в формате JSDoc:
+в формате JSDoc: Complete information about all the API methods *i-bem.js* can be found in the source code, accompanied by structured comments in JSDoc format:
 
 * [`i-bem`][];
 * [`i-bem__dom`][].
 
 Задать вопрос опытным пользователям и разработчикам *i-bem.js* и
-следить за текущими обсуждениями можно в социальных сетях:
+следить за текущими обсуждениями можно в социальных сетях: Ask a question to experienced users and developers of *i-bem.js* and monitor ongoing discussions in social networks:
 
-* [Клуб в Я.ру](http://clubs.ya.ru/bem/);
-* [Группа в Facebook](http://www.facebook.com/#!/groups/209713935765634/);
+* [Ya.ru club](http://clubs.ya.ru/bem/);
+* [Facebook group](http://www.facebook.com/#!/groups/209713935765634/);
 * [Twitter](https://twitter.com/bem_ru).
 
 Прочитать о принципах работы *i-bem.js* в другом изложении, найти
 образцы его применения и пошаговые инструкции на примере простых
-проектов можно в статьях:
+проектов можно в статьях: Read about the principles of *i-bem.js* in another presentation, find samples of its application and step by step instructions on the example of simple projects in these articles:
 
-* [JavaScript по БЭМ: основные понятия](http://ru.bem.info/articles/bem-js-main-terms/);
+* [JavaScript по БЭМ:/ JavaScript according to BEM: basic terms](http://ru.bem.info/articles/bem-js-main-terms/);
 * [Tutorial on JavaScript in BEM terms](https://github.com/varya/bem-js-tutorial);
-* [Попробуй БЭМ на вкус!](http://habrahabr.ru/post/162385/);
-* [БЭМ-приложение на Leaflet и API 2GIS](http://ru.bem.info/articles/firm-card-story/).
+* [Попробуй БЭМ на вкус! Try and taste BEM!](http://habrahabr.ru/post/162385/);
+* [БЭМ-приложение на Leaflet и API 2GIS / BEM application to Leaflet and API 2GIS](http://ru.bem.info/articles/firm-card-story/).
 
 
 -------------------------------------------------------------------------------
 
 **NB** Обратите внимание, что в перечисленных статьях может
 использоваться устаревший синтаксис, не соответствующий текущей версии
-*i-bem.js*, включенной в bem-core.
+*i-bem.js*, включенной в bem-core. Please note that these articles can contain outdated syntax that does not match the current version of the *i-bem.js*, included in bem-core.
 
 -------------------------------------------------------------------------------
 
