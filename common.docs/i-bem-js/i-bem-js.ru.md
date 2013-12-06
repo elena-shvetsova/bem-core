@@ -42,7 +42,7 @@
 As far as BEM methodology is concerned, web interface is built of independent **blocks** (in which **elements** are allocated). Both blocks and elements may have states, described by **modifiers**.
 
 Web interface work is provided by multiple  **technologies**
-(HTML, CSS, JS...), a block description consists of the implementations of these technologies. Usually implementation consists of a few files, for example: Работа веб-интерфейса обеспечивается несколькими технологиями (HTML, CSS, JS...). При использовании БЭМ-методологии вся реализация веб-интерфейса разбита на компоненты по блокам. Описание блока в этой схеме складывается из нескольких файлов — по одному на каждую технологию:
+(HTML, CSS, JS...), a block description consists of the implementations of these technologies. Usually implementation consists of a few files. When using BEM methodology all the web interface implementation is arranged into blocks. The block description in this case consists of several files — one per each technology:
 
  * `my-block.css` — describes block's appearance;
  * `my-block.bemhtml` — templates for generating block's HTML view;
