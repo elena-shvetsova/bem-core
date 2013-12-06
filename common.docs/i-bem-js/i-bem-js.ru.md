@@ -9,7 +9,7 @@
 
  * develop web interface in terms of blocks, elements, modifiers;
  * describe a block's behaviour in a declarative style as a set of states;
- * integrate easily JavaScript code with CSS in BEM style and with BEMHTML-templates;
+ * integrate easily JavaScript code with CSS in BEM style and with BEMHTML templates;
  * flexibly override behaviour of library blocks.
 
 *i-bem.js* is not suitable for:
@@ -19,7 +19,7 @@
 
 ** Brief content of the document**:
 
-* [Framework overview](#intro): relation to the BEM data domain terms, a brief description of the modular structure of the framework, project stub, tools for buiding the code, that was written using *i-bem.js*. 
+* [Framework overview](#intro): relation to the BEM data domain terms, a brief description of the modular structure of the framework, project stub, tools for building the code, that was written using *i-bem.js*. 
 
 * [Binding JS blocks to HTML](#html) — JS blocks on
   HTML page binding syntax, how HTML elements и JS blocks relate.
@@ -27,19 +27,19 @@
 * [Block declarations](#decl) — JS blocks description syntax.
 
 * [Working with DOM tree](#dom) — API for working with DOM nodes of blocks:
-  elements, DOM tree modification (AJAX).
+  elements, DOM tree dynamic modification (AJAX).
 
-* [Events](#events) — event model *i-bem.js*: DOM events,
-  BEM events, event delegation .
+* [Events](#events) —  *i-bem.js* event model: DOM events,
+  BEM events, event delegation.
 
-* [Block states](#states) — modifiers, triggers of state changes (modifiers setting), initialization of block instances.
+* [Block states](#states) — modifiers, triggers for state modifying (modifiers setting), initialization of block instances.
 
-* [Blocks interaction ](#ibc) — API for block to block communication.
+* [Blocks interaction ](#ibc) — API for block-to-block communication.
 
 * [What's next?](#docs) — links to documentation and additional materials.
 * 
-## BEM-methodology and JavaScript ##
-As far as BEM-methodology is concerned, web interface is built  of independent **blocks** (in which **elements** are allocated). Both blocks and elements may have states, described by **modifiers**.
+## BEM methodology and JavaScript ##
+As far as BEM methodology is concerned, web interface is built of independent **blocks** (in which **elements** are allocated). Both blocks and elements may have states, described by **modifiers**.
 
 Web interface work is provided by multiple  **technologies**
 (HTML, CSS, JS...), a description of a block consists of the implementations of these technologies. Usually implementation consists of a few files, for example:
