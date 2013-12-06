@@ -42,19 +42,19 @@
 As far as BEM methodology is concerned, web interface is built of independent **blocks** (in which **elements** are allocated). Both blocks and elements may have states, described by **modifiers**.
 
 Web interface work is provided by multiple  **technologies**
-(HTML, CSS, JS...), a description of a block consists of the implementations of these technologies. Usually implementation consists of a few files, for example:
+(HTML, CSS, JS...), a block description consists of the implementations of these technologies. Usually implementation consists of a few files, for example: Работа веб-интерфейса обеспечивается несколькими технологиями (HTML, CSS, JS...). При использовании БЭМ-методологии вся реализация веб-интерфейса разбита на компоненты по блокам. Описание блока в этой схеме складывается из нескольких файлов — по одному на каждую технологию:
 
  * `my-block.css` — describes block's appearance;
- * `my-block.bemhtml` — templates for generating block's HTML-view;
+ * `my-block.bemhtml` — templates for generating block's HTML view;
  * `my-block.js` — describes block's **dynamic behavior** in browser.
 
 *i-bem.js* framework allows to decompose client JavaScript into components in BEM-terms:
 
- + **Block** is a JS component that describes the way the same interface elements work.
- For example, all buttons may be implemented as a `button` block. Then, according to the BEM-methodology, `button.css` determines the appearance of the buttons, `button.js` — determines the way they work.
- + Each page can contain more than one **instance** of a block (for example, a button). Each instance of the block corresponds to the JS object that is created dynamically in the browser's memory and stores the state of the instance. JS-object stores a link to the DOM-node that is bound to the instance of the block. 
- + **Elements** are DOM-nodes nested on DOM-node block with `class` attribute, indicating their role in BEM-subject domain (the names of blocks and elements). Elements of a block are available through the [JS-API](#elem-api) of the instance of the block.
- + **Modifiers** store information on a block state and its elements. Modifier state is written in `class` attribute on a block's DOM-nodes and elements. 
+ + **Block** is a JS component that describes the way the same-type interface elements work.
+ For example, all buttons may be implemented as a `button` block. Then, in accordance with the BEM methodology, `button.css` determines the appearance of the buttons, `button.js` — determines the way they work.
+ + Each page can contain more than one **instance** of a block (for example, a button). Each block instance corresponds to the JS object that is created dynamically in the browser's memory and stores the state of the given instance. JS object stores a link to the DOM node that is bound to the instance of the block. 
+ + **Elements** are DOM nodes nested on DOM node block with `class` attribute, indicating their role in BEM-subject domain (the names of blocks and elements). Elements of a block are available through the [JS-API](#elem-api) of the instance of the block.
+ + **Modifiers** store information on a block state and its elements. Modifier state is written in `class` attribute on a block's DOM nodes and elements. 
    Modifiers are operated via [JS-API](#mods-api) of the instance of the block.
 
 
@@ -67,7 +67,7 @@ Implementation consists of two modules:
 
 * [`i-bem`][] module.<br/> 
   Basic implementation of i-bem JS-block, which all the blocks in *i-bem.js* inherit from. i-bem block is written to be used in any JS-environment, both on client and server sides (for example, in Node.js).
-* [`i-bem__dom`][] module.<br/> Basic implementation of a block linked to DOM-node. Basic implementation of a block linked to DOM-node. Is intended for using on the client side, based on browsers' work with DOM. Depends on jQuery. 
+* [`i-bem__dom`][] module.<br/> Basic implementation of a block linked to DOM node. Basic implementation of a block linked to DOM node. Is intended for using on the client side, based on browsers' work with DOM. Depends on jQuery. 
 
 Dependencies:
 
@@ -206,7 +206,7 @@ For example: `div` HTML element, where the `user` block with the `name` paramete
 ### One JS block on several HTML elements ###
 
 This design allows you to transparently implement blocks consisting of several components , which state must be agreed. 
-For example, the " tab " widget, whereon clicking on the header of the tab (one HTML- element) changes the contents of the tab (the other HTML- element).
+For example, the " tab " widget, whereon clicking on the header of the tab (one HTML- element) changes the contents of the tab (the other HTML element).
 Another example - a marker indicating a point on the map (the first element) and the bound description of the point in the list next to the map (the second element).
 
 In order to bind the instance of a block to multiple HTML elements, one needs to write the same `id` value in block parameters for all of the bound HTML elements.
@@ -223,7 +223,7 @@ For example: The instance of a block `notebook` bound to HTML elements  `div` an
 ```
 
 As a result, when initializing the blocks a single JS-object is created, 
- which [`{jQuery} domElem`](#domElem) field contains links to both DOM-nodes.
+ which [`{jQuery} domElem`](#domElem) field contains links to both DOM nodes.
 
 `id` Modifier is only used *during initialization* of a block instance. `id` value must be unique within one block instances inside of one [initialization wave](#init-wave).
 
@@ -233,7 +233,7 @@ As a result, when initializing the blocks a single JS-object is created,
 ### Blocks without DOM representation ###
 
 Infrastructure code that solves common interface tasks: communication with the backend, general computing, etc. When working with *i-bem.js* code can take the form of block, like all the rest of JS-code.
-In order not to bind these blocks to HTML-tree manually, *i-bem.js*  provides the opportunity to create blocks without DOM-representation.
+In order not to bind these blocks to HTML-tree manually, *i-bem.js*  provides the opportunity to create blocks without DOM representation.
 
 Blocks without DOM-representation:
 
@@ -591,7 +591,7 @@ In order for a block to interact with other blocks с *внешней* сред�
 ## Event delegation ##
 
 BEM and DOM events handling can be **delegated** to the container/контейнеру
-(either to the entire document or to the specific DOM-node). В этом случае контейнер
+(either to the entire document or to the specific DOM node). В этом случае контейнер
 служит точкой обработки событий, возникающих на любом из
 дочерних узлов контейнера, даже если в момент подписки на события
 некоторые из дочерних узлов еще не существовали. In this case container is a point of events handling, triggered in any of the child nodes, so it will hanlde events for all child nodes, even if they do not exist yet and will be loaded later. 
