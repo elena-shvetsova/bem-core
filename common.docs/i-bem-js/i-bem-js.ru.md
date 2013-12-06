@@ -1498,24 +1498,20 @@ Blocks interaction may be implemented in two ways:
 * [Access to block classes.](#).
 
 
-## Поиск экземпляров блоков в DOM-дереве ##
+## Поиск экземпляров блоков в DOM-дереве / Searching block instances in the DOM tree ##
 
-Обращение к другому блоку в *i-bem.js* выполняется из текущего блока,
+Referring to another in *i-bem.js* is performed from the current block, placed on a particular node of DOM tree.
 размещенного на определенном узле DOM-дерева. Поиск других блоков в
 DOM-дереве может вестись по трем направлениям (осям) относительно
-DOM-узла текущего блока:
+DOM-узла текущего блока: Search for other blocks in the DOM tree can be carried out in three directions (axes) relating to the DOM node of a current block :
 
-* «Внутри блока» — на DOM-узлах, вложенных в DOM-узел текущего блока.
-* «Снаружи блока» — на DOM-узлах, потомком которых является DOM-узел
-  текущего блока. Необходимость в таком поиске может свидетельствовать
-  о неудачной архитектуре интерфейса.
-* «На себе» — на том же DOM-узле, на котором размещен текущий
-  блок. Это актуально в случае [размещения нескольких JS-блоков на
-  одном DOM-узле](#mixes) (микс).
+* «Inside the block» — in DOM nodes, nested in the DOM node of a current block.
+* «Outside the block» — in DOM nodes, the DOM node of a current block is a child of. Необходимость в таком поиске может свидетельствовать о неудачной архитектуре интерфейса. The necessity of such search may indicate interface architecture failures.
+* «На себе ???» — in the same DOM node, where the currrent block is located. That would be in the case of [placing several JS blocks in the same DOM node](#mixes) (mix).
 
-**Пример**: При переключении модификатора `disabled` экземпляр блока
+**For example**: При переключении модификатора `disabled` экземпляр блока
   `attach` находит вложенный в него блок `button` и переключает его
-  модификатор `disabled` в то же значение, которое получил сам:
+  модификатор `disabled` в то же значение, которое получил сам: : When switching the `disabled` modifier, `attach` block instance finds `button` nested i it and toggles its modifier `disabled` to the same value that it received:
 
 ```js
 modules.define('i-bem__dom', function(provide, DOM) {
@@ -1534,7 +1530,7 @@ provide(DOM);
 ```
 
 Полный список методов для поиска блоков блоков приведен
-в исходном коде модуля [`i-bem__dom`][].
+в исходном коде модуля [`i-bem__dom`][]. The complete list of methods for blocks search is contained in the source code of the [`i-bem__dom`][] module.
 
 
 -------------------------------------------------------------------------------
@@ -1543,37 +1539,38 @@ provide(DOM);
 *i-bem.js* предоставляет высокоуровневое API для доступа к DOM-узлам
 блоков и элементов. Обращение к DOM-дереву в обход этого API менее
 устойчивым к изменениям БЭМ-библиотек и может привести к возникновению
-сложно обнаруживаемых ошибок.
+сложно обнаруживаемых ошибок. Do not use jQuery selectors for seaching blocks and elements. *i-bem.js* provides a high-level API to access the DOM nodes of blocks and elements. Referring to DOM tree to bypass the API makes the code less resistant to the BEM libraries changes and can cause errors hard to detect.
 
 -------------------------------------------------------------------------------
 
-## Доступ к экземплярам блоков без DOM-представления ##
+## Доступ к экземплярам блоков без DOM-представления / Access to block instances without DOM representation ##
 
 При создании экземпляра блока без DOM-представления необходимо
 позаботиться о том, чтобы ссылка на этот экземпляр была доступна
 блокам, которым потребуется взаимодействовать с ним. Подробности и
-пример см. в разделе [Инициализация и удаление блоков без DOM-представления](#init-bem).
+пример см. в разделе [Инициализация и удаление блоков без DOM-представления](#init-bem). 
+When creating a block instance without DOM representation make sure that the link to this instance is available to the blocks that need to interact with it. Details and an example please see in [Initialization and removing blocks without DOM representation](#init-bem).
 
 
-## Доступ к классам блоков ##
+## Доступ к классам блоков / Access to the block classes ##
 
 JS-компоненты, соответствующие всем блокам («классы» блоков), хранятся
 в структуре данных `BEM.blocks`. Классы блоков,
 [не привязанных к DOM-дереву](#i-blocks), также размещены в этой
 структуре данных. При необходимости доступа к таким блокам следует
-использовать конструкцию:
+использовать конструкцию: JS-components corresponding to all blocks (blocks "classes" ) are stored in `BEM.blocks` data structure. The block classes that are [not bound to the DOM tree](#i-blocks), are also placed in this data structure. To access such blocks use the following construction:
 ```js
 BEM.blocks['name']
 ```
-где `name` — имя блока.
+where `name` — block name.
 
-Доступ к классам блоков необходим для решения двух основных задач:
+Доступ к классам блоков необходим для решения двух основных задач: Access to the block classes is necessary to address two major problems:
 
-* [Делегирование БЭМ-событий](#bem-events-delegated).
-* Вызов статического метода класса.
+* [BEM events delegation](#bem-events-delegated).
+* Calling the class static method.
 
-**Пример**: Вызов статического метода `close` блока `popup` — закрыть
-  все попапы на странице:
+**For example**: Вызов статического метода `close` блока `popup` — закрыть
+  все попапы на странице: Example: Calling the `close` static method of the `popup` block - close all the pop-ups on the page:
 
 ```js
 DOM.decl('switcher', {
@@ -1609,7 +1606,7 @@ General info on BEM methodology, tools, news in the world of BEM can be found at
 
 Прочитать о принципах работы *i-bem.js* в другом изложении, найти
 образцы его применения и пошаговые инструкции на примере простых
-проектов можно в статьях: Read about the principles of *i-bem.js* in another presentation, find samples of its application and step by step instructions on the example of simple projects in these articles:
+проектов можно в статьях: Read about the principles of *i-bem.js* in another presentation, find samples of its application and step-by-step instructions on the example of simple projects in these articles:
 
 * [JavaScript по БЭМ:/ JavaScript according to BEM: basic terms](http://ru.bem.info/articles/bem-js-main-terms/);
 * [Tutorial on JavaScript in BEM terms](https://github.com/varya/bem-js-tutorial);
