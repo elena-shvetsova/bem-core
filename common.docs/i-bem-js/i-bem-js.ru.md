@@ -4,29 +4,29 @@
 
 ## *i-bem.js*: Javascript framework for BEM ##
 
-*i-bem.js* is a JavaScript framework for web-development within [BEM-methodology](http://en.bem.info/method/). Using
+*i-bem.js* is a JavaScript framework for web-development using [BEM-methodology](http://en.bem.info/method/). With
 *i-bem.js* one can:
 
  * develop web interface in terms of blocks, elements, modifiers;
  * describe a block's behaviour in a declarative style as a set of states;
  * integrate easily JavaScript code with CSS in BEM style and with BEMHTML templates;
- * flexibly override behaviour of library blocks.
+ * flexibly redefine behaviour of library blocks.
 
 *i-bem.js* is not suitable for:
 
  * replacing the general purpose framework, such as jQuery.
 
 
-** Brief content of the document**:
+**Brief content of the document**:
 
-* [Framework overview](#intro): relation to the BEM data domain terms, a brief description of the modular structure of the framework, project stub, tools for building the code, that was written using *i-bem.js*. 
+* [Framework overview](#intro): relation to the BEM data domain, a brief description of the modular structure of the framework, project stub, tools for building the code, that was written using *i-bem.js*. 
 
 * [Binding JS blocks to HTML](#html) — JS blocks on
-  HTML page binding syntax, how HTML elements и JS blocks relate.
+  HTML page binding syntax, how HTML elements and JS blocks relate.
 
 * [Block declarations](#decl) — JS blocks description syntax.
 
-* [Working with DOM tree](#dom) — API for working with DOM nodes of blocks:
+* [Working with DOM tree](#dom) — API for working with DOM representation of blocks:
   elements, DOM tree dynamic modification (AJAX).
 
 * [Events](#events) —  *i-bem.js* event model: DOM events,
@@ -38,36 +38,36 @@
 
 * [What's next?](#docs) — links to documentation and additional materials.
 * 
-## BEM methodology and JavaScript ##
+##BEM methodology and JavaScript##
 As far as BEM methodology is concerned, web interface is built of independent **blocks** (in which **elements** are allocated). Both blocks and elements may have states, described by **modifiers**.
 
 Web interface work is provided by multiple  **technologies**
-(HTML, CSS, JS...), a block description consists of the implementations of these technologies. Usually implementation consists of a few files. When using BEM methodology all the web interface implementation is arranged into blocks. The block description in this case consists of several files — one per each technology:
+(HTML, CSS, JS...). Usually implementation consists of a few files. When using BEM methodology all the web interface implementation is arranged into blocks. The block description in this case consists of several files — one per each technology:
 
- * `my-block.css` — describes block's appearance;
+ * `my-block.css` — describes block's style;
  * `my-block.bemhtml` — templates for generating block's HTML view;
  * `my-block.js` — describes block's **dynamic behavior** in browser.
 
-*i-bem.js* framework allows to decompose client JavaScript into components in BEM-terms:
+*i-bem.js* framework allows to decompose client JavaScript into components in BEM terms:
 
- + **Block** is a JS component that describes the way the same-type interface elements work.
- For example, all buttons may be implemented as a `button` block. Then, in accordance with the BEM methodology, `button.css` determines the appearance of the buttons, `button.js` — determines the way they work.
- + Each page can contain more than one **instance** of a block (for example, a button). Each block instance corresponds to the JS object that is created dynamically in the browser's memory and stores the state of the given instance. JS object stores a link to the DOM node that is bound to the instance of the block. 
- + **Elements** are DOM nodes nested on DOM node block with `class` attribute, indicating their role in BEM-subject domain (the names of blocks and elements). Elements of a block are available through the [JS-API](#elem-api) of the instance of the block.
- + **Modifiers** store information on a block state and its elements. Modifier state is written in `class` attribute on a block's DOM nodes and elements. 
-   Modifiers are operated via [JS-API](#mods-api) of the instance of the block.
+ + **Block** is a JS piece that describes the way the same-type interface components work.
+ For example, all buttons may be implemented as a `button` block. Then, in accordance with the BEM methodology, `button.css` determines the appearance of the buttons, `button.js` — determines the way they behave.
+ + Each page can contain more than one **instance** of a block (for example, button on a page). Each block instance corresponds to the JS object that is created dynamically in the browser's memory and stores the state of the given instance. JS object has a link to the DOM node that is bound to the instance of the block. 
+ + **Elements** are DOM nodes nested in DOM node block with `class` attribute, indicating their role in BEM data domain (the names of blocks and elements). Elements of a block are available through the [JS-API](#elem-api) of the instance of the block.
+ + **Modifiers** store information on a block state and its elements. Modifier state is written in `class` attribute on a block's DOM nodes and elements. ! испаравить!!!
+   Modifiers are operated via [JS-API](#mods-api) of the block instance.
 
 
 
-## How to use i-bem.js ##
+##How to use i-bem.js##
 
-*i-bem.js* framework is included in [bem-core](http://github.com/bem/bem-core/).
+*i-bem.js* framework is included in [bem-core library](http://github.com/bem/bem-core/) .
 
 Implementation consists of two modules:
 
 * [`i-bem`][] module.<br/> 
   Basic implementation of i-bem JS-block, which all the blocks in *i-bem.js* inherit from. i-bem block is written to be used in any JS-environment, both on client and server sides (for example, in Node.js).
-* [`i-bem__dom`][] module.<br/> Basic implementation of a block linked to DOM node. Basic implementation of a block linked to DOM node. Is intended for using on the client side, based on browsers' work with DOM. Depends on jQuery. 
+* [`i-bem__dom`][] module.<br/> Basic implementation of a block linked to DOM node. Is intended for using on the client side, based on browsers' work with DOM. Depends on jQuery. 
 
 Dependencies:
 
@@ -76,15 +76,16 @@ Dependencies:
 
 One can use *i-bem.js* as a part of full stack of BEM-tools. In this case it is convinient to create a project based on [project-stub](http://github.com/bem/project-stub/) template repository, which automatically installs the dependent libraries.
 
-If one doesn't plan on using other technologies of BEM-platform, one can copy the bem-core library code to the current project.
+If one doesn't plan on using other technologies of BEM platform, one can copy the bem-core library code to the current project.
 
 
-## Build ##
+##Build##
 
 According to BEM methodology web development is modular: each block is programmed separately. The final sourcecode of web pages is formed from the separate blocks code by use of **build** proceedures.
 
 
-In a file system it is convenient to represent a block as a catalog, and the implementation of a block in each of the technologies as a separate file:
+In a file system it is convenient to represent a block as a catalog / catalog -> derictory [проверить у Ширшина), and the implementation of a block in each of the technologies as a separate file:
+
     desktop.blocks/
         my-block/
             my-block.css
@@ -99,7 +100,7 @@ In a file system it is convenient to represent a block as a catalog, and the imp
             other-block.bemhtml
             ...
 
-The code of the used blocks on each web page can be built in single files: 
+The code of the used blocks on each web page can be built in bundles: 
 
     desktop.bundles/
         index/
@@ -108,26 +109,26 @@ The code of the used blocks on each web page can be built in single files:
             index.js
             ...
 
-There are two instruments for building code of the resultant pages from separate blocks description: 
+There are two instruments for building code bundles from separate blocks description:
 
 * [bem-tools](http://github.com/bem/bem-tools/);
 * [enb](https://github.com/enb-make/enb) along with [enb-modules](https://github.com/enb-make/enb-modules).
 
 
-## Why i-bem.js is called that way ##
+##Why i-bem.js is called that way##
 
-According to BEM-methodology, basic JS-library of BEM platform was originally developed as a special helper block. 
+According to BEM methodology, basic JS-library of BEM platform was originally developed as a special helper block. 
 This approach allows us to work with base libraries in the same way as with common blocks. Particularly, it allows to structure the code in terms of elements and modifiers, and flexibly set up the library behavior at different levels.
 
 It was common for BEM to give names to helper blocks with `i-` prefixes . So, the name `*i-bem.js*` read as "implementation of the `i-bem` block in `js` technology".
 
 
-# Binding JS blocks to HTML #
+#Binding JS blocks to HTML#
 
 JavaScript components in *i-bem.js*  are used for making HTML-elements of a page dynamic. A typical task for JS block is to bind certain events handling to the specific HTML fragment.
 
 In developing a web interface with *i-bem.js* framework there is a primary structure — the HTML document tree. 
-In the HTML tree there are nodes, bound with JS blocks — interactive interface elements . The point of a JS block binding is a HTML element.  The name of the block is indicated in its `class` attribute , [block parameters](#html-syntax) are indicated in `data-bem` attribute.
+In the HTML tree there are nodes, bound with JS blocks — interactive interface components . The point of a JS block binding is an HTML element.  The name of the block is indicated in its `class` attribute , [block parameters](#html-syntax) are indicated in `data-bem` attribute.
 
 When loading а page, the browser runs [blocks initialization](#init). During the initialization process blocks instances are generated – JS objects for all the blocks, mentioned in HTML elements on the page. 
 JS object, bound to the HTML element handles its [DOM events](#dom-events) and stores the state of the given instance of a block.
@@ -143,7 +144,7 @@ This approach of binding JavaScript components to HTML has the following advanta
 
 ## Blocks binding syntax ##
 
-To bind a block to HTML-элементу (for example, `<div>...</div>`), one should:
+To bind a block to HTML element (for example, `<div>...</div>`), one should:
 
  * **Mark a block in HTML tree**.<br/>
  Include the block name in the list of classes of HTML-element (`class` attribute).
@@ -153,14 +154,13 @@ To bind a block to HTML-элементу (for example, `<div>...</div>`), one sh
 ```
 
  * **Initialize the block instance**.<br/>
- Include the `i-bem` class in the list of classes of HTML-element. The presence of this class allows the framework to initialize the block.
+ Include the `i-bem` class in the list of classes of HTML element. The presence of this class allows the framework to initialize the block.
 
 ```HTML
 <div class="my-block i-bem">...</div>
 ```
 
- * **Pass parameters to the block instance**.<br/> Write parameters of a block in `data-bem` attribute. Write the block parameters
- in JSON format as a structure hash __block name—parameters hash__. Parameters are transferred пустой списокto the block instance at the point of initialization.
+ * **Pass parameters to the block instance**.<br/> Write parameters of a block in `data-bem` attribute. Write the block parameters in JSON format so hash parameters correspond to the block name. Parameters are transferred to the block instance at the point of initialization.                 
  ([read more...](#data-bem)).
 
 ```HTML
@@ -185,7 +185,7 @@ For example: `div` HTML element on which `my-block` is placed, block parameters 
 
 <a name="mixes"></a>
 
-### One HTML element — several JS blocks ###
+###One HTML element — several JS blocks###
 
 A technique in BEM methodology for placing multiple blocks on one HTML element is called **mix**.
 
@@ -203,10 +203,10 @@ For example: `div` HTML element, where the `user` block with the `name` paramete
 
 <a name="distrib-block"></a>
 
-### One JS block on several HTML elements ###
+###One JS block on several HTML elements###
 
-This design allows you to transparently implement blocks consisting of several components , which state must be agreed. 
-For example, the " tab " widget, whereon clicking on the header of the tab (one HTML- element) changes the contents of the tab (the other HTML element).
+This design allows you to transparently implement blocks consisting of several components, which state must be coordinated. 
+For example, the "tab" widget, whereon clicking on the header of the tab (one HTML element) changes the contents of the tab (the other HTML element). For example, the "tabbed panel" widget, whereon clicking on the tab (one HTML- element) changes the contents of the panel (the other HTML element).
 Another example - a marker indicating a point on the map (the first element) and the bound description of the point in the list next to the map (the second element).
 
 In order to bind the instance of a block to multiple HTML elements, one needs to write the same `id` value in block parameters for all of the bound HTML elements.
@@ -222,7 +222,7 @@ For example: The instance of a block `notebook` bound to HTML elements  `div` an
 </span>
 ```
 
-As a result, when initializing the blocks a single JS-object is created, 
+As a result, when initializing the blocks a single JS object is created, 
  which [`{jQuery} domElem`](#domElem) field contains links to both DOM nodes.
 
 `id` Modifier is only used *during initialization* of a block instance. `id` value must be unique within one block instances inside of one [initialization wave](#init-wave).
@@ -230,19 +230,19 @@ As a result, when initializing the blocks a single JS-object is created,
 
 <a name="i-blocks"></a>
 
-### Blocks without DOM representation ###
+###Blocks without DOM representation###
 
-Infrastructure code that solves common interface tasks: communication with the backend, general computing, etc. When working with *i-bem.js* code can take the form of block, like all the rest of JS-code.
-In order not to bind these blocks to HTML-tree manually, *i-bem.js*  provides the opportunity to create blocks without DOM representation.
+Infrastructure code that solves common interface tasks: communication with the backend, general computing, etc. When working with *i-bem.js* code can take the form of block, like all the rest of JS code.
+In order not to bind these blocks to HTML tree manually, *i-bem.js*  provides the opportunity to create blocks without DOM representation.
 
-Blocks without DOM-representation:
+Blocks without DOM representation:
 
  * They are not written in HTML code of a page.
- * Declared as [module extension`i-bem`](#bem-decl), not the `i-bem__dom`, as in the case of blocks with DOM-representation.
+ * Declared as [module extension`i-bem`](#bem-decl), not the `i-bem__dom`, as in the case of blocks with DOM representation.
  * They shoul be [initialized explicitly](#init-bem).
 
 
-## Parameters transfer syntax##
+##Parameters transfer syntax##
 
 Block parameter — is an arbitrary JavaScript object, that is transferred to the block at the point of initialization.
 Parameters allow to modify the behavior of the block instance bound to the given HTML element.
@@ -260,7 +260,7 @@ This parameters format proceeds from the following:
 
 Value of `data-bem` attribute  should contain valid JSON.
 
-# Block declaration #
+#Block declaration#
 
 JS implementation of a block describes the functionality of a certain class of web interface elements. In a specific interface, each block can have several instances. 
 Each instance of a block implements functionality of the whole class and has its own state, independent of the others.
