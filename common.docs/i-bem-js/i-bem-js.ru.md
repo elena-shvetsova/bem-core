@@ -41,7 +41,7 @@
 As far as BEM methodology is concerned, web interface is built of independent **blocks** (in which **elements** are allocated). Both blocks and elements may have states, described by **modifiers**.
 
 Web interface work is provided by multiple  **technologies**
-(HTML, CSS, JS...). Usually implementation consists of a few files. When using BEM methodology all the web interface implementation is arranged into blocks. The block description in this case consists of several files — one per each technology:
+(HTML, CSS, JS...). In BEM methodology all the web interface implementation is arranged into blocks. The block description in this case consists of several files — one per each technology:
 
  * `my-block.css` — describes block's style;
  * `my-block.bemhtml` — templates for generating block's HTML view;
@@ -51,9 +51,9 @@ Web interface work is provided by multiple  **technologies**
 
  + **Block** is a JS piece that describes the way the same-type interface components work.
  For example, all buttons may be implemented as a `button` block. Then, in accordance with the BEM methodology, `button.css` determines the appearance of the buttons, `button.js` — determines the way they behave.
- + Each page can contain more than one **instance** of a block (for example, button on a page). Each block instance corresponds to the JS object that is created dynamically in the browser's memory and stores the state of the given instance. JS object has a link to the DOM node that is bound to the instance of the block. 
+ + Each page can contain more than one **instance** of a block (for example, buttons on a page). Each block instance corresponds to the JS object that is created dynamically in the browser's memory and stores the state of the given instance. JS object has a link to the DOM node that is bound to the block instance. 
  + **Elements** are DOM nodes nested in DOM node block with `class` attribute, indicating their role in BEM domain area (the names of blocks and elements). Elements of a block are available through the [JS-API](#elem-api) of the instance of the block.
- + **Modifiers** store information on a block state and its elements. Modifier state is written in `class` attribute on a block's DOM nodes and elements. ! исправить!!!
+ + **Modifiers** store information on a block state and its elements. Modifier state is written in `class` attribute of block's DOM nodes and elements. ! исправить
    Modifiers are operated via [JS-API](#mods-api) of the block instance.
 
 
@@ -65,12 +65,12 @@ Web interface work is provided by multiple  **technologies**
 Implementation consists of two modules:
 
 * [`i-bem`][] module.<br/> 
-  Basic implementation of i-bem JS-block, which all the blocks in *i-bem.js* inherit from. i-bem block is written to be used in any JS-environment, both on client and server sides (for example, in Node.js).
-* [`i-bem__dom`][] module.<br/> Basic implementation of a block linked to DOM node. Is intended for using on the client side, based on browsers' work with DOM. Depends on jQuery. 
+  Basic implementation of i-bem JS block, which all the blocks in *i-bem.js* inherit from. i-bem block is written to be used in any JS-environment, both on client and server sides (for example, in Node.js).
+* [`i-bem__dom`][] module.<br/> Basic implementation of a block bound to DOM node. Is intended for using on the client side, based on browsers' work with DOM. Depends on jQuery. 
 
 Dependencies:
 
- * jQuery (only for `i-bem__dom` module). When using bem-core, a separate installation of jQuery is not required.
+ * jQuery (only for `i-bem__dom` module). When using the bem-core library, a separate installation of jQuery is not required / as it will be installed automatically.
  * [ymaps/modules][ymaps] modular system. When using [bem-tools][] along with `.browser.js` technology (and derrivatives based on it), this dependancy is resolved automatically.
 
 One can use *i-bem.js* as a part of full stack of BEM-tools. In this case it is convinient to create a project based on [project-stub](http://github.com/bem/project-stub/) template repository, which automatically installs the dependent libraries.
@@ -137,11 +137,11 @@ JS object, bound to the HTML element handles its [DOM events](#dom-events) and s
 This approach of binding JavaScript components to HTML has the following advantages:
 
  * graceful interface degradation on the client-side with JavaScript disabled; 
- * _progressive rendering_ — the opportunity to start drawing interface elements before the download of all data pages is over ( eg images ).
+ * _progressive rendering_ — the opportunity to start drawing interface components before the download of all data pages is over ( eg images ).
 
 <a name="html-syntax"></a>
 
-## Blocks binding syntax ##
+##Blocks binding syntax##
 
 To bind a block to HTML element (for example, `<div>...</div>`), one should:
 
@@ -261,7 +261,7 @@ Value of `data-bem` attribute  should contain valid JSON.
 
 #Block declaration#
 
-JS implementation of a block describes the functionality of a certain class of web interface elements. In a specific interface, each block can have several instances. 
+JS implementation of a block describes the functionality of a certain class of web interface components. In a specific interface, each block can have several instances. 
 Each instance of a block implements functionality of the whole class and has its own state, independent of the others.
 
 In terms of object oriented programming paradigm:
@@ -1054,7 +1054,7 @@ onSetMod: function(modName, modVal, prevModVal) { /* ... */ }
 ```
 
 For properties `beforeElemSetMod` and `onElemSetMod` in value hash / в хэш значений
-additional level of nesting is added, задающий/ assigning **element**,
+additional nesting level is added, задающий/ assigning **element**,
 on modifiers setting of which the triggers are set. 
 В качестве параметров триггеру передаются / The following are passed to triggers as parameters:
 
@@ -1617,7 +1617,7 @@ General info on BEM methodology, tools, news in the world of BEM can be found at
 
 **NB** Обратите внимание, что в перечисленных статьях может
 использоваться устаревший синтаксис, не соответствующий текущей версии
-*i-bem.js*, включенной в bem-core. Please note that these articles can contain outdated syntax that does not match the current version of the *i-bem.js*, included in bem-core.
+*i-bem.js*, включенной в bem-core. Please note that these articles can contain outdated syntax that does not match the current version of the *i-bem.js*, included in the bem-core library.
 
 -------------------------------------------------------------------------------
 
