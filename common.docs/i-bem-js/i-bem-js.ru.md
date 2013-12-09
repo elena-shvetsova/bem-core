@@ -19,12 +19,11 @@
 
 **Brief content of the document**:
 
-* [Framework overview](#intro): relation to the BEM domain area, a brief description of the modular structure of the framework, project stub, tools for building the code, that was written using *i-bem.js*. 
+* [Framework overview](#intro): relation to the BEM domain area, a brief description of the modular structure of the framework, project stub, the build tools, that was written using *i-bem.js*. 
 
-* [Binding JS blocks to HTML](#html) — JS blocks on
-  HTML page binding syntax, how HTML elements and JS blocks relate.
+* [Binding JS blocks to HTML](#html) — syntax to define JS blocks on HTML page, how HTML elements and JS blocks relate.
 
-* [Block declarations](#decl) — JS blocks description syntax.
+* [Block declarations](#decl) — JS blocks definition syntax.
 
 * [Working with DOM tree](#dom) — API for working with DOM representation of blocks:
   elements, DOM tree dynamic modification (AJAX).
@@ -32,7 +31,7 @@
 * [Events](#events) —  *i-bem.js* event model: DOM events,
   BEM events, event delegation.
 
-* [Block states](#states) — modifiers, triggers for state modifying (modifiers setting), initialization of block instances.
+* [Block states](#states) — modifiers, triggers for state change  (modifiers setting), initialization of block instances.
 
 * [Blocks interaction ](#ibc) — API for block-to-block communication.
 
