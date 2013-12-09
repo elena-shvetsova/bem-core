@@ -246,7 +246,7 @@ Blocks without DOM representation:
 Block parameter — is an arbitrary JavaScript object, that is transferred to the block at the point of initialization.
 Parameters allow to modify the behavior of the block instance bound to the given HTML element.
 
-The value of `data-bem` attribute contain the parameters of *all the JS blocks on this node*.
+The value of `data-bem` attribute contain the parameters of *all the JS blocks in this node*.
 Parameters are transferred as a hash in JSON format:
 
  + key — `{String}` block name;
@@ -521,9 +521,9 @@ In modern interfaces one often needs to create new pieces of DOM tree and replac
 * `update` — to replace a DOM fragment the specified context внутри указанного контекста;
 * `replace` — to replace the specified context with a new DOM fragment.
 
-All function blocks automatically perform [initialization on the updated DOM tree fragment](#init-ajax).  
+All function blocks automatically perform [initialization in the updated DOM tree fragment](#init-ajax).  
 
-To simplify the creation of BEM entities on renewable fragments of DOM-tree, it is possible to use the template engine
+To simplify the creation of BEM entities in a renewable fragments of DOM-tree, it is possible to use the template engine
 [BEMHTML](http://ru.bem.info/articles/bemhtml-reference/), and connect it as a [ymaps][] module. 
 BEMHTML позволяет по описанию БЭМ-сущностей allows to generate DOM nodes in accordance with the rules of BEM naming directly in JS code block in [BEMJSON](http://ru.bem.info/articles/bemhtml-reference#bemjson) format.
 
@@ -703,7 +703,7 @@ DOM.decl('menu', {
 
 With `live`property in a block declaration block instances by default inititalization will be *отложена/deferred* till the moment, when
 the block instance will be needed ([lazy initialization](#init-live)). 
-A DOM event on the block instance, to which a delegated event listener is added, can be such a moment
+A DOM event in the block instance, to which a delegated event listener is added, can be such a moment
 , or referring to the block instance [из другого блока/from another block](#ibc).
 If the block initialization can not be deferred ([automatic initialization](#init-auto) is required), следует вернуть `false` в
 результате выполнения функции в значении `live` property.  
@@ -735,7 +735,7 @@ Unlike DOM events, BEM events are generated not in DOM elements, but in **block 
 To generate BEM event, `emit(event)` block instance method  is used.
 
 **For example**: When a user clicks on DOM element of the `submit`button
-(DOM event `click` is emitted),`_onClick()` method of `submit`block instance is ecexecuted, in which **BEM event** `click` is generated
+(DOM event `click` is emitted),`_onClick()` method of `submit`block instance is executed, in which **BEM event** `click` is generated
 in the case, if the block doesn't have the `disabled` modifier не выставлен
 модификатор at the moment:
 
@@ -1392,7 +1392,7 @@ Procedure of initialization or removal of JS-объектов/ может быт
 
 The following functions perform dynamic initialization of blocks in *i-bem.js*:
 
-* Initialization/removing blocks on the specific fragment of DOM tree (`init`, `destruct`);
+* Initialization/removing blocks in the specific fragment of DOM tree (`init`, `destruct`);
 * Adding/replacing a fragment of DOM tree with simultaneous blocks initialization in the renewed fragment (`update`, `replace`, `append`, `prepend`, `before`, `after`).
 
 
@@ -1499,7 +1499,7 @@ Blocks interaction may be implemented in two ways:
 
 ## Поиск экземпляров блоков в DOM-дереве / Searching block instances in the DOM tree ##
 
-Referring to another in *i-bem.js* is performed from the current block, placed on a particular node of DOM tree.
+Referring to another in *i-bem.js* is performed from the current block, placed in a particular node of DOM tree.
 размещенного на определенном узле DOM-дерева. Поиск других блоков в
 DOM-дереве может вестись по трем направлениям (осям) относительно
 DOM-узла текущего блока: Search for other blocks in the DOM tree can be carried out in three directions (axes) relating to the DOM node of a current block :
