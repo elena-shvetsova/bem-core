@@ -19,7 +19,7 @@
 
 **Brief content of the document**:
 
-* [Framework overview](#intro): relation to the BEM data domain, a brief description of the modular structure of the framework, project stub, tools for building the code, that was written using *i-bem.js*. 
+* [Framework overview](#intro): relation to the BEM domain area, a brief description of the modular structure of the framework, project stub, tools for building the code, that was written using *i-bem.js*. 
 
 * [Binding JS blocks to HTML](#html) — JS blocks on
   HTML page binding syntax, how HTML elements and JS blocks relate.
@@ -53,8 +53,8 @@ Web interface work is provided by multiple  **technologies**
  + **Block** is a JS piece that describes the way the same-type interface components work.
  For example, all buttons may be implemented as a `button` block. Then, in accordance with the BEM methodology, `button.css` determines the appearance of the buttons, `button.js` — determines the way they behave.
  + Each page can contain more than one **instance** of a block (for example, button on a page). Each block instance corresponds to the JS object that is created dynamically in the browser's memory and stores the state of the given instance. JS object has a link to the DOM node that is bound to the instance of the block. 
- + **Elements** are DOM nodes nested in DOM node block with `class` attribute, indicating their role in BEM data domain (the names of blocks and elements). Elements of a block are available through the [JS-API](#elem-api) of the instance of the block.
- + **Modifiers** store information on a block state and its elements. Modifier state is written in `class` attribute on a block's DOM nodes and elements. ! испаравить!!!
+ + **Elements** are DOM nodes nested in DOM node block with `class` attribute, indicating their role in BEM domain area (the names of blocks and elements). Elements of a block are available through the [JS-API](#elem-api) of the instance of the block.
+ + **Modifiers** store information on a block state and its elements. Modifier state is written in `class` attribute on a block's DOM nodes and elements. ! исправить!!!
    Modifiers are operated via [JS-API](#mods-api) of the block instance.
 
 
