@@ -4,7 +4,7 @@
 
 ## *i-bem.js*: Javascript framework for BEM ##
 
-*i-bem.js* is a JavaScript framework for web-development using [BEM-methodology](http://en.bem.info/method/). With
+*i-bem.js* is a JavaScript framework for web-development using [BEM methodology](http://en.bem.info/method/). With
 *i-bem.js* one can:
 
  * develop web interface in terms of blocks, elements, modifiers;
@@ -118,7 +118,7 @@ There are two instruments for building code bundles from separate blocks descrip
 ##Why i-bem.js is called that way##
 
 According to BEM methodology, basic JS-library of BEM platform was originally developed as a special helper block. 
-This approach allows us to work with base libraries in the same way as with common blocks. Particularly, it allows to structure the code in terms of elements and modifiers, and flexibly set up the library behavior at different levels.
+This approach allows us to work with base libraries in the same way as with common blocks. Particularly, it allows to structure the code in terms of elements and modifiers, and flexibly set up the library behavior at different block levels.
 
 It was common for BEM to give names to helper blocks with `i-` prefixes . So, the name `*i-bem.js*` read as "implementation of the `i-bem` block in `js` technology".
 
@@ -310,7 +310,7 @@ provide(DOM);
 
 -------------------------------------------------------------------------------
 
-**NB** In terms of [ymaps][] modular system, declarations of multiple blocks represents  overriding of the same module
+**NB** In terms of [ymaps][] modular system, declarations of multiple blocks represents redefining of the same module
   `i-bem__dom`. And yet in terms of *i-bem.js* this is the way *разные объекты different objects* for building block instances are created.
 
 -------------------------------------------------------------------------------
