@@ -45,9 +45,9 @@ Web interface work is provided by multiple  **technologies**
 
  * `my-block.css` — describes block's style;
  * `my-block.bemhtml` — templates for generating block's HTML view;
- * `my-block.js` — describes block's **dynamic behavior** in browser.
+ * `my-block.js` — describes block's **dynamic behaviour** in browser.
 
-*i-bem.js* framework allows to decompose client JavaScript into components in BEM terms:
+*i-bem.js* framework allows to decompound client JavaScript into BEM components:
 
  + **Block** is a JS piece that describes the way the same-type interface components work.
  For example, all buttons may be implemented as a `button` block. Then, in accordance with the BEM methodology, `button.css` determines the appearance of the buttons, `button.js` — determines the way they behave.
@@ -108,7 +108,7 @@ The code of the used blocks on each web page can be built in bundles:
             index.js
             ...
 
-There are two instruments for building code bundles from separate blocks description:
+There are two instruments for building code bundles from separate blocks definition:
 
 * [bem-tools](http://github.com/bem/bem-tools/);
 * [enb](https://github.com/enb-make/enb) along with [enb-modules](https://github.com/enb-make/enb-modules).
@@ -116,10 +116,10 @@ There are two instruments for building code bundles from separate blocks descrip
 
 ##Why i-bem.js is called that way##
 
-According to BEM methodology, basic JS-library of BEM platform was originally developed as a special helper block. 
-This approach allows us to work with base libraries in the same way as with common blocks. Particularly, it allows to structure the code in terms of elements and modifiers, and flexibly set up the library behavior at different block levels.
+According to BEM methodology, basic JS library of BEM platform was originally developed as a special helper block. 
+This approach allows to work with base libraries in the same way as with common blocks. Particularly, it allows to structure code in terms of elements and modifiers, and flexibly set up the library behaviour at different block levels.
 
-It was common for BEM to give names to helper blocks with `i-` prefixes . So, the name `*i-bem.js*` read as "implementation of the `i-bem` block in `js` technology".
+It was common for BEM to give names to helper blocks with `i-` prefixes. So, the name `*i-bem.js*` read as "implementation of the `i-bem` block in `js` technology".
 
 
 #Binding JS blocks to HTML#
@@ -244,7 +244,7 @@ Blocks without DOM representation:
 ##Parameters transfer syntax##
 
 Block parameter — is an arbitrary JavaScript object, that is transferred to the block at the point of initialization.
-Parameters allow to modify the behavior of the block instance bound to the given HTML element.
+Parameters allow to modify the behaviour of the block instance bound to the given HTML element.
 
 The value of `data-bem` attribute contain the parameters of *all the JS blocks in this node*.
 Parameters are transferred as a hash in JSON format:
@@ -255,7 +255,7 @@ Parameters are transferred as a hash in JSON format:
 This parameters format proceeds from the following:
 
  * Indication of the block name in  parameters  allows to avoid having to parse value of the `class` attribute, which simplifies and accelerates blocks initialization.
- *This same solution allows to place multiple blocks in one HTML-element without the need to multiply the block attributes.
+ *This same solution allows to place multiple blocks in one HTML element without the need to multiply the block attributes.
 
 Value of `data-bem` attribute  should contain valid JSON.
 
@@ -276,7 +276,7 @@ Block methods are subdivided into:
  * static methods.
 
 Block code in *i-bem.js* is commonly known as **declaration**, to point out used in BEM terminology declarative programming style. 
-In accordance with the declarative style the block behavior is programmed as the following statements _set of conditions — block reaction_.   
+In accordance with the declarative style the block behaviour is programmed as the following statements _set of conditions — block reaction_.   
 
 
 ## Declaration syntax ##
@@ -371,7 +371,7 @@ provide({
 Описание может быть задано в одной из двух форм: Description may be given in one of two forms:
 
 1. Block name - string.<br/>
-   Объявленные методы будут применяться во всех экземплярах блока независимо от их состояний (модификаторов). Declared methods will be applied in all instances of the block , regardless of their states ( modifiers ) 
+   Объявленные методы будут применяться во всех экземплярах блока независимо от их состояний (модификаторов). Declared methods will be applied in all instances of the block , regardless of their states (modifiers) 
 Пример: декларация методов для блока `button`. Example: Declaration of methods for the block
 
     ```js
@@ -382,7 +382,7 @@ DOM.decl('button',
     ```
 
 2. Block description  - hash.<br/> This is an example of a methods declaration for the `button` block with the `type` modifier with value
-   `link` (describes behavior of pseudo buttons):
+   `link` (describes behaviour of pseudo buttons):
 
     ```js
 DOM.decl({ block: 'button', modName: 'type', modVal: 'link' },
