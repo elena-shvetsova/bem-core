@@ -124,12 +124,12 @@ It was common for BEM to give names to helper blocks with `i-` prefixes. So, the
 
 #Binding JS blocks to HTML#
 
-JavaScript components in *i-bem.js*  are used for making HTML-elements of a page dynamic. A typical task for JS block is to bind certain events handling to the specific HTML fragment.
+JavaScript components in *i-bem.js* are used to make HTML elements of a page dynamic. A typical task for JS block is to bind certain events handling to the specific HTML fragment.
 
 In developing a web interface with *i-bem.js* framework there is a primary structure — the HTML document tree. 
 In the HTML tree there are nodes, bound with JS blocks — interactive interface components . The point of a JS block binding is an HTML element.  The name of the block is indicated in its `class` attribute , [block parameters](#html-syntax) are indicated in `data-bem` attribute.
 
-When loading а page, the browser runs [blocks initialization](#init). During the initialization process blocks instances are generated – JS objects for all the blocks, mentioned in HTML elements on the page. 
+When loading а page, the browser runs [blocks initialization](#init). During the initialization process block instances are generated – JS objects for all the blocks, mentioned in HTML elements on the page. 
 JS object, bound to the HTML element handles its [DOM events](#dom-events) and stores the state of the given instance of a block.
 
 *i-bem.js* allows to implement a JS component, not bound to HTML — [block without DOM representation ](#i-blocks). Such block gives API, similar to common JS blocks. 
@@ -357,18 +357,15 @@ provide({
 <a name="decl-selector"></a>
 
 
-## Block description in a declaration ##
+## Block definition in a declaration ##
 
-Первый параметр метода  представляет собой описание блока, в
-котором будут применяться объявленные в декларации методы. The first parameter of the `decl` method is a block description, which will be announced in the declaration implemented methods.
-Описание обязательно содержит имя блока и может дополнительно содержать: Description must contain the block name and may additionally contain:
+The first parameter of the `decl` method is a block definition, in which the announced in the declaration  methods will be implemented.
+Описание обязательно содержит имя блока и может дополнительно содержать: The block definition must contain the block name and may additionally contain:
 
-* ограничение сферы действия декларации определенной модификацией
-  блока; limiting the scope of the declaration certain modification of the block;
-* список родительских блоков, методы которых должен наследовать данный
-  блок. list of parent blocks, methods which should inherit the block.
+* limiting the scope of the declaration by the certain modification of the block;
+* list of parent blocks, methods of which should inherit the given block.
 
-Описание может быть задано в одной из двух форм: Description may be given in one of two forms:
+Block definition may be given in one of two forms:
 
 1. Block name - string.<br/>
    Объявленные методы будут применяться во всех экземплярах блока независимо от их состояний (модификаторов). Declared methods will be applied in all instances of the block , regardless of their states (modifiers) 
