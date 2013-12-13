@@ -243,7 +243,7 @@ Blocks without DOM representation:
 
 ##Parameters transfer syntax##
 
-Block parameter — is an arbitrary JavaScript object, that is transferred to the block at the point of initialization.
+Block parameter is an arbitrary JavaScript object, that is transferred to the block at the point of initialization.
 Parameters allow to modify the behaviour of the block instance bound to the given HTML element.
 
 The value of `data-bem` attribute contain the parameters of *all the JS blocks in this node*.
@@ -284,7 +284,7 @@ In accordance with the declarative style the block behaviour is programmed as th
 In order to declare a new JS block **with DOM representation**
 (bound to HTML element), one has got to extend `i-bem__dom` [ymaps][] module.
 
-To declare blocks use `decl`method, that has three parameters:
+To declare blocks use `decl`method, that can have three parameters:
 
 1. Block name `{String}` or [block description ](#decl-selector) `{Object}`.
 2. Block instance methods — `{Object}`.
@@ -293,7 +293,7 @@ To declare blocks use `decl`method, that has three parameters:
 ```js
 modules.define('i-bem__dom', function(provide, DOM) {
 
-DOM.decl(/* block name or block description */,
+DOM.decl(/* block name or block definition */,
     {
         /* instance methods */
     },
@@ -309,20 +309,20 @@ provide(DOM);
 
 -------------------------------------------------------------------------------
 
-**NB** In terms of [ymaps][] modular system, declarations of multiple blocks represents redefining of the same module
-  `i-bem__dom`. And yet in terms of *i-bem.js* this is the way *разные объекты different objects* for building block instances are created.
+**NB** In terms of [ymaps][] modular system, declarations of multiple blocks represent redefining of one and the same module
+  `i-bem__dom`. And yet in terms of *i-bem.js* this is the way *different objects* for building block instances are created.
 
 -------------------------------------------------------------------------------
 
 <a name="bem-decl"></a>
 
-Blocks, that do not have DOM representation are declared as extension of `i-bem` [ymaps][]-module .
+Blocks, that do not have DOM representation are declared as extension of the `i-bem` [ymaps][]-module .
 For declaring use `decl` method, receiving the same parameters, as`decl` method of `i-bem__dom` module:
-
+ 
 ```js
 modules.define('i-bem', function(provide, BEM) {
 
-BEM.decl(/* block name or block description */,
+BEM.decl(/* block name or block definition */,
     {
         /* instance methods */
     },
@@ -340,7 +340,7 @@ provide(BEM);
 -------------------------------------------------------------------------------
 
 **NB**: It is convenient to design infrastructure code as a block without DOM representation, if it is planned to use API of
-BEM blocks (states, expressed by modifiers, BEM events etc.). Without using BEM terms/BEM stack infrastructure code can be designed as  [ymaps][] module. For example:
+BEM blocks (states, expressed by modifiers, BEM events etc.). Without using BEM stack infrastructure code can be designed as  [ymaps][] module. For example:
 
 ```js
 modules.define('router', function(provide) {
@@ -360,7 +360,7 @@ provide({
 ## Block definition in a declaration ##
 
 The first parameter of the `decl` method is a block definition, in which the announced in the declaration  methods will be implemented.
-Описание обязательно содержит имя блока и может дополнительно содержать: The block definition must contain the block name and may additionally contain:
+The block definition must contain the block name and may additionally contain:
 
 * limiting the scope of the declaration by the certain modification of the block;
 * list of parent blocks, methods of which should inherit the given block.
@@ -368,8 +368,8 @@ The first parameter of the `decl` method is a block definition, in which the ann
 Block definition may be given in one of two forms:
 
 1. Block name - string.<br/>
-   Объявленные методы будут применяться во всех экземплярах блока независимо от их состояний (модификаторов). Declared methods will be applied in all instances of the block , regardless of their states (modifiers) 
-Пример: декларация методов для блока `button`. Example: Declaration of methods for the block
+   Declared methods will be applied in the block instances, regardless of their states (modifiers) 
+For example: Declaration of methods for the `button` block.
 
     ```js
 DOM.decl('button',
@@ -378,7 +378,9 @@ DOM.decl('button',
 );
     ```
 
-2. Block description  - hash.<br/> This is an example of a methods declaration for the `button` block with the `type` modifier with value
+2. Block definition  - hash.<br/> 
+Contains modifier name (and values). Declared methods will be applied only  to the block instances, that have the given modifier (with the specified value).
+For example: declaring method for the `button` block with the `type` modifier with value
    `link` (describes behaviour of pseudo buttons):
 
     ```js
@@ -390,9 +392,8 @@ DOM.decl({ block: 'button', modName: 'type', modVal: 'link' },
 
 -------------------------------------------------------------------------------
 
-**NB** If static methods are described in a declaration for the block with specific modifiers, they will be available in all instances of this block *regardless of the modifiers values*.    
-  Модификаторы являются свойствами экземпляров блоков, а статические методы принадлежат классу блока и поэтому не могут
-  учитывать ограничения по модификатору. Modifiers are the properties of block instances, and static methods belong to the class of the block can not consider the limitations of the modifier.
+**NB** If static methods are defined in a declaration for the block with specific modifiers, they will be available in all instances of this block *regardless of the modifiers values*.    
+Modifiers are the properties of block instances, static methods belong to the class of the block, and so can not consider the limitations of the modifier.
 
 -------------------------------------------------------------------------------
 
