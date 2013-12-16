@@ -393,24 +393,23 @@ DOM.decl({ block: 'button', modName: 'type', modVal: 'link' },
 -------------------------------------------------------------------------------
 
 **NB** If static methods are defined in a declaration for the block with specific modifiers, they will be available in all instances of this block *regardless of the modifiers values*.    
-Modifiers are the properties of block instances, static methods belong to the class of the block, and so can not consider the limitations of the modifier.
+Modifiers are the properties of block instances. Static methods belong to the class of the block, and so can not consider the limitations of the modifier.
 
 -------------------------------------------------------------------------------
 
 
 ## Сontext ##
 
-**Block instance methods** are executed in the JS object context of the block instance.  Accordingly, the key word `this` in instance methods of the block refers to JS object of a **block instance**. 
+**Block instance methods** are implemented in the JS object context of a block instance.  Accordingly, the key word `this` in instance methods of the block refers to JS object of a **block instance**. 
 
-**Static methods** are executed in the context of JS-object, that corresponds to the class of the block.
-  Accordingly, `this` keyword  in static methods of the block refers to the **block class**, not to an instance.
+**Static methods** are implemented in the context of JS object, that corresponds to the class of the block.
+Accordingly, `this` keyword  in static methods of the block refers to **block class**, not to an instance.
 
-Контекст содержит зарезервированные поля: Context contains the reserved fields:
+Context contains the reserved fields:
 
- + `this.__self`: Refers to the static methods of the class, which the instance belongs to. It is defined in the instance methods of a block. Для
-   статических методов не имеет смысла и не определен. It does not make sense for static methods and is not defined.
+ + `this.__self`: Refers to the static methods of the class, which the instance belongs to. It is defined in the instance methods of a block. It does not make sense for static methods and is not defined.
 
-    For example: Static method calling `staticMethod` in `onEvent` method of `my-block` block instance. 
+    For example: Static method `staticMethod` calling in `onEvent` method of `my-block` block instance. 
 
 ```js
 DOM.decl('my-block', {
@@ -424,10 +423,10 @@ DOM.decl('my-block', {
 });
 ```
 
- + `this.__base`: Refers to the implementation of the method in the base class, which it is inherets from. 
-    Allows a super call. It is defined in the block instance methods and in static methods of the block.
+ + `this.__base`: Refers to the implementation of the method in the base class, which it is inhereted from. 
+    Allows to implement super call. It is defined in the block instance methods and in static methods of the block.
 
-    For example: call (and modification) of `_onClick` method of parent class (the base implementation of the method in the `button` class).
+    For example: calling (and modification) of `_onClick` method of parent class (the basic method implementation in the `button` class).
 
 ```js
 DOM.decl({ block: 'my-button', baseBlock: 'button' }, {
@@ -440,12 +439,12 @@ DOM.decl({ block: 'my-button', baseBlock: 'button' }, {
 
 -------------------------------------------------------------------------------
 
-**NB** In blocks development using  *i-bem.js* внутреннимметодам блока private methods of a block, not intended for external use, commonly given names starting with an underscore. For example, `_onClick`.
+**NB** In blocks development using  *i-bem.js*  with block private methods, not intended for external use, it is common to give names starting with an underscore. For example, `_onClick`.
 
 -------------------------------------------------------------------------------
 
 
-# Работа с DOM-деревом Working with DOM tree#
+#Working with DOM tree#
 
 <a name="domElem"></a>
 
