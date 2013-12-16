@@ -448,21 +448,21 @@ DOM.decl({ block: 'my-button', baseBlock: 'button' }, {
 
 <a name="domElem"></a>
 
-## DOM node of a block instance ##
+##DOM node of a block instance##
 
-All the block instances, bound to the DOM, contain jQuery object
-in the `{jQuery} this.domElem` field, that refers to one or more DOM nodes, bound to this instance of the block.
+All the block instances, bound to the DOM tree, contain jQuery object
+in the `{jQuery} this.domElem` field, referring to one or more DOM nodes, bound to the given block instance.
 
 <a name="elem-api"></a>
 
-## Elements ##
+##Elements##
 
-BEM elements of blocks  are represented in the *i-bem.js* as DOM nodes, nested into the DOM node of the block instance.
-To access DOM nodes of elements and work with their modifiers, one should use API, of the block instance.
+BEM elements of blocks  are represented in *i-bem.js* as DOM nodes, nested into the DOM node of the block instance.
+To access DOM nodes of elements and work with their modifiers use API, provided by the block instance.
 
 The block instance provides two methods to access the elements of a given instance:
 
-* Кеширующий доступ: Access with cache`elem(elems, [modName], [modVal])`. There is no need to store as a variable the element obtained this way.
+* Access with cache`elem(elems, [modName], [modVal])`. There is no need to store as a variable the element obtained this way.
 
 ```js
 DOM.decl('b-link', {
@@ -474,7 +474,7 @@ DOM.decl('b-link', {
 );
 ```
 
-* Некеширующий доступ: Access without cache `findElem(elems, [modName], [modVal])`.
+* Access without cache `findElem(elems, [modName], [modVal])`.
 
 ```js
 DOM.decl('b-link', {
@@ -488,7 +488,7 @@ DOM.decl('b-link', {
 ```
 
 In the process of [dynamic adding and removing block elements](#dynamic) it can  be necessary to reset cache of elements. This is what the `dropElemCache('elements')` method is used for. 
-The space-separated list of names as a parameter for the elements, cache reset is needed for:  
+The space-separated list of names is indicated as a parameter for those elements, cache reset is needed for:  
 
 ```js
 DOM.decl('attach', {
@@ -501,29 +501,31 @@ DOM.decl('attach', {
 ```
 
 
-Complete API description for working with elements is contained in the source code of [`i-bem__dom`][] module.
+Complete API description for working with elements is contained in the source code of the [`i-bem__dom`][] module.
 
 <a name="dynamic"></a>
 
-## Dynamic updating of blocks and elements in the DOM- tree ##
+##Dynamic updating of blocks and elements in the DOM tree##
 
 In modern interfaces one often needs to create new pieces of DOM tree and replace the old ones in the process of work (AJAX). 
-В  предусмотрены следующие функции для добавления и замены
-фрагментов DOM-дерева: There are functions provided for adding and replacing fragments DOM- tree in *i-bem.js*:
+There are functions provided for adding and replacing fragments DOM tree in *i-bem.js*:
+* add a DOM fragment:
 
-* `append` — add a DOM fragment into to the end of specified context в конец указанного контекста;
-* `prepend` — add a DOM fragment into to the end of specified context в начало указанного контекста;
-* `before` — add a DOM fragment before the specified contextперед указанным контекстом;
-* `after` — add a DOM fragment after the specified context после указанного контекста;
-* `update` — to replace a DOM fragment the specified context внутри указанного контекста;
+* `append` — into to the end of specified context;
+* `prepend` — into to the end of specified context;
+* `before` — before the specified context;
+* `after` — after the specified context;
+* replace a DOM fragment:
+
+* `update` — inside the specified context;
 * `replace` — to replace the specified context with a new DOM fragment.
 
-All function blocks automatically perform [initialization in the updated DOM tree fragment](#init-ajax).  
+All functions automatically run [initialization in the updated DOM tree fragment](#init-ajax).  
 
 To simplify the creation of BEM entities in a renewable fragments of DOM-tree, it is possible to use the template engine
 [BEMHTML](http://ru.bem.info/articles/bemhtml-reference/), and connect it as a [ymaps][] module. 
 BEMHTML позволяет по описанию БЭМ-сущностей allows to generate DOM nodes in accordance with the rules of BEM naming directly in JS code block in [BEMJSON](http://ru.bem.info/articles/bemhtml-reference#bemjson) format.
-
+БЭМ-сущности описываются в формате BEMJSON непосредственно в коде блока. Функция BEMHTML.apply генерирует HTML-элементы по BEMJSON-описанию в соответствии с правилами именования БЭМ.
 
 **For example**: `_updateFileElem` method of `attach` block removes `file` element, if it existed, and generates of a new element by using `BEMHTML.apply`: 
 
