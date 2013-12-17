@@ -588,22 +588,18 @@ Use BEM events for the block interaction with other blocks.
 
 ## Event delegation ##
 
-BEM and DOM events handling can be **delegated** to the container/контейнеру
-(either to the entire document or to the specific DOM node). В этом случае контейнер
-служит точкой обработки событий, возникающих на любом из
-дочерних узлов контейнера, даже если в момент подписки на события
-некоторые из дочерних узлов еще не существовали. In this case container is a point of events handling, triggered in any of the child nodes, so it will hanlde events for all child nodes, even if they do not exist yet and will be loaded later. 
+BEM and DOM events handling can be **delegated** to a container
+(either the entire document or the specific DOM node). In this case container is a point of events handling, triggered in any of the child nodes, so it will hanlde events for all the child nodes, even if they do not exist yet and will be loaded later. 
 
-For example, menu block can contain nested blocks (or elements, this depends on the specific block implementation) — menu items. 
-It makes sence to delegate обработку кликов click event handling on menu items to the menu block itself. 
-This, first of all, allows to save the resources/ overhead of adding events затраты ресурсов на
-подписку на события (it's cheaper to add one event listener to a container, than many events listeners to the elements). 
-Secondly, you can change menu contents: add and remove menu items without
-adding event listener for added items or remove event listeners from deleted items.
+For example, menu block can contain nested blocks — menu items (or elements, it depends on the specific block implementation). 
+It makes sense to delegate click event handling on menu items to the menu block itself. 
+First of all, this allows to save the resources of adding events listeners (it's cheaper to add one event listener to a container, than many events listeners to the elements). 
+Secondly, it makes it possible to change the menu contents: add and remove menu items without
+adding event listeners for the added items or remove event listeners from the deleted items.
 
-* [**DOM events delegation**](#dom-events-delegated) can be used for handling DOM events, triggered in the DOM node of the block instance or in the DOM nodes of its elements.
-  DOM events delegation can be performed either for all the block instances within the document, or for the block instances within a specific fragment of the HTML tree.
-  внутри указанного контекста? (фрагмента HTML-дерева).
+* [**DOM event delegation**](#dom-events-delegated) can be used for handling DOM events, triggered in the DOM node of the block instance or in the DOM nodes of its elements.
+DOM events delegation can be performed either for all the block instances within the document, or for the block instances within a specific fragment of the HTML tree.
+  
 
   `window.document` always performs as a container to which DOM events handling is delegated.
 
