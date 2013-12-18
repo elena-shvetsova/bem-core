@@ -615,11 +615,10 @@ The complete list of helpers for adding event listeners to delegated events can 
 
 ## DOM events ##
 
-To add event listeners to DOM nodes Для подписки на DOM-события на узлах, bound to a block or an element, use instance block method `bindTo([elem], event,
-handler)`.
+To add event listeners to DOM nodes, bound to a block or an element, use instance block method `bindTo([elem], event, handler)`.
 
 **For example**: At the point of [block instance initialization](#init)
-`my-block` event listener to `click` event is added, when the event is triggered, the block выставляет себе gets [modifier](#modifier) `size` with the value `big`.
+`my-block` event listener to `click` event is added, when the event is triggered, the block gets [modifier](#modifier) `size` with the value `big`.
 
 ```js
 DOM.decl('my-block', {
@@ -627,7 +626,7 @@ DOM.decl('my-block', {
         'js' : {
             'inited': function() {
                 this.bindTo('click', function(e) {
-                    var domElem = $(e.currentTarget); // DOM element, на котором the event слушается событие
+                    var domElem = $(e.currentTarget); // DOM element, in which the event listener is located
                                                       // in this case, it is the same as this.domElem
                     this.setMod('size', 'big');
                 });
@@ -665,13 +664,12 @@ DOM.decl('my-block', {
 
 -------------------------------------------------------------------------------
 
-**Removal of event listener** to DOM events will be run automatically when the block instance is removed. If it is necessary to unsubscribe manually
-в процессе работы блока while the block is being used, one should use `unbindFrom([elem], event, handler)` method. 
+**Removing of event listener** to DOM events will be run automatically when the block instance is removed. If it is necessary to remove the event listener manually while the block is being used, use `unbindFrom([elem], event, handler)` method. 
 
 
 <a name="dom-events-delegated"></a>
 
-### DOM events delegation ###
+### DOM event delegation ###
 
 Delegating of DOM events handling is performed by the `liveBindTo([elem], event, handler)` method. In a block declaration the point,
 reserved for adding delegated DOM events listeners для подписки на делегированные DOM-события, serves `live` property in the  static block methods segment.
