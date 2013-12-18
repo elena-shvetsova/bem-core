@@ -70,7 +70,7 @@ Implementation consists of two modules:
 
 Dependencies:
 
- * jQuery (only for `i-bem__dom` module). When using the bem-core library, a separate installation of jQuery is not required / as it will be installed automatically.
+ * jQuery (only for `i-bem__dom` module). When using the bem-core library, the separate including jQuery is not required / as it will be installed automatically.
  * [ymaps/modules][ymaps] modular system. When using [bem-tools][] along with `.browser.js` technology (and derrivatives based on it), this dependancy is resolved automatically.
 
 One can use *i-bem.js* as a part of full stack of BEM-tools. In this case it is convinient to create a project based on [project-stub](http://github.com/bem/project-stub/) template repository, which automatically installs the dependent libraries.
@@ -108,7 +108,7 @@ The code of the used blocks on each web page can be built in bundles:
             index.js
             ...
 
-There are two instruments for building code bundles from separate blocks definition:
+There are two tools for building code bundles from separate blocks definition:
 
 * [bem-tools](http://github.com/bem/bem-tools/);
 * [enb](https://github.com/enb-make/enb) along with [enb-modules](https://github.com/enb-make/enb-modules).
@@ -363,7 +363,7 @@ The first parameter of the `decl` method is a block definition. The methods anno
 The block definition must contain the block name and may additionally contain:
 
 * limiting the scope of the declaration by the certain modification of the block;
-* list of parent blocks, methods of which should inherit the given block. Блок отнаследует методы родительских блоков из данного списка.
+* list of parent blocks, methods of which would inherit the given block. Блок отнаследует методы родительских блоков из данного списка.
 
 Block definition may be given in one of two forms:
 
@@ -712,7 +712,7 @@ If the block initialization can not be deferred ([automatic initialization](#ini
 
 ### DOM event object ###
 
-jQuery object is transferred as a parameter , describing DOM event — [`{jQuery.Event}`](http://api.jquery.com/category/events/event-object/) to the handler function.
+jQuery object is transferred as a parameter, describing DOM event — [`{jQuery.Event}`](http://api.jquery.com/category/events/event-object/) to the handler function.
 
 If a DOM event was generated manually, all the parameters, transferred
 to the `trigger` function at the point of event creation при создании события, will be transferred to the handler function in the same order after the event object после объекта события.
@@ -913,7 +913,7 @@ While adding, removing, and changing values of modifiers triggers are implemente
 
 <a name="mods-api"></a>
 
-### Управление модификаторами/ Operating modifiers ###
+###Operating modifiers###
 
 A block instance provides methods for installation, value checking
 and removing modifiers of the given instance.
