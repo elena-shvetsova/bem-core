@@ -282,7 +282,7 @@ In accordance with the declarative style the block behaviour is programmed as th
 ## Declaration syntax ##
 
 In order to declare a new JS block **with DOM representation**
-(bound to HTML element), one has got to extend `i-bem__dom` [ymaps][] module.
+(bound to HTML element), one has got to modify? `i-bem__dom` [ymaps][] module.
 
 To declare blocks use `decl`method, that can have three parameters:
 
@@ -310,7 +310,7 @@ provide(DOM);
 -------------------------------------------------------------------------------
 
 **NB** In terms of [ymaps][] modular system, declarations of multiple blocks represent redefining of one and the same module
-  `i-bem__dom`. And yet in terms of *i-bem.js* this is the way *different objects* for building block instances are created.
+  `i-bem__dom`. And yet in terms of *i-bem.js* this is the way *different instances * for each block.
 
 -------------------------------------------------------------------------------
 
@@ -359,11 +359,11 @@ provide({
 
 ## Block definition in a declaration ##
 
-The first parameter of the `decl` method is a block definition, in which the announced in the declaration  methods will be implemented.
+The first parameter of the `decl` method is a block definition. The methods announced in the declaration will be applied.
 The block definition must contain the block name and may additionally contain:
 
 * limiting the scope of the declaration by the certain modification of the block;
-* list of parent blocks, methods of which should inherit the given block.
+* list of parent blocks, methods of which should inherit the given block. Блок отнаследует методы родительских блоков из данного списка.
 
 Block definition may be given in one of two forms:
 
@@ -400,12 +400,12 @@ Modifiers are the properties of block instances. Static methods belong to the cl
 
 ## Сontext ##
 
-**Block instance methods** are implemented in the JS object context of a block instance.  Accordingly, the key word `this` in instance methods of the block refers to JS object of a **block instance**. 
+**Block instance methods** are implemented in the JS object context of a block instance.  Accordingly, the keyword `this` in instance methods of the block refers to JS object of a **block instance**. 
 
-**Static methods** are implemented in the context of JS object, that corresponds to the class of the block.
+**Static methods** are applied in the context of JS object, that refers to the class of the block.
 Accordingly, `this` keyword  in static methods of the block refers to **block class**, not to an instance.
 
-Context contains the reserved fields:
+Context has the reserved fields:
 
  + `this.__self`: Refers to the static methods of the class, which the instance belongs to. It is defined in the instance methods of a block. It does not make sense for static methods and is not defined.
 
@@ -424,7 +424,7 @@ DOM.decl('my-block', {
 ```
 
  + `this.__base`: Refers to the implementation of the method in the base class, which it is inhereted from. 
-    Allows to implement super call. It is defined in the block instance methods and in static methods of the block.
+    Allows to make super call. It is defined in the block instance methods and in static methods of the block.
 
     For example: calling (and modification) of `_onClick` method of parent class (the basic method implementation in the `button` class).
 
@@ -462,7 +462,7 @@ To access DOM nodes of elements and work with their modifiers use API, provided 
 
 The block instance provides two methods to access the elements of a given instance:
 
-* Access with cache`elem(elems, [modName], [modVal])`. There is no need to store as a variable the element obtained this way.
+* Caching ccess`elem(elems, [modName], [modVal])`. There is no need to store as a variable the element obtained this way.
 
 ```js
 DOM.decl('b-link', {
@@ -474,7 +474,7 @@ DOM.decl('b-link', {
 );
 ```
 
-* Access without cache `findElem(elems, [modName], [modVal])`.
+* Non caching access `findElem(elems, [modName], [modVal])`.
 
 ```js
 DOM.decl('b-link', {
@@ -487,7 +487,7 @@ DOM.decl('b-link', {
 });
 ```
 
-In the process of [dynamic adding and removing block elements](#dynamic) it can  be necessary to reset cache of elements. This is what the `dropElemCache('elements')` method is used for. 
+In the process of [dynamic adding and removing block elements](#dynamic) it can  be necessary to drop cache of elements. This is what the `dropElemCache('elements')` method is used for. 
 The space-separated list of names is indicated as a parameter for those elements, cache reset is needed for:  
 
 ```js
@@ -505,11 +505,11 @@ Complete API description for working with elements is contained in the source co
 
 <a name="dynamic"></a>
 
-##Dynamic updating of blocks and elements in the DOM tree##
+##Dynamic update of blocks and elements in the DOM tree##
 
 In modern interfaces one often needs to create new pieces of DOM tree and replace the old ones in the process of work (AJAX). 
 There are functions provided for adding and replacing fragments DOM tree in *i-bem.js*:
-* add a DOM fragment:
+* append a DOM fragment:
 
 * `append` — into to the end of specified context;
 * `prepend` — into to the end of specified context;
@@ -523,9 +523,9 @@ There are functions provided for adding and replacing fragments DOM tree in *i-b
 All functions automatically run [initialization in the updated DOM tree fragment](#init-ajax).  
 
 To simplify the creation of BEM entities in a renewable fragments of DOM-tree, it is possible to use the template engine
-[BEMHTML](http://ru.bem.info/articles/bemhtml-reference/), and connect it as a [ymaps][] module. 
+[BEMHTML](http://ru.bem.info/articles/bemhtml-reference/), and define it as a [ymaps][] module. 
 BEM in [BEMJSON](http://ru.bem.info/articles/bemhtml-reference#bemjson) format.
-BEM entities are defined in BEMJSON format directly in the block code. BEMHTML.apply function generates HTML elements по BEMJSON описанию according to the BEM naming rules.
+BEM entities are defined in BEMJSON format directly in the block code. BEMHTML.apply function generates HTML elements by BEMJSON declaration according to the BEM naming rules.
 
 **For example**: `_updateFileElem` method of the `attach` block removes the `file` element, if it existed, and generates a new element by using `BEMHTML.apply`: 
 
